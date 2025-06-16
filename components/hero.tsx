@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 const roles = [
   "Software Engineer",
@@ -80,8 +81,10 @@ export default function Hero() {
             </Button>
           </div>
           <div className="flex gap-4 mt-8">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-              <Github className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" asChild>
+              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer">
+                <Github className="h-5 w-5" />
+              </Link>
             </Button>
             <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
               <Linkedin className="h-5 w-5" />

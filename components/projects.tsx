@@ -7,12 +7,12 @@ import Image from "next/image"
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform with payment processing and inventory management.",
-    image: "/placeholder.svg?height=300&width=600",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    title: "SiTrack - Trucking Management System",
+    description: "A full-stack trucking management system with a modern UI and a focus on user experience.",
+    image: "/sitrack-app.png?height=300&width=600",
+    tags: ["Vue.js", "Node.js", "PostgreSQL", "Spring"],
+    githubUrl: "https://gitlab.cs.ui.ac.id/propensi-2024-2025-genap/kelas-b/b03-voc-be",
+    liveUrl: "https://sitrack.up.railway.app/home",
   },
   {
     title: "Task Management App",
