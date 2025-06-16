@@ -86,8 +86,10 @@ export default function Hero() {
                 <Github className="h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-              <Linkedin className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" asChild>
+              <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="h-5 w-5" />
+              </Link>
             </Button>
             <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
               <Mail className="h-5 w-5" />

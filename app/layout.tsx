@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -9,25 +10,34 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Rifat Fauzan',
-  description: 'Personal portfolio website showcasing my work and skills',
-  generator: 'Next.js',
+  title: 'Rifatmon',
+  description: 'Personal website of Rifat Fauzan',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" className={`dark ${poppins.variable}`}>
-      <body
-        className="min-h-screen"
-        style={{
-          background: "radial-gradient(circle, #2563eb 0%, #000 100%)"
-        }}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning className={poppins.variable}>
+      <body className="min-h-screen font-poppins">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
