@@ -28,14 +28,12 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
     setIsSubmitting(false)
     setSubmitSuccess(true)
     setFormData({ name: "", email: "", message: "" })
 
-    // Reset success message after 3 seconds
     setTimeout(() => {
       setSubmitSuccess(false)
     }, 3000)

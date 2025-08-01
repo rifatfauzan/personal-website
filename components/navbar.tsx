@@ -12,7 +12,7 @@ export default function Navbar() {
     e.preventDefault()
     const element = document.getElementById(targetId)
     if (element) {
-      const offset = 80 // Adjust this value based on your navbar height
+      const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
 
@@ -60,8 +60,10 @@ export default function Navbar() {
             Contact
           </Link>
         </nav>
-        <Button variant="outline" className="hidden md:flex border-white/20 text-white hover:bg-white/10 hover:text-white">
-          Resume
+        <Button variant="outline" className="hidden md:flex border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
+          <Link href="https://drive.google.com/file/d/1jntUfq6jP7KWnzG5kYAxr8nbnXWZ0mjX/view" target="_blank" rel="noopener noreferrer">
+            Resume
+          </Link>
         </Button>
         <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X /> : <Menu />}
@@ -99,8 +101,10 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-              <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white">
-                Resume
+              <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
+                <Link href="https://drive.google.com/file/d/1jntUfq6jP7KWnzG5kYAxr8nbnXWZ0mjX/view" target="_blank" rel="noopener noreferrer">
+                  Resume
+                </Link>
               </Button>
             </nav>
           </div>

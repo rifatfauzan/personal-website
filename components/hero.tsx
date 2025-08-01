@@ -71,14 +71,6 @@ export default function Hero() {
           <p className="text-lg md:text-xl text-white/80 mb-8">
             I am a student with interest in developing websites with various frameworks, also have keen interest in data analytics.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              View Projects
-            </Button>
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 hover:text-white">
-              Contact Me
-            </Button>
-          </div>
           <div className="flex gap-4 mt-8">
             <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" asChild>
               <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer">

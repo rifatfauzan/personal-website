@@ -60,7 +60,7 @@ const techStack = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
     url: "https://vuejs.org/"
   },
-  // New tools
+
   {
     name: "Git",
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
@@ -83,7 +83,7 @@ const techStack = [
   },
 ]
 
-// Duplicate the tech stack to create a seamless loop
+
 const duplicatedTechStack = [...techStack, ...techStack]
 
 export default function TechStack() {
@@ -102,9 +102,8 @@ export default function TechStack() {
     const scroll = () => {
       if (!scrollerContent) return
 
-      scrollPosition += 0.7 // Slowed down the scroll speed
+      scrollPosition += 0.7
 
-      // Reset position to create infinite loop effect
       if (scrollPosition >= itemWidth * techStack.length) {
         scrollPosition = 0
       }
@@ -128,7 +127,7 @@ export default function TechStack() {
         </h2>
 
         <div className="relative w-full">
-          {/* Left and right gradient overlays */}
+  
           <div 
             className="flex items-center gap-8 py-4" 
             ref={scrollerRef}
