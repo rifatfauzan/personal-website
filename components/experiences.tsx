@@ -1,35 +1,77 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { Calendar, MapPin } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 const experiences = [
   {
-    title: "Pesta Rakyat Komputer 2023",
-    description: "A full-stack e-commerce platform with payment processing and inventory management.",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    title: "AI Development Participant",
+    company: "Infinite Learning",
+    period: "March 2022 - July 2022",
+    role: "Artificial Intelligence Mentee",
+    description: [
+      "Mastered AI fundamentals and practical applications, including core concepts of ML and DL.",
+      "Actively collaborated with the Web Development team in developing a digital platform to develop an AI-powered recommendation system, aimed at enhancing the user experience on the platform.",
+    ],
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team features.",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    title: "Staff of Wisuda Genap 2023",
+    company: "Universitas Indonesia",
+    period: "Aug 2023 - Sept 2023",
+    role: "Member of Wisuda Genap's Operational Division",
+    description: [
+      "Managed and supported all the operational activities to ensure the event's success.",
+      "Collaborated with other divisions to quickly resolve operational issues."
+    ],
   },
   {
-    title: "Weather Dashboard",
-    description: "A weather dashboard that displays current and forecasted weather data from multiple sources.",
-    tags: ["React", "Redux", "Tailwind CSS", "Weather API"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    title: "Staff of PERAK Fasilkom UI",
+    company: "Fasilkom UI",
+    period: "March 2023 - Sept 2023",
+    role: "Member of PERAK's Field Controller Division",
+    description: [
+      "Collaborated with other divisions to maintain event flow and resolve related issues promptly.",
+      "Assisted with logistics preparations and managed resource allocation for the event."
+    ],
   },
 ]
 
 export default function Experiences() {
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const observers = cardRefs.current.map((ref, index) => {
+      if (!ref) return null
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setVisibleCards(prev => {
+            const newSet = new Set(prev)
+            if (entry.isIntersecting) {
+              newSet.add(index)
+            } else {
+              newSet.delete(index)
+            }
+            return newSet
+          })
+        },
+        {
+          threshold: 0.3,
+          rootMargin: '-50px 0px -50px 0px'
+        }
+      )
+
+      observer.observe(ref)
+      return observer
+    })
+
+    return () => {
+      observers.forEach(observer => observer?.disconnect())
+    }
+  }, [])
+
   return (
     <section id="experiences" className="py-20">
       <div className="container">
@@ -37,31 +79,56 @@ export default function Experiences() {
           Past Experiences and Volunteering
         </h2>
         <p className="text-center text-opacity-80 mb-12 max-w-2xl mx-auto">
-          
+          My journey through various roles and experiences that have shaped my professional growth
         </p>
-        <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((experience, index) => (
             <Card 
-              key={experience.title} 
-              className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2"
+              key={experience.title}
+              ref={(el) => { cardRefs.current[index] = el }}
+              className={`glass-card transition-all duration-700 hover:-translate-y-2 relative overflow-hidden ${
+                visibleCards.has(index) 
+                  ? 'ring-2 ring-blue-400/50 shadow-2xl shadow-blue-400/20 scale-[1.02]' 
+                  : 'hover:ring-1 hover:ring-white/20'
+              }`}
             >
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-opacity-100">
-                  {experience.title}
-                </h3>
-                <p className="text-opacity-80 mb-4">
-                  {experience.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {experience.tags.map((tag) => (
-                    <Badge 
-                      key={tag} 
-                      variant="secondary"
-                      className="bg-white/10 text-white/80 hover:bg-white/20"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
+              {/* Highlight effect overlay */}
+              <div 
+                className={`absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-opacity duration-700 ${
+                  visibleCards.has(index) ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+              
+              <CardContent className="p-8 relative z-10">
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                  {/* Left side - Title and Company Info */}
+                  <div className="lg:flex-1">
+                    <h3 className="text-2xl font-bold mb-2 text-opacity-100">
+                      {experience.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-base text-opacity-70 mb-2">
+                      <MapPin className="w-5 h-5" />
+                      <span className="font-semibold">{experience.company}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-opacity-60 mb-4">
+                      <Calendar className="w-4 h-4" />
+                      <span>{experience.period}</span>
+                    </div>
+                    <p className="text-base font-medium text-opacity-90 mb-4 text-blue-200">
+                      {experience.role}
+                    </p>
+                  </div>
+                  
+                                     {/* Right side - Description */}
+                   <div className="lg:flex-1 lg:max-w-2xl">
+                     <ul className="space-y-3">
+                       {experience.description.map((desc, descIndex) => (
+                         <li key={descIndex} className="text-base text-opacity-80 leading-relaxed">
+                           • {desc}
+                         </li>
+                       ))}
+                     </ul>
+                   </div>
                 </div>
               </CardContent>
             </Card>
