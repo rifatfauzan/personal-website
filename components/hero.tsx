@@ -7,9 +7,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 const roles = [
-  "Software Engineer",
+  "Computer Science Student",
   "ML Enthusiast",
-  "UI/UX Designer",
+  "Data Analytics",
   "Problem Solver"
 ]
 
@@ -70,7 +70,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-white/80 mb-8">
-            I am a student specializing in developing websites with various frameworks, also have keen interest in data science.
+            I am a student with interest in developing websites with various frameworks, also have keen interest in data analytics.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -95,15 +95,6 @@ export default function Hero() {
               <Mail className="h-5 w-5" />
             </Button>
           </div>
-        </div>
-        <div className="mr-8 absolute right-40 top-1/2 transform -translate-y-1/2 transition-transform duration-300 hover:rotate-180">
-          {/* <Image
-            src="/Cigo.png"
-            alt="My Spirit Character"
-            width={400}
-            height={400}
-            className="object-contain"
-          /> */}
         </div>
       </div>
     </section>
