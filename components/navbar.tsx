@@ -61,7 +61,7 @@ export default function Navbar() {
           </Link>
         </nav>
         <Button variant="outline" className="hidden md:flex border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
-          <Link href="https://drive.google.com/file/d/1jntUfq6jP7KWnzG5kYAxr8nbnXWZ0mjX/view" target="_blank" rel="noopener noreferrer">
+          <Link href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
             Resume
           </Link>
         </Button>
@@ -102,7 +102,7 @@ export default function Navbar() {
                 Contact
               </Link>
               <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
-                <Link href="https://drive.google.com/file/d/1jntUfq6jP7KWnzG5kYAxr8nbnXWZ0mjX/view" target="_blank" rel="noopener noreferrer">
+                <Link href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
                   Resume
                 </Link>
               </Button>
