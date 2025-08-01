@@ -9,7 +9,6 @@ import Link from "next/link"
 const roles = [
   "Computer Science Student",
   "ML Enthusiast",
-  "Data Analytics",
   "Problem Solver"
 ]
 
