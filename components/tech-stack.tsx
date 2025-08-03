@@ -60,7 +60,11 @@ const techStack = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
     url: "https://vuejs.org/"
   },
-
+      { 
+      name: "Tableau", 
+      image: "/tableau-icon-svgrepo-com.svg",
+      url: "https://www.tableau.com/"
+    },
   {
     name: "Git",
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",

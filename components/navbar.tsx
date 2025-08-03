@@ -43,7 +43,14 @@ export default function Navbar() {
             className="text-sm font-medium text-white/80 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'tech')}
           >
-            Tech Stack
+            Tools
+          </Link>
+          <Link 
+            href="#experiences" 
+            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+            onClick={(e) => handleScroll(e, 'experiences')}
+          >
+            Experiences
           </Link>
           <Link 
             href="#projects" 
@@ -85,7 +92,14 @@ export default function Navbar() {
                 className="text-white/80 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'tech')}
               >
-                Tech Stack
+                Tools
+              </Link>
+              <Link
+                href="#experiences"
+                className="text-white/80 hover:text-white transition-colors"
+                onClick={(e) => handleScroll(e, 'experiences')}
+              >
+                Experiences
               </Link>
               <Link
                 href="#projects"
