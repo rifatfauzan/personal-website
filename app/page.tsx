@@ -5,6 +5,7 @@ import TechStack from "@/components/tech-stack"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Experiences from "@/components/experiences"
+import ScrollReveal from "@/components/scroll-reveal"
 
 export default function Home() {
   return (
@@ -17,10 +18,18 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <TechStack />
-        <Experiences />
-        <Projects />
-        <Contact />
+        <ScrollReveal direction="up" delay={0.2}>
+          <TechStack />
+        </ScrollReveal>
+        <ScrollReveal direction="up" delay={0.3}>
+          <Experiences />
+        </ScrollReveal>
+        <ScrollReveal direction="up" delay={0.4}>
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal direction="up" delay={0.5}>
+          <Contact />
+        </ScrollReveal>
       </main>
       <Footer />
     </div>
