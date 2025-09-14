@@ -77,7 +77,7 @@ export default function Projects() {
             >
               <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-blue-400/50 hover:shadow-2xl hover:shadow-blue-400/20">
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"
+                  className="absolute inset-0 bg-gradient-to-r from-gray-800/10 to-gray-700/10"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
