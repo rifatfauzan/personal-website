@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion"
 
 const techStack = [
   { 
@@ -126,19 +127,30 @@ export default function TechStack() {
   return (
     <section id="tech" className="py-12 overflow-hidden">
       <div className="container">
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-white">
-        Tools and Frameworks
-        </h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-white"
+        >
+          Tools and Frameworks
+        </motion.h2>
 
-        <div className="relative w-full">
-  
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative w-full"
+        >
           <div 
             className="flex items-center gap-8 py-4" 
             ref={scrollerRef}
             style={{ width: 'fit-content' }}
           >
             {duplicatedTechStack.map((tech, index) => (
-              <a
+              <motion.a
                 key={`${tech.name}-${index}`}
                 href={tech.url}
                 target="_blank"
@@ -147,7 +159,17 @@ export default function TechStack() {
                 tabIndex={0}
                 aria-label={tech.name}
                 style={{ textDecoration: 'none' }}
-                >
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: (index % techStack.length) * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Card className="glass-card hover-glow transition-all duration-300">
                   <CardContent className="flex flex-col items-center justify-center p-8">
                     <div className="relative w-24 h-24 mb-4 transform transition-transform duration-300 hover:scale-110">
@@ -162,10 +184,10 @@ export default function TechStack() {
                     <p className="text-xl font-medium text-white/80">{tech.name}</p>
                   </CardContent>
                 </Card>
-              </a>
+              </motion.a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

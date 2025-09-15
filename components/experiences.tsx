@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Calendar, MapPin } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
 
 const experiences = [
   {
@@ -49,99 +49,98 @@ const experiences = [
 ]
 
 export default function Experiences() {
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observers = cardRefs.current.map((ref, index) => {
-      if (!ref) return null
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          setVisibleCards(prev => {
-            const newSet = new Set(prev)
-            if (entry.isIntersecting) {
-              newSet.add(index)
-            } else {
-              newSet.delete(index)
-            }
-            return newSet
-          })
-        },
-        {
-          threshold: 0.3,
-          rootMargin: '-50px 0px -50px 0px'
-        }
-      )
-
-      observer.observe(ref)
-      return observer
-    })
-
-    return () => {
-      observers.forEach(observer => observer?.disconnect())
-    }
-  }, [])
-
   return (
     <section id="experiences" className="py-20">
       <div className="container">
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-opacity-100">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-opacity-100"
+        >
           Past Experiences and Volunteering
-        </h2>
-        <p className="text-center text-opacity-80 mb-12 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center text-opacity-80 mb-12 max-w-2xl mx-auto"
+        >
           My journey through various roles and experiences that have shaped my professional growth
-        </p>
+        </motion.p>
         <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((experience, index) => (
-            <Card 
+            <motion.div
               key={experience.title}
-              ref={(el) => { cardRefs.current[index] = el }}
-              className={`glass-card transition-all duration-700 hover:-translate-y-2 relative overflow-hidden ${
-                visibleCards.has(index) 
-                  ? 'ring-2 ring-blue-400/50 shadow-2xl shadow-blue-400/20 scale-[1.02]' 
-                  : 'hover:ring-1 hover:ring-white/20'
-              }`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                ease: "easeOut"
+              }}
             >
-              <div 
-                className={`absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-opacity duration-700 ${
-                  visibleCards.has(index) ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-              
-                            <CardContent className="p-8 relative z-10">
-                <div className="flex flex-col space-y-6">
-
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3 text-opacity-100">
-                      {experience.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-base text-opacity-70 mb-2">
-                      <MapPin className="w-5 h-5" />
-                      <span className="font-semibold">{experience.company}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-opacity-60 mb-3">
-                      <Calendar className="w-4 h-4" />
-                      <span>{experience.period}</span>
-                    </div>
-                    <p className="text-base font-medium text-opacity-90 text-blue-200">
-                      {experience.role}
-                    </p>
+              <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-blue-400/50 hover:shadow-2xl hover:shadow-blue-400/20">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-gray-800/10 to-gray-700/10"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                />
+                
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex flex-col space-y-6">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                    >
+                      <h3 className="text-2xl font-bold mb-3 text-opacity-100">
+                        {experience.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-base text-opacity-70 mb-2">
+                        <MapPin className="w-5 h-5" />
+                        <span className="font-semibold">{experience.company}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-opacity-60 mb-3">
+                        <Calendar className="w-4 h-4" />
+                        <span>{experience.period}</span>
+                      </div>
+                      <p className="text-base font-medium text-opacity-90 text-blue-200">
+                        {experience.role}
+                      </p>
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                    >
+                      <ul className="space-y-3">
+                        {experience.description.map((desc, descIndex) => (
+                          <motion.li 
+                            key={descIndex} 
+                            className="text-base text-opacity-80 leading-relaxed"
+                            initial={{ opacity: 0, x: 10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: index * 0.1 + 0.5 + descIndex * 0.1 }}
+                          >
+                            • {desc}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
                   </div>
-                  
-
-                  <div>
-                    <ul className="space-y-3">
-                      {experience.description.map((desc, descIndex) => (
-                        <li key={descIndex} className="text-base text-opacity-80 leading-relaxed">
-                          • {desc}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
