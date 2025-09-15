@@ -5,7 +5,6 @@ import TechStack from "@/components/tech-stack"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Experiences from "@/components/experiences"
-import ScrollReveal from "@/components/scroll-reveal"
 import Silk from "@/components/Silk"
 
 export default function Home() {
@@ -14,10 +13,10 @@ export default function Home() {
           <div className="fixed inset-0 z-0">
             <Silk
               speed={3}
-              scale={0.5}
-              color="#1A0C50"
+              scale={0.3}
+              color="#60a5fa"
               noiseIntensity={0.2}
-              rotation={2}
+              rotation={2.5}
             />
           </div>
       
@@ -25,18 +24,10 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <ScrollReveal direction="up" delay={0.1}>
-            <TechStack />
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.1}>
-            <Experiences />
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.1}>
-            <Projects />
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.1}>
-            <Contact />
-          </ScrollReveal>
+          <TechStack />
+          <Experiences />
+          <Projects />
+          <Contact />
         </main>
         <Footer />
       </div>
