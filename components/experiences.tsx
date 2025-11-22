@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 const experiences = [
   {
-    title: "AI Development Participant",
+    title: "AI Development Cohort",
     company: "Infinite Learning",
     period: "Mar 2025 - Jul 2025",
     role: "Artificial Intelligence Mentee",
