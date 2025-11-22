@@ -11,7 +11,6 @@ import RotatingText from "@/components/RotatingText"
 const roles = [
   " Learner",
   " Problem Solver",
-  " Data Enthusiast"
 ]
 
 export default function Hero() {
@@ -19,6 +18,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
       <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="max-w-3xl">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
@@ -80,6 +80,24 @@ export default function Hero() {
               <Mail className="h-5 w-5" />
             </Button>
           </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="hidden md:flex justify-end items-center -mr-40"
+        >
+          <div className="relative w-full max-w-2xl">
+            <Image
+              src="/memoji.png"
+              alt="Rifat"
+              width={600}
+              height={600}
+              className="w-full h-auto drop-shadow-lg"
+              priority
+            />
+          </div>
+        </motion.div>
         </div>
       </div>
     </section>
