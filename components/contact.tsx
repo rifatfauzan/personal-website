@@ -71,10 +71,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <Mail className="h-6 w-6 text-black" />
-                  <h3 className="text-xl font-semibold text-black">Email</h3>
+                  <Mail className="h-6 w-6 text-white" />
+                  <h3 className="text-xl font-semibold text-white">Email</h3>
                 </div>
-                <p className="text-black/80">rifat.fauzan8@gmail.com</p>
+                <p className="text-white/80">rifat.fauzan8@gmail.com</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -87,10 +87,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <Phone className="h-6 w-6 text-black" />
-                  <h3 className="text-xl font-semibold text-black">Phone</h3>
+                  <Phone className="h-6 w-6 text-white" />
+                  <h3 className="text-xl font-semibold text-white">Phone</h3>
                 </div>
-                <p className="text-black/80">+62 878-7508-7770</p>
+                <p className="text-white/80">+62 878-7508-7770</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -103,10 +103,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <MapPin className="h-6 w-6 text-black" />
-                  <h3 className="text-xl font-semibold text-black">Location</h3>
+                  <MapPin className="h-6 w-6 text-white" />
+                  <h3 className="text-xl font-semibold text-white">Location</h3>
                 </div>
-                <p className="text-black/80">Jakarta, Indonesia</p>
+                <p className="text-white/80">Jakarta, Indonesia</p>
               </CardContent>
             </Card>
           </motion.div>

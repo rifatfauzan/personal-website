@@ -28,7 +28,7 @@ export default function Hero() {
           >
             Hi, I'm             <TextPressure
               text="Rifat!"
-              textColor="#000000"
+              textColor="#372c2a"
               flex={true}
               weight={true}
               width={true}
@@ -42,7 +42,7 @@ export default function Hero() {
               A {" "}
               <RotatingText
                 texts={roles}
-                mainClassName="text-black"
+                mainClassName="text-[#372c2a]"
                 rotationInterval={2500}
                 staggerDuration={0.01}
                 staggerFrom="first"
