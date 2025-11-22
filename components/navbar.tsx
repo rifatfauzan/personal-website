@@ -78,7 +78,7 @@ export default function Navbar() {
       </div>
       {isMenuOpen && (
         <div className="container md:hidden py-4 animate-in slide-in-from-top duration-300">
-          <div className="p-6 rounded-xl border border-white/10 hover:border-amber-500/30 hover:shadow-[0_2px_8px_rgba(59,130,224,0.1)] transition-all">
+          <div className="p-6 rounded-xl border border-white/10 hover:border-white/30 hover:shadow-[0_2px_8px_rgba(255,255,255,0.1)] transition-all">
             <nav className="flex flex-col gap-4">
               <Link
                 href="#home"

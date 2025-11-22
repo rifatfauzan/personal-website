@@ -5,18 +5,17 @@ import TechStack from "@/components/tech-stack"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Experiences from "@/components/experiences"
-import Silk from "@/components/Silk"
+import Threads from "@/components/Threads"
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative" style={{ backgroundColor: '#edebeb' }}>
           <div className="fixed inset-0 z-0">
-            <Silk
-              speed={3}
-              scale={0.3}
-              color="#60a5fa"
-              noiseIntensity={0.2}
-              rotation={2.5}
+            <Threads
+              color={[0, 0, 0]}
+              amplitude={2}
+              distance={0.1}
+              enableMouseInteraction={true}
             />
           </div>
       

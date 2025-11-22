@@ -132,7 +132,7 @@ export default function TechStack() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-white"
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Tools and Frameworks
         </motion.h2>
