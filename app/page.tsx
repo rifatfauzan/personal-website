@@ -9,10 +9,10 @@ import Threads from "@/components/Threads"
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative" style={{ backgroundColor: '#edebeb' }}>
           <div className="fixed inset-0 z-0">
             <Threads
-              color={[2255, 255, 255]}
+              color={[0, 0, 0]}
               amplitude={2}
               distance={0.1}
               enableMouseInteraction={true}

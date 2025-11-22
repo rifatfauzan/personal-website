@@ -48,7 +48,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-opacity-100"
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Get in Touch
         </motion.h2>
@@ -57,7 +57,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-opacity-80 mb-12 max-w-2xl mx-auto"
+          className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
           Feel free to reach out to me for any questions or opportunities.
         </motion.p>
@@ -71,10 +71,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <Mail className="h-6 w-6 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-opacity-100">Email</h3>
+                  <Mail className="h-6 w-6 text-black" />
+                  <h3 className="text-xl font-semibold text-black">Email</h3>
                 </div>
-                <p className="text-opacity-80">rifat.fauzan8@gmail.com</p>
+                <p className="text-black/80">rifat.fauzan8@gmail.com</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -87,10 +87,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <Phone className="h-6 w-6 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-opacity-100">Phone</h3>
+                  <Phone className="h-6 w-6 text-black" />
+                  <h3 className="text-xl font-semibold text-black">Phone</h3>
                 </div>
-                <p className="text-opacity-80">+62 878-7508-7770</p>
+                <p className="text-black/80">+62 878-7508-7770</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -103,10 +103,10 @@ export default function Contact() {
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <MapPin className="h-6 w-6 text-blue-400" />
-                  <h3 className="text-xl font-semibold text-opacity-100">Location</h3>
+                  <MapPin className="h-6 w-6 text-black" />
+                  <h3 className="text-xl font-semibold text-black">Location</h3>
                 </div>
-                <p className="text-opacity-80">Jakarta, Indonesia</p>
+                <p className="text-black/80">Jakarta, Indonesia</p>
               </CardContent>
             </Card>
           </motion.div>

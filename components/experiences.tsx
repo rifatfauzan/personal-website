@@ -57,7 +57,7 @@ export default function Experiences() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-opacity-100"
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Past Experiences and Volunteering
         </motion.h2>
@@ -66,7 +66,7 @@ export default function Experiences() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-opacity-80 mb-12 max-w-2xl mx-auto"
+          className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
           My journey through various roles and experiences that have shaped my professional growth
         </motion.p>
@@ -83,7 +83,7 @@ export default function Experiences() {
                 ease: "easeOut"
               }}
             >
-              <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-blue-400/50 hover:shadow-2xl hover:shadow-blue-400/20">
+              <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-white/50 hover:shadow-2xl hover:shadow-white/20">
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-gray-800/10 to-gray-700/10"
                   initial={{ opacity: 0 }}
@@ -100,18 +100,18 @@ export default function Experiences() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
                     >
-                      <h3 className="text-2xl font-bold mb-3 text-opacity-100">
+                      <h3 className="text-2xl font-bold mb-3 text-white">
                         {experience.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-base text-opacity-70 mb-2">
+                      <div className="flex items-center gap-2 text-base text-white/70 mb-2">
                         <MapPin className="w-5 h-5" />
                         <span className="font-semibold">{experience.company}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-opacity-60 mb-3">
+                      <div className="flex items-center gap-2 text-sm text-white/60 mb-3">
                         <Calendar className="w-4 h-4" />
                         <span>{experience.period}</span>
                       </div>
-                      <p className="text-base font-medium text-opacity-90 text-blue-200">
+                      <p className="text-base font-medium text-white/80">
                         {experience.role}
                       </p>
                     </motion.div>
@@ -126,7 +126,7 @@ export default function Experiences() {
                         {experience.description.map((desc, descIndex) => (
                           <motion.li 
                             key={descIndex} 
-                            className="text-base text-opacity-80 leading-relaxed"
+                            className="text-base text-white/80 leading-relaxed"
                             initial={{ opacity: 0, x: 10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
