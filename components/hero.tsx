@@ -1,60 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import TextPressure from "@/components/TextPressure"
+import RotatingText from "@/components/RotatingText"
 
 const roles = [
-  "ML Enthusiast",
-  "Problem Solver"
+  " Learner",
+  " Problem Solver",
+  " Data Enthusiast"
 ]
 
 export default function Hero() {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
-  const [displayText, setDisplayText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [isWaiting, setIsWaiting] = useState(false)
-
-  useEffect(() => {
-    const currentRole = roles[currentRoleIndex]
-    const typingSpeed = 100
-    const deletingSpeed = 50
-    const waitTime = 2000
-
-    let timeout: NodeJS.Timeout
-
-    if (isWaiting) {
-      timeout = setTimeout(() => {
-        setIsWaiting(false)
-        setIsDeleting(true)
-      }, waitTime)
-      return () => clearTimeout(timeout)
-    }
-
-    if (isDeleting) {
-      if (displayText.length === 0) {
-        setIsDeleting(false)
-        setCurrentRoleIndex((prev) => (prev + 1) % roles.length)
-        return
-      }
-      timeout = setTimeout(() => {
-        setDisplayText(displayText.slice(0, -1))
-      }, deletingSpeed)
-    } else {
-      if (displayText === currentRole) {
-        setIsWaiting(true)
-        return
-      }
-      timeout = setTimeout(() => {
-        setDisplayText(currentRole.slice(0, displayText.length + 1))
-      }, typingSpeed)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayText, currentRoleIndex, isDeleting, isWaiting])
 
   return (
     <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
@@ -66,11 +26,30 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-7xl font-bold text-white mb-6 transform hover:-translate-y-2 transition-transform duration-300"
           >
-            Hi, I'm Rifat!<br />
-            A{" "}
-            <span className="text-blue-400 relative">
-              {displayText}
-              <span className="animate-blink ml-1">|</span>
+            Hi, I'm <TextPressure
+              text="Rifat!"
+              textColor="#60a5fa"
+              flex={true}
+              weight={true}
+              width={true}
+              italic={true}
+              scale={false}
+              minFontSize={40}
+              className="inline-block"
+            />
+            <br />
+            <span className="inline-flex items-center gap-1">
+              A {" "}
+              <RotatingText
+                texts={roles}
+                mainClassName="text-blue-400"
+                rotationInterval={2500}
+                staggerDuration={0.01}
+                staggerFrom="first"
+                auto={true}
+                loop={true}
+                splitBy="characters"
+              />
             </span>
           </motion.h1>
           <motion.p 
