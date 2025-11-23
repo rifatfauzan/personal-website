@@ -5,7 +5,7 @@ import TechStack from "@/components/tech-stack"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import Experiences from "@/components/experiences"
-import Threads from "@/components/Threads"
+import Threads from "@/components/ui/threads"
 
 export default function Home() {
   return (
