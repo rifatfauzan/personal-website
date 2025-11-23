@@ -79,7 +79,7 @@ export default function Experiences() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ 
                 duration: 0.6, 
-                delay: index * 0.1,
+                delay: index * 0.05,
                 ease: "easeOut"
               }}
             >
@@ -89,7 +89,7 @@ export default function Experiences() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 + 0.15 }}
                 />
                 
                 <CardContent className="p-8 relative z-10">
