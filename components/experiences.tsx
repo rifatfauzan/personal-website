@@ -5,13 +5,12 @@ import { motion } from "framer-motion"
 
 const experiences = [
   {
-    title: "Data Intern",
+    title: "Data Analytics & Scientist Intern",
     company: "Mandiri Sekuritas",
     period: "Aug 2025 - Present",
-    role: "Data Analytics & Scientist Intern",
     logo: "/mandiri-sekuritas.png",
     description: [
-      "Updates BigQuery database from daily push notifications and transactions data.",
+      "Updates BigQuery data warehouse for daily push notifications and transactions data.",
       "Automated weekly reports for push notifications and transactions data regarding stock research.",
       "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
       "Conducted backtesting on trading strategies."
@@ -21,7 +20,6 @@ const experiences = [
     title: "AI Development Cohort",
     company: "Infinite Learning Indonesia",
     period: "Mar 2025 - Jul 2025",
-    role: "Artificial Intelligence Mentee",
     logo: "/infinite-learning.png",
     description: [
       "Completed an intensive AI development program, learning core concepts in Data Science, Machine Learning, Deep Learning, Natural Language Processing (NLP), and Model Deployment.",
@@ -33,7 +31,6 @@ const experiences = [
     title: "Staff of Field Controller",
     company: "Pesta Rakyat Komputer",
     period: "Mar 2023 - Oct 2023",
-    role: "Member of PERAK's Field Controller Division",
     logo: "/perak.png",
     description: [
       "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
@@ -44,7 +41,6 @@ const experiences = [
     title: "Staff of Operational",
     company: "Wisuda Genap Fasilkom UI 2023",
     period: "Jul 2023 - Aug 2023",
-    role: "Member of Wisuda Genap's Operational Division",
     logo: "/pacil.png",
     description: [
       "Successfully managing and supporting all operational activities to ensure the event's success.",
@@ -55,7 +51,6 @@ const experiences = [
     title: "Mentor",
     company: "Dasar-Dasar Pemrograman 0",
     period: "Aug 2023 - Nov 2023",
-    role: "Mentor",
     logo: "/pacil.png",
     description: [
       "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
@@ -66,7 +61,6 @@ const experiences = [
     title: "Member",
     company: "Google Developer Student Club Universitas Indonesia",
     period: "Nov 2022 - Jun 2023",
-    role: "Member",
     logo: "/gdsc.png",
     description: [
       "Participated in Google Developer Student Club activities and events.",
@@ -77,7 +71,6 @@ const experiences = [
     title: "Intern at Department of Arts and Culture",
     company: "BEM Fakultas Ilmu Komputer Universitas Indonesia",
     period: "Sep 2022 - Dec 2022",
-    role: "Member of Events Division",
     logo: "/pacil.png",
     description: [
       "Participated as an intern at the Department of Arts and Culture.",
@@ -153,11 +146,8 @@ export default function Experiences() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <p className="text-xs text-white/60">
-                        {experience.period}
-                      </p>
                       <span className="text-[#FFFFFF] font-medium text-xs px-2 py-1 bg-white/5 rounded">
-                        {experience.role}
+                        {experience.period}
                       </span>
                     </div>
 
