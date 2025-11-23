@@ -28,7 +28,7 @@ export default function Hero() {
           >
             Hi, I'm             <TextPressure
               text="Rifat!"
-              textColor="#372c2a"
+              textColor="#CCB12D"
               flex={true}
               weight={true}
               width={true}
@@ -42,7 +42,7 @@ export default function Hero() {
               A {" "}
               <RotatingText
                 texts={roles}
-                mainClassName="text-[#372c2a]"
+                mainClassName="text-[#CCB12D]"
                 rotationInterval={2500}
                 staggerDuration={0.01}
                 staggerFrom="first"
@@ -58,7 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-black/80 mb-8"
           >
-            I am a student with interest in developing websites with various frameworks, also have keen interest in data analytics.
+            I am an Information Systems student with strong interest in <span className="font-bold" style={{ color: '#CCB12D' }}>Data Analytics</span> and <span className="font-bold" style={{ color: '#CCB12D' }}>Products</span>.
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
