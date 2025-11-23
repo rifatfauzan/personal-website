@@ -121,7 +121,7 @@ export default function Experiences() {
                     delay: index * 0.1,
                     ease: "easeOut"
                   }}
-                  className="relative pl-28"
+                  className="relative pl-10"
                 >
                     {index < experiences.length - 1 && (
                       <div className="absolute left-3.5 top-6 w-0.5 bg-white/20" style={{ height: 'calc(100% + 2rem)' }} />
