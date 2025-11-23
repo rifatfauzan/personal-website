@@ -127,7 +127,7 @@ export default function Experiences() {
                     )}
                   
                   <div className="absolute left-2 top-3 w-3 h-3">
-                    <div className="w-full h-full bg-[#CCB12D] rounded-full" />
+                    <div className="w-full h-full bg-[#f5d20a] rounded-full" />
                   </div>
 
                   <div className="space-y-3 relative">
@@ -171,7 +171,7 @@ export default function Experiences() {
                           transition={{ duration: 0 }}
                           className="text-sm text-white/80 leading-relaxed flex gap-2"
                         >
-                          <span className="text-[#CCB12D] font-bold flex-shrink-0">•</span>
+                          <span className="text-[#f5d20a] font-bold flex-shrink-0">•</span>
                           <span>{desc}</span>
                         </motion.li>
                       ))}
