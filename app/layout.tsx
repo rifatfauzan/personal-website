@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Hi There! I'm Rifat! 👋🏻",
-  description: "My personal portofolio website to showcase my experiences, projects, and skills.\nFeel Free to Contact Me!",
+  description: "My personal portofolio website to showcase my experiences, projects, and skills.\nFeel free to reach me out on my socials!",
   icons: {
     icon: [
       {
