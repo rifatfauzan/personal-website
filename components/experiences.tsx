@@ -105,7 +105,7 @@ export default function Experiences() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0 }}
-          className="max-w-4xl mx-auto glass-card rounded-lg p-8 bg-white/5 backdrop-blur-md border border-white/10"
+          className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-md border border-white/10"
         >
           <div className="relative">
 
@@ -120,13 +120,13 @@ export default function Experiences() {
                     duration: 0, 
                     ease: "easeOut"
                   }}
-                  className="relative pl-10"
+                  className="relative pl-8 md:pl-10"
                 >
                     {index < experiences.length - 1 && (
-                      <div className="absolute left-3.5 top-6 w-0.5 bg-white/20" style={{ height: 'calc(100% + 2rem)' }} />
+                      <div className="absolute left-2.5 md:left-3.5 top-6 w-0.5 bg-white/20" style={{ height: 'calc(100% + 2rem)' }} />
                     )}
                   
-                  <div className="absolute left-2 top-3 w-3 h-3">
+                  <div className="absolute left-0.5 md:left-2 top-3 w-3 h-3">
                     <div className="w-full h-full bg-[#f5d20a] rounded-full" />
                   </div>
 
