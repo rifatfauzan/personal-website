@@ -47,11 +47,6 @@ const techStack: TechItem[] = [
     url: "https://www.java.com/"
   },
   {
-    name: "Flutter",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-    url: "https://flutter.dev/"
-  },
-  {
     name: "Django",
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
     url: "https://www.djangoproject.com/"
@@ -73,21 +68,6 @@ const techStackRow2: TechItem[] = [
     name: "Tableau", 
     image: "/tableau-icon-svgrepo-com.svg",
     url: "https://www.tableau.com/"
-  },
-  {
-    name: "Git",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    url: "https://git-scm.com/"
-  },
-  {
-    name: "GitHub",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-    url: "https://github.com/"
-  },
-  {
-    name: "GitLab",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
-    url: "https://gitlab.com/"
   },
   {
     name: "GCP",
@@ -135,7 +115,7 @@ export default function TechStack() {
       >
           <LogoLoop
             items={techStack as any}
-            speed={80}
+            speed={40}
             direction="left"
             logoHeight={200}
             gap={48}
