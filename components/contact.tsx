@@ -44,29 +44,29 @@ export default function Contact() {
     <section id="contact" className="py-20">
       <div className="container">
         <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0 }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Get in Touch
         </motion.h2>
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0 }}
           className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
           Feel free to reach out to me for any questions or opportunities.
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0 }}
           >
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
@@ -79,10 +79,10 @@ export default function Contact() {
             </Card>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0 }}
           >
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">
@@ -95,10 +95,10 @@ export default function Contact() {
             </Card>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0 }}
           >
             <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
               <CardContent className="p-6">

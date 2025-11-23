@@ -91,20 +91,20 @@ export default function Experiences() {
     <section id="experiences" className="py-20">
       <div className="container">
         <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0 }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Past Experiences and Volunteering
         </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0 }}
           className="max-w-4xl mx-auto glass-card rounded-lg p-8 bg-white/5 backdrop-blur-md border border-white/10"
         >
           <div className="relative">
@@ -113,12 +113,11 @@ export default function Experiences() {
               {experiences.map((experience, index) => (
                 <motion.div
                   key={experience.title}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 1, x: 0 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ 
-                    duration: 0.5, 
-                    delay: index * 0.1,
+                    duration: 0, 
                     ease: "easeOut"
                   }}
                   className="relative pl-10"
@@ -166,10 +165,10 @@ export default function Experiences() {
                       {experience.description.map((desc, descIndex) => (
                         <motion.li 
                           key={descIndex}
-                          initial={{ opacity: 0, x: 10 }}
+                          initial={{ opacity: 1, x: 0 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.3, delay: index * 0.1 + descIndex * 0.05 }}
+                          transition={{ duration: 0 }}
                           className="text-sm text-white/80 leading-relaxed flex gap-2"
                         >
                           <span className="text-[#CCB12D] font-bold flex-shrink-0">•</span>

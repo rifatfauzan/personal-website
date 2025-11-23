@@ -45,19 +45,19 @@ export default function Projects() {
     <section id="projects" className="py-20">
       <div className="container">
         <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0 }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Projects
         </motion.h2>
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0 }}
           className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
           Here are some of my recent projects that showcase my skills and experience in various technologies
@@ -66,31 +66,30 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ 
-                duration: 0.6, 
-                delay: index * 0.05,
+                duration: 0, 
                 ease: "easeOut"
               }}
             >
               <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-white/50 hover:shadow-2xl hover:shadow-white/20">
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-r from-gray-800/10 to-gray-700/10"
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: 1 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 + 0.15 }}
+                  transition={{ duration: 0 }}
                 />
                 
                 <CardContent className="p-8 relative z-10">
                   <div className="flex flex-col space-y-6">
                     <motion.div
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 1, x: 0 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                      transition={{ duration: 0 }}
                     >
                       <h3 className="text-2xl font-bold mb-3 text-white">
                         {project.title}
@@ -101,20 +100,20 @@ export default function Projects() {
                     </motion.div>
                     
                     <motion.div
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 1, x: 0 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                      transition={{ duration: 0 }}
                     >
                       <ul className="space-y-3">
                         {project.description.map((desc, descIndex) => (
                           <motion.li 
                             key={descIndex} 
                             className="text-base text-white/80 leading-relaxed"
-                            initial={{ opacity: 0, x: 10 }}
+                            initial={{ opacity: 1, x: 0 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.1 + 0.5 + descIndex * 0.1 }}
+                            transition={{ duration: 0 }}
                           >
                             • {desc}
                           </motion.li>
