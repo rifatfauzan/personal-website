@@ -1,11 +1,16 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import LogoLoop from "@/components/ui/logo-loop"
 
-const techStack = [
+interface TechItem {
+  name: string
+  image: string
+  url: string
+}
+
+const techStack: TechItem[] = [
   { 
     name: "React", 
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -51,6 +56,9 @@ const techStack = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
     url: "https://www.java.com/"
   },
+]
+
+const techStackRow2: TechItem[] = [
   { 
     name: "Spring Boot", 
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
@@ -61,11 +69,11 @@ const techStack = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
     url: "https://vuejs.org/"
   },
-      { 
-      name: "Tableau", 
-      image: "/tableau-icon-svgrepo-com.svg",
-      url: "https://www.tableau.com/"
-    },
+  { 
+    name: "Tableau", 
+    image: "/tableau-icon-svgrepo-com.svg",
+    url: "https://www.tableau.com/"
+  },
   {
     name: "Git",
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
@@ -93,44 +101,9 @@ const techStack = [
   }
 ]
 
-
-const duplicatedTechStack = [...techStack, ...techStack]
-
 export default function TechStack() {
-  const scrollerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!scrollerRef.current) return
-
-    const scrollerContent = scrollerRef.current
-    const scrollerWidth = scrollerContent.scrollWidth
-    const itemWidth = scrollerWidth / duplicatedTechStack.length
-
-    let scrollPosition = 0
-    let animationId: number
-
-    const scroll = () => {
-      if (!scrollerContent) return
-
-      scrollPosition += 0.7
-
-      if (scrollPosition >= itemWidth * techStack.length) {
-        scrollPosition = 0
-      }
-
-      scrollerContent.style.transform = `translateX(-${scrollPosition}px)`
-      animationId = requestAnimationFrame(scroll)
-    }
-
-    animationId = requestAnimationFrame(scroll)
-
-    return () => {
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-
   return (
-    <section id="tech" className="py-12 overflow-hidden">
+    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="container">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
@@ -141,59 +114,77 @@ export default function TechStack() {
         >
           Tools and Frameworks
         </motion.h2>
+      </div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative w-full"
-        >
-          <div 
-            className="flex items-center gap-8 py-4" 
-            ref={scrollerRef}
-            style={{ width: 'fit-content' }}
-          >
-            {duplicatedTechStack.map((tech, index) => (
-              <motion.a
-                key={`${tech.name}-${index}`}
-                href={tech.url}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="relative w-screen space-y-8"
+      >
+          <LogoLoop
+            items={techStack as any}
+            speed={80}
+            direction="left"
+            logoHeight={200}
+            gap={48}
+            pauseOnHover={true}
+            fadeOut={false}
+            scaleOnHover={true}
+            renderItem={(item: any) => (
+              <a
+                href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-w-[200px]"
+                className="flex items-center justify-center"
                 tabIndex={0}
-                aria-label={tech.name}
-                style={{ textDecoration: 'none' }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: (index % techStack.length) * 0.1,
-                  ease: "easeOut"
-                }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                aria-label={item.name}
               >
-                <Card className="glass-card hover-glow transition-all duration-300">
-                  <CardContent className="flex flex-col items-center justify-center p-8">
-                    <div className="relative w-24 h-24 mb-4 transform transition-transform duration-300 hover:scale-110">
-                      <Image
-                        src={tech.image}
-                        alt={tech.name}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    </div>
-                    <p className="text-xl font-medium text-white/80">{tech.name}</p>
-                  </CardContent>
-                </Card>
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+                <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              </a>
+            )}
+          />
+
+          <LogoLoop
+            items={techStackRow2 as any}
+            speed={80}
+            direction="right"
+            logoHeight={200}
+            gap={48}
+            pauseOnHover={true}
+            fadeOut={false}
+            scaleOnHover={true}
+            renderItem={(item: any) => (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+                tabIndex={0}
+                aria-label={item.name}
+              >
+                <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+              </a>
+            )}
+          />
+      </motion.div>
     </section>
   )
 }
