@@ -11,8 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Rifatmon',
-  description: 'Hi there! I am Rifat!',
+  title: "Hi There! I am Rifat!",
+  description: "My personal portofolio website to showcase my experiences, projects, and skills.\nFeel Free to Contact Me!",
   icons: {
     icon: [
       {

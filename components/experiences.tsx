@@ -1,49 +1,87 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin } from "lucide-react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 
 const experiences = [
   {
+    title: "Data Intern",
+    company: "Mandiri Sekuritas",
+    period: "Aug 2025 - Present",
+    role: "Data Analytics & Scientist Intern",
+    logo: "/mandiri-sekuritas.png",
+    description: [
+      "Updates BigQuery database from daily push notifications and transactions data.",
+      "Automated weekly reports for push notifications and transactions data regarding stock research.",
+      "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
+      "Conducted backtesting on trading strategies."
+    ],
+  },
+  {
     title: "AI Development Cohort",
-    company: "Infinite Learning",
+    company: "Infinite Learning Indonesia",
     period: "Mar 2025 - Jul 2025",
     role: "Artificial Intelligence Mentee",
+    logo: "/infinite-learning.png",
     description: [
-      "Mastered AI fundamentals and practical applications, including core concepts of ML and DL.",
-      "Actively collaborated with the Web Development team in developing a digital platform.",
-      "Developed an AI-powered recommendation system, aimed at enhancing the user experience on the platform."
+      "Completed an intensive AI development program, learning core concepts in Data Science, Machine Learning, Deep Learning, Natural Language Processing (NLP), and Model Deployment.",
+      "Contributed as a Design Researcher on Serenity Retreats, a website with a personalized tourism recommendation system to match the user preferences.",
+      "Managed the end-to-end AI lifecycle, from data gathering and preprocessing to model training, evaluation, and deployment."
     ],
   },
   {
-    title: "Staff of Wisuda Genap 2023",
-    company: "Universitas Indonesia",
-    period: "Aug 2023 - Sep 2023",
-    role: "Member of Wisuda Genap's Operational Division",
-    description: [
-      "Managed and supported all the operational activities to ensure the event's success.",
-      "Collaborated with other divisions to quickly resolve operational issues."
-    ],
-  },
-  {
-    title: "Staff of PERAK Fasilkom UI",
-    company: "Fasilkom UI",
-    period: "Mar 2023 - Sep 2023",
+    title: "Staff of Field Controller",
+    company: "Pesta Rakyat Komputer",
+    period: "Mar 2023 - Oct 2023",
     role: "Member of PERAK's Field Controller Division",
+    logo: "/perak.png",
     description: [
-      "Collaborated with other divisions to maintain event flow and resolve related issues promptly.",
-      "Assisted with logistics preparations and managed resource allocation for the event."
+      "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
+      "Ensuring smooth event flow and promptly resolving issues in collaboration with other divisions."
     ],
   },
   {
-    title: "Intern at BEM Fasilkom UI's Department of Arts and Culture",
-    company: "BEM Fasilkom UI",
+    title: "Staff of Operational",
+    company: "Wisuda Genap Fasilkom UI 2023",
+    period: "Jul 2023 - Aug 2023",
+    role: "Member of Wisuda Genap's Operational Division",
+    logo: "/pacil.png",
+    description: [
+      "Successfully managing and supporting all operational activities to ensure the event's success.",
+      "Collaborated with other divisions to quickly resolve any operational issues."
+    ],
+  },
+  {
+    title: "Mentor",
+    company: "Dasar-Dasar Pemrograman 0",
+    period: "Aug 2023 - Nov 2023",
+    role: "Mentor",
+    logo: "/pacil.png",
+    description: [
+      "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
+      "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
+    ],
+  },
+  {
+    title: "Member",
+    company: "Google Developer Student Club Universitas Indonesia",
+    period: "Nov 2022 - Jun 2023",
+    role: "Member",
+    logo: "/gdsc.png",
+    description: [
+      "Participated in Google Developer Student Club activities and events.",
+      "Engaged with a community of developers learning about Google technologies and best practices."
+    ],
+  },
+  {
+    title: "Intern at Department of Arts and Culture",
+    company: "BEM Fakultas Ilmu Komputer Universitas Indonesia",
     period: "Sep 2022 - Dec 2022",
     role: "Member of Events Division",
+    logo: "/pacil.png",
     description: [
-      "Organized and executed a successful arts performance event, attended by 100+ students.",
-      "Collaborated with team members to ensure smooth event coordination and execution."
+      "Participated as an intern at the Department of Arts and Culture.",
+      "Organized and promoted 'Musik Kantin', a weekly musical event, coordinating all aspects of the show."
     ],
   },
 ]
@@ -61,88 +99,90 @@ export default function Experiences() {
         >
           Past Experiences and Volunteering
         </motion.h2>
-        <motion.p 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
+          className="max-w-4xl mx-auto glass-card rounded-lg p-8 bg-white/5 backdrop-blur-md border border-white/10"
         >
-          My journey through various roles and experiences that have shaped my professional growth
-        </motion.p>
-        <div className="max-w-4xl mx-auto space-y-8">
-          {experiences.map((experience, index) => (
-            <motion.div
-              key={experience.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.05,
-                ease: "easeOut"
-              }}
-            >
-              <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2 relative overflow-hidden hover:ring-2 hover:ring-white/50 hover:shadow-2xl hover:shadow-white/20">
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-gray-800/10 to-gray-700/10"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 + 0.15 }}
-                />
-                
-                <CardContent className="p-8 relative z-10">
-                  <div className="flex flex-col space-y-6">
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                    >
-                      <h3 className="text-2xl font-bold mb-3 text-white">
+          <div className="relative">
+
+            <div className="space-y-8">
+              {experiences.map((experience, index) => (
+                <motion.div
+                  key={experience.title}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }}
+                  className="relative pl-28"
+                >
+                    {index < experiences.length - 1 && (
+                      <div className="absolute left-3.5 top-6 w-0.5 bg-white/20" style={{ height: 'calc(100% + 2rem)' }} />
+                    )}
+                  
+                  <div className="absolute left-2 top-3 w-3 h-3">
+                    <div className="w-full h-full bg-[#CCB12D] rounded-full" />
+                  </div>
+
+                  <div className="space-y-3 relative">
+                    {experience.logo && (
+                       <div className="absolute -top-6 -right-0 w-32 h-32 opacity-80 pointer-events-none hidden md:block">
+                        <Image
+                          src={experience.logo}
+                          alt={experience.company}
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </div>
+                    )}
+                    
+                    <div>
+                      <h3 className="text-xl font-bold text-white">
                         {experience.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-base text-white/70 mb-2">
-                        <MapPin className="w-5 h-5" />
-                        <span className="font-semibold">{experience.company}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm text-white/60 mb-3">
-                        <Calendar className="w-4 h-4" />
-                        <span>{experience.period}</span>
-                      </div>
-                      <p className="text-base font-medium text-white/80">
-                        {experience.role}
+                      <p className="text-sm text-white/70 font-semibold">
+                        {experience.company}
                       </p>
-                    </motion.div>
-                    
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
-                    >
-                      <ul className="space-y-3">
-                        {experience.description.map((desc, descIndex) => (
-                          <motion.li 
-                            key={descIndex} 
-                            className="text-base text-white/80 leading-relaxed"
-                            initial={{ opacity: 0, x: 10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.1 + 0.5 + descIndex * 0.1 }}
-                          >
-                            • {desc}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <p className="text-xs text-white/60">
+                        {experience.period}
+                      </p>
+                      <span className="text-[#FFFFFF] font-medium text-xs px-2 py-1 bg-white/5 rounded">
+                        {experience.role}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-2">
+                      {experience.description.map((desc, descIndex) => (
+                        <motion.li 
+                          key={descIndex}
+                          initial={{ opacity: 0, x: 10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + descIndex * 0.05 }}
+                          className="text-sm text-white/80 leading-relaxed flex gap-2"
+                        >
+                          <span className="text-[#CCB12D] font-bold flex-shrink-0">•</span>
+                          <span>{desc}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
