@@ -5,8 +5,8 @@ import { Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import TextPressure from "@/components/TextPressure"
-import RotatingText from "@/components/RotatingText"
+import TextPressure from "@/components/ui/text-pressure"
+import RotatingText from "@/components/ui/rotating-text"
 
 const roles = [
   " Learner",

@@ -37,16 +37,6 @@ const techStack: TechItem[] = [
     url: "https://tailwindcss.com/"
   },
   { 
-    name: "PostgreSQL", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    url: "https://www.postgresql.org/"
-  },
-  { 
-    name: "Docker", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    url: "https://www.docker.com/"
-  },
-  { 
     name: "Python", 
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
     url: "https://www.python.org/"
@@ -55,6 +45,11 @@ const techStack: TechItem[] = [
     name: "Java", 
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
     url: "https://www.java.com/"
+  },
+  {
+    name: "Django",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+    url: "https://www.djangoproject.com/"
   },
 ]
 
@@ -75,30 +70,25 @@ const techStackRow2: TechItem[] = [
     url: "https://www.tableau.com/"
   },
   {
-    name: "Git",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    url: "https://git-scm.com/"
-  },
-  {
-    name: "GitHub",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-    url: "https://github.com/"
-  },
-  {
-    name: "GitLab",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
-    url: "https://gitlab.com/"
-  },
-  {
-    name: "Figma",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-    url: "https://figma.com/"
-  },
-  {
     name: "GCP",
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
     url: "https://cloud.google.com/"
-  }
+  },
+  {
+    name: "Flask",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+    url: "https://flask.palletsprojects.com/"
+  },
+  { 
+    name: "PostgreSQL", 
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    url: "https://www.postgresql.org/"
+  },
+  { 
+    name: "Docker", 
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    url: "https://www.docker.com/"
+  },
 ]
 
 export default function TechStack() {
@@ -125,7 +115,7 @@ export default function TechStack() {
       >
           <LogoLoop
             items={techStack as any}
-            speed={80}
+            speed={40}
             direction="left"
             logoHeight={200}
             gap={48}
