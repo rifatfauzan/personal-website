@@ -86,6 +86,11 @@ const techStack = [
     image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
     url: "https://figma.com/"
   },
+  {
+    name: "GCP",
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+    url: "https://cloud.google.com/"
+  }
 ]
 
 
