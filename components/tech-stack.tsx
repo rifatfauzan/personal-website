@@ -190,14 +190,15 @@ const TechStack = memo(function TechStack() {
 
           <div
             className="relative z-10 flex justify-center items-end pt-12"
+            style={{ minWidth: '300px' }}
           >
             <Image
               src="/memoji-laptop.png"
               alt="Memoji with laptop"
               width={300}
               height={500}
-              className="object-contain max-w-xs md:max-w-none"
-              sizes="(max-width: 768px) 100px, 300px"
+              className="object-contain"
+              priority
               unoptimized
             />
           </div>
