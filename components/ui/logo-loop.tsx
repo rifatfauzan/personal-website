@@ -183,6 +183,13 @@ const useAnimationLoop = (
       rafRef.current = requestAnimationFrame(animate);
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        lastTimestampRef.current = null;
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
