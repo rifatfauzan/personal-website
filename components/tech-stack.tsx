@@ -115,10 +115,10 @@ export default function TechStack() {
       >
           <LogoLoop
             items={techStack as any}
-            speed={40}
+            speed={30}
             direction="left"
             logoHeight={200}
-            gap={48}
+            gap={32}
             pauseOnHover={true}
             fadeOut={false}
             scaleOnHover={true}
@@ -146,10 +146,10 @@ export default function TechStack() {
 
           <LogoLoop
             items={techStackRow2 as any}
-            speed={80}
+            speed={30}
             direction="right"
             logoHeight={200}
-            gap={48}
+            gap={32}
             pauseOnHover={true}
             fadeOut={false}
             scaleOnHover={true}

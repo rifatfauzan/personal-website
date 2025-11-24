@@ -13,9 +13,9 @@ export default function Home() {
           <div className="fixed inset-0 z-0">
             <Threads
               color={[0, 0, 0]}
-              amplitude={2}
-              distance={0.1}
-              enableMouseInteraction={true}
+              amplitude={1}
+              distance={0.05}
+              enableMouseInteraction={false}
             />
           </div>
       
