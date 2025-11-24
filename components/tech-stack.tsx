@@ -122,15 +122,9 @@ const TechStack = memo(function TechStack() {
         </motion.h2>
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative w-screen"
-      >
-        <div className="relative h-96 flex items-end justify-center overflow-visible">
-          <div className="absolute inset-0 space-y-8 flex flex-col justify-center pointer-events-none">
+      <div className="relative w-screen">
+        <div className="relative flex items-end justify-center" style={{ minHeight: '384px' }}>
+          <div className="absolute inset-0 space-y-8 flex flex-col justify-center pointer-events-none overflow-hidden">
             <LogoLoop
               items={webStack as any}
               speed={30}
@@ -194,11 +188,7 @@ const TechStack = memo(function TechStack() {
             />
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <div
             className="relative z-10 flex justify-center items-end pt-12"
           >
             <Image
@@ -207,11 +197,12 @@ const TechStack = memo(function TechStack() {
               width={300}
               height={500}
               className="object-contain max-w-xs md:max-w-none"
+              sizes="(max-width: 768px) 100px, 300px"
               unoptimized
             />
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 })
