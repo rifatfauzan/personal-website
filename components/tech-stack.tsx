@@ -65,15 +65,25 @@ const infraStack: TechItem[] = [
     image: "/logos/java.svg",
     url: "https://www.java.com/"
   },
+  {
+    name: "GCP",
+    image: "/logos/googlecloud.svg",
+    url: "https://cloud.google.com/"
+  },
   { 
     name: "Tableau", 
     image: "/tableau-icon-svgrepo-com.svg",
     url: "https://www.tableau.com/"
   },
+  { 
+    name: "Looker Studio", 
+    image: "/logos/looker-studio.svg",
+    url: "https://lookerstudio.google.com/"
+  },
   {
-    name: "GCP",
-    image: "/logos/googlecloud.svg",
-    url: "https://cloud.google.com/"
+    name: "Google BigQuery",
+    image: "/logos/google-bigquery.svg",
+    url: "https://cloud.google.com/bigquery"
   },
   {
     name: "Flask",
@@ -108,7 +118,7 @@ const TechStack = memo(function TechStack() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
         >
-          Tools and Frameworks
+          Frameworks and Tools
         </motion.h2>
       </div>
 
