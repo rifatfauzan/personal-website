@@ -11,85 +11,100 @@ interface TechItem {
   url: string
 }
 
-const techStack: TechItem[] = [
+const webStack: TechItem[] = [
   { 
     name: "React", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    image: "/logos/react.svg",
     url: "https://react.dev/"
   },
   { 
     name: "Next.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    image: "/logos/nextjs.svg",
     url: "https://nextjs.org/"
   },
   { 
     name: "TypeScript", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    image: "/logos/typescript.svg",
     url: "https://www.typescriptlang.org/"
   },
   { 
     name: "Node.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    image: "/logos/nodejs.svg",
     url: "https://nodejs.org/"
   },
   { 
     name: "TailwindCSS", 
-    image: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+    image: "/logos/tailwindcss.svg",
     url: "https://tailwindcss.com/"
-  },
-  { 
-    name: "Python", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    url: "https://www.python.org/"
-  },
-  { 
-    name: "Java", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    url: "https://www.java.com/"
   },
   {
     name: "Django",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+    image: "/logos/django.svg",
     url: "https://www.djangoproject.com/"
   },
-]
-
-const techStackRow2: TechItem[] = [
   { 
     name: "Spring Boot", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+    image: "/logos/spring.svg",
     url: "https://spring.io/projects/spring-boot"
   },
   { 
     name: "Vue.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+    image: "/logos/vue.svg",
     url: "https://vuejs.org/"
+  },
+]
+
+const infraStack: TechItem[] = [
+  { 
+    name: "Python", 
+    image: "/logos/python.svg",
+    url: "https://www.python.org/"
+  },
+  { 
+    name: "Java", 
+    image: "/logos/java.svg",
+    url: "https://www.java.com/"
+  },
+  {
+    name: "GCP",
+    image: "/logos/googlecloud.svg",
+    url: "https://cloud.google.com/"
   },
   { 
     name: "Tableau", 
     image: "/tableau-icon-svgrepo-com.svg",
     url: "https://www.tableau.com/"
   },
+  { 
+    name: "Looker Studio", 
+    image: "/logos/looker-studio.svg",
+    url: "https://lookerstudio.google.com/"
+  },
   {
-    name: "GCP",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-    url: "https://cloud.google.com/"
+    name: "Google BigQuery",
+    image: "/logos/google-bigquery.svg",
+    url: "https://cloud.google.com/bigquery"
   },
   {
     name: "Flask",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+    image: "/logos/flask.svg",
     url: "https://flask.palletsprojects.com/"
   },
   { 
     name: "PostgreSQL", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    image: "/logos/postgresql.svg",
     url: "https://www.postgresql.org/"
   },
   { 
     name: "Docker", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    image: "/logos/docker.svg",
     url: "https://www.docker.com/"
   },
+  {
+    name: "HuggingFace",
+    image: "/logos/hf-logo.svg",
+    url: "https://huggingface.co/"
+  }
 ]
 
 const TechStack = memo(function TechStack() {
@@ -103,7 +118,7 @@ const TechStack = memo(function TechStack() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
         >
-          Tools and Frameworks
+          Frameworks and Tools
         </motion.h2>
       </div>
 
@@ -115,7 +130,7 @@ const TechStack = memo(function TechStack() {
         className="relative w-screen space-y-8"
       >
           <LogoLoop
-            items={techStack as any}
+            items={webStack as any}
             speed={30}
             direction="left"
             logoHeight={200}
@@ -146,7 +161,7 @@ const TechStack = memo(function TechStack() {
           />
 
           <LogoLoop
-            items={techStackRow2 as any}
+            items={infraStack as any}
             speed={30}
             direction="right"
             logoHeight={200}

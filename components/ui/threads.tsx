@@ -139,11 +139,9 @@ const Threads: React.FC<ThreadsProps> = memo(({
   const [isVisible, setIsVisible] = useState(false);
   const frameCount = useRef(0);
 
-  // Throttle to ~20fps for better performance  
   const FRAME_SKIP = 3;
 
   useEffect(() => {
-    // Intersection Observer for lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         setIsVisible(entries[0].isIntersecting);
@@ -217,7 +215,6 @@ const Threads: React.FC<ThreadsProps> = memo(({
     function update(t: number) {
       frameCount.current++;
       
-      // Throttle updates for performance
       if (frameCount.current % FRAME_SKIP !== 0) {
         animationFrameId.current = requestAnimationFrame(update);
         return;

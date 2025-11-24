@@ -7,10 +7,9 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Minimal delay for asset loading
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 300) // Reduced to 300ms for faster loading
+    }, 300)
 
     return () => clearTimeout(timer)
   }, [])
