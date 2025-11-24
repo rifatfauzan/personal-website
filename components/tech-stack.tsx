@@ -129,7 +129,7 @@ const TechStack = memo(function TechStack() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="relative w-screen"
       >
-        <div className="relative h-96 flex items-end justify-center">
+        <div className="relative h-96 flex items-end justify-center overflow-visible">
           <div className="absolute inset-0 space-y-8 flex flex-col justify-center pointer-events-none">
             <LogoLoop
               items={webStack as any}
@@ -206,7 +206,7 @@ const TechStack = memo(function TechStack() {
               alt="Memoji with laptop"
               width={300}
               height={500}
-              className="object-contain"
+              className="object-contain max-w-xs md:max-w-none"
               unoptimized
             />
           </motion.div>
