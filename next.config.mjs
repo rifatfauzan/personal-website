@@ -13,13 +13,11 @@ const nextConfig = {
   },
   compress: true,
   productionBrowserSourceMaps: false,
-  // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   experimental: {
     optimizePackageImports: ['motion/react', 'lucide-react', 'ogl'],
-    // Enable turbopack for faster builds (Next.js 13.5+)
     turbo: {
       rules: {
         '*.svg': {
@@ -30,7 +28,6 @@ const nextConfig = {
     },
   },
   webpack: (config, { dev, isServer }) => {
-    // Optimize client-side bundle
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -40,9 +37,7 @@ const nextConfig = {
         tls: false,
       };
       
-      // Development optimizations for faster compilation
       if (dev) {
-        // Optimize build performance
         config.optimization = {
           ...config.optimization,
           removeAvailableModules: false,
