@@ -29,13 +29,13 @@ const experiences = [
     ],
   },
   {
-    title: "Staff of Field Controller",
-    company: "Pesta Rakyat Komputer",
-    period: "Mar 2023 - Oct 2023",
-    logo: "/perak.png",
+    title: "Mentor",
+    company: "Dasar-Dasar Pemrograman 0",
+    period: "Aug 2023 - Nov 2023",
+    logo: "/pacil.png",
     description: [
-      "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
-      "Ensuring smooth event flow and promptly resolving issues in collaboration with other divisions."
+      "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
+      "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
     ],
   },
   {
@@ -49,13 +49,13 @@ const experiences = [
     ],
   },
   {
-    title: "Mentor",
-    company: "Dasar-Dasar Pemrograman 0",
-    period: "Aug 2023 - Nov 2023",
-    logo: "/pacil.png",
+    title: "Staff of Field Controller",
+    company: "Pesta Rakyat Komputer",
+    period: "Mar 2023 - Oct 2023",
+    logo: "/perak.png",
     description: [
-      "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
-      "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
+      "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
+      "Ensuring smooth event flow and promptly resolving issues in collaboration with other divisions."
     ],
   },
   {
