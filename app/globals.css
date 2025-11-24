@@ -201,3 +201,46 @@
 .text-destructive-foreground {
   @apply text-white/80 !important;
 }
+
+/* CSS Containment for scroll performance */
+.contain-layout {
+  contain: layout style paint;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* Scroll optimization */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Transform optimization hints */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize text rendering during scroll */
+.optimized-text {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce paint complexity for scroll */
+.reduce-paint {
+  contain: paint;
+  content-visibility: auto;
+}

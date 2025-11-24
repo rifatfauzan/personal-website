@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 
 interface ThreadsProps {
@@ -32,9 +32,9 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
+const int u_line_count = 15;
+const float u_line_width = 6.0;
+const float u_line_blur = 6.0;
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -127,7 +127,7 @@ void main() {
 }
 `;
 
-const Threads: React.FC<ThreadsProps> = ({
+const Threads: React.FC<ThreadsProps> = memo(({
   color = [1, 1, 1],
   amplitude = 1,
   distance = 0,
@@ -136,9 +136,30 @@ const Threads: React.FC<ThreadsProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef<number>();
+  const [isVisible, setIsVisible] = useState(false);
+  const frameCount = useRef(0);
+
+  // Throttle to ~20fps for better performance  
+  const FRAME_SKIP = 3;
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Intersection Observer for lazy loading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(entries[0].isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current || !isVisible) return;
     const container = containerRef.current;
 
     const renderer = new Renderer({ alpha: true });
@@ -194,6 +215,14 @@ const Threads: React.FC<ThreadsProps> = ({
     }
 
     function update(t: number) {
+      frameCount.current++;
+      
+      // Throttle updates for performance
+      if (frameCount.current % FRAME_SKIP !== 0) {
+        animationFrameId.current = requestAnimationFrame(update);
+        return;
+      }
+
       if (enableMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
@@ -222,10 +251,12 @@ const Threads: React.FC<ThreadsProps> = ({
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [color, amplitude, distance, enableMouseInteraction]);
+  }, [color, amplitude, distance, enableMouseInteraction, isVisible]);
 
   return <div ref={containerRef} className="w-full h-full relative" {...rest} />;
-};
+});
+
+Threads.displayName = 'Threads';
 
 export default Threads;
 

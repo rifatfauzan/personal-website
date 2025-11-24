@@ -2,15 +2,15 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, memo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, MapPin, Phone } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
-export default function Contact() {
+const Contact = memo(function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -114,4 +114,6 @@ export default function Contact() {
       </div>
     </section>
   )
-}
+})
+
+export default Contact

@@ -1,8 +1,9 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import LogoLoop from "@/components/ui/logo-loop"
+import { memo } from "react"
 
 interface TechItem {
   name: string
@@ -91,16 +92,16 @@ const techStackRow2: TechItem[] = [
   },
 ]
 
-export default function TechStack() {
+const TechStack = memo(function TechStack() {
   return (
-    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] contain-layout gpu-accelerated">
       <div className="container">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
         >
           Tools and Frameworks
         </motion.h2>
@@ -177,4 +178,6 @@ export default function TechStack() {
       </motion.div>
     </section>
   )
-}
+})
+
+export default TechStack

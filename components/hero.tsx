@@ -4,16 +4,17 @@ import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Instagram } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import TextPressure from "@/components/ui/text-pressure"
 import RotatingText from "@/components/ui/rotating-text"
+import { memo } from "react"
 
 const roles = [
   " Learner",
   " Problem Solver",
 ]
 
-export default function Hero() {
+const Hero = memo(function Hero() {
 
   return (
     <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
@@ -24,7 +25,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-7xl font-bold text-black mb-6 transform hover:-translate-y-2 transition-transform duration-300"
+            className="text-4xl md:text-7xl font-bold text-black mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
           >
             Hi, I'm             <TextPressure
               text="Rifat!"
@@ -104,4 +105,6 @@ export default function Hero() {
       </div>
     </section>
   )
-}
+})
+
+export default Hero

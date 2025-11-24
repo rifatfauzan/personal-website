@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from 'react';
 
 interface TextPressureProps {
   text?: string;
@@ -18,7 +18,16 @@ interface TextPressureProps {
   minFontSize?: number;
 }
 
-const TextPressure: React.FC<TextPressureProps> = ({
+// Debounce helper
+function debounce<T extends (...args: any[]) => void>(func: T, wait: number): T {
+  let timeout: NodeJS.Timeout;
+  return ((...args: any[]) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  }) as T;
+}
+
+const TextPressure: React.FC<TextPressureProps> = memo(({
   text = 'Compressa',
   fontFamily = 'Compressa VF',
   fontUrl = 'https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2',
@@ -46,27 +55,29 @@ const TextPressure: React.FC<TextPressureProps> = ({
   const [scaleY, setScaleY] = useState(1);
   const [lineHeight, setLineHeight] = useState(1);
 
-  const chars = text.split('');
+  const chars = useMemo(() => text.split(''), [text]);
 
-  const dist = (a: { x: number; y: number }, b: { x: number; y: number }) => {
+  const dist = useCallback((a: { x: number; y: number }, b: { x: number; y: number }) => {
     const dx = b.x - a.x;
     const dy = b.y - a.y;
     return Math.sqrt(dx * dx + dy * dy);
-  };
+  }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    // Debounced mouse move handler for performance
+    const debouncedMouseMove = debounce((e: MouseEvent) => {
       cursorRef.current.x = e.clientX;
       cursorRef.current.y = e.clientY;
-    };
-    const handleTouchMove = (e: TouchEvent) => {
+    }, 16); // ~60fps throttle
+
+    const debouncedTouchMove = debounce((e: TouchEvent) => {
       const t = e.touches[0];
       cursorRef.current.x = t.clientX;
       cursorRef.current.y = t.clientY;
-    };
+    }, 16);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('mousemove', debouncedMouseMove);
+    window.addEventListener('touchmove', debouncedTouchMove, { passive: false });
 
     if (containerRef.current) {
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -77,8 +88,8 @@ const TextPressure: React.FC<TextPressureProps> = ({
     }
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('mousemove', debouncedMouseMove);
+      window.removeEventListener('touchmove', debouncedTouchMove);
     };
   }, []);
 
@@ -210,7 +221,9 @@ const TextPressure: React.FC<TextPressureProps> = ({
       </h1>
     </div>
   );
-};
+});
+
+TextPressure.displayName = 'TextPressure';
 
 export default TextPressure;
 

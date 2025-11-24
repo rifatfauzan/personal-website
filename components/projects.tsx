@@ -1,7 +1,8 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
+import { memo } from "react"
 
 const projects = [
   {
@@ -40,7 +41,7 @@ const projects = [
   },
 ]
 
-export default function Projects() {
+const Projects = memo(function Projects() {
   return (
     <section id="projects" className="py-20">
       <div className="container">
@@ -129,4 +130,6 @@ export default function Projects() {
       </div>
     </section>
   )
-}
+})
+
+export default Projects

@@ -1,7 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
+import { memo } from "react"
 
 const experiences = [
   {
@@ -79,7 +80,7 @@ const experiences = [
   },
 ]
 
-export default function Experiences() {
+const Experiences = memo(function Experiences() {
   return (
     <section id="experiences" className="py-20">
       <div className="container">
@@ -175,4 +176,6 @@ export default function Experiences() {
       </div>
     </section>
   )
-}
+})
+
+export default Experiences
