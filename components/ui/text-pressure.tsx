@@ -18,7 +18,6 @@ interface TextPressureProps {
   minFontSize?: number;
 }
 
-// Debounce helper
 function debounce<T extends (...args: any[]) => void>(func: T, wait: number): T {
   let timeout: NodeJS.Timeout;
   return ((...args: any[]) => {
@@ -64,11 +63,10 @@ const TextPressure: React.FC<TextPressureProps> = memo(({
   }, []);
 
   useEffect(() => {
-    // Debounced mouse move handler for performance
     const debouncedMouseMove = debounce((e: MouseEvent) => {
       cursorRef.current.x = e.clientX;
       cursorRef.current.y = e.clientY;
-    }, 16); // ~60fps throttle
+    }, 16);
 
     const debouncedTouchMove = debounce((e: TouchEvent) => {
       const t = e.touches[0];

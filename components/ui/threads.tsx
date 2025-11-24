@@ -135,7 +135,7 @@ const Threads: React.FC<ThreadsProps> = memo(({
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationFrameId = useRef<number>();
+  const animationFrameId = useRef<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const frameCount = useRef(0);
 
