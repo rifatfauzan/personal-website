@@ -11,7 +11,7 @@ interface TechItem {
   url: string
 }
 
-const techStack: TechItem[] = [
+const webStack: TechItem[] = [
   { 
     name: "React", 
     image: "/logos/react.svg",
@@ -37,24 +37,11 @@ const techStack: TechItem[] = [
     image: "/logos/tailwindcss.svg",
     url: "https://tailwindcss.com/"
   },
-  { 
-    name: "Python", 
-    image: "/logos/python.svg",
-    url: "https://www.python.org/"
-  },
-  { 
-    name: "Java", 
-    image: "/logos/java.svg",
-    url: "https://www.java.com/"
-  },
   {
     name: "Django",
     image: "/logos/django.svg",
     url: "https://www.djangoproject.com/"
   },
-]
-
-const techStackRow2: TechItem[] = [
   { 
     name: "Spring Boot", 
     image: "/logos/spring.svg",
@@ -64,6 +51,19 @@ const techStackRow2: TechItem[] = [
     name: "Vue.js", 
     image: "/logos/vue.svg",
     url: "https://vuejs.org/"
+  },
+]
+
+const infraStack: TechItem[] = [
+  { 
+    name: "Python", 
+    image: "/logos/python.svg",
+    url: "https://www.python.org/"
+  },
+  { 
+    name: "Java", 
+    image: "/logos/java.svg",
+    url: "https://www.java.com/"
   },
   { 
     name: "Tableau", 
@@ -90,6 +90,11 @@ const techStackRow2: TechItem[] = [
     image: "/logos/docker.svg",
     url: "https://www.docker.com/"
   },
+  {
+    name: "HuggingFace",
+    image: "/logos/hf-logo.svg",
+    url: "https://huggingface.co/"
+  }
 ]
 
 const TechStack = memo(function TechStack() {
@@ -115,7 +120,7 @@ const TechStack = memo(function TechStack() {
         className="relative w-screen space-y-8"
       >
           <LogoLoop
-            items={techStack as any}
+            items={webStack as any}
             speed={30}
             direction="left"
             logoHeight={200}
@@ -146,7 +151,7 @@ const TechStack = memo(function TechStack() {
           />
 
           <LogoLoop
-            items={techStackRow2 as any}
+            items={infraStack as any}
             speed={30}
             direction="right"
             logoHeight={200}
