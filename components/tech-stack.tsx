@@ -127,69 +127,90 @@ const TechStack = memo(function TechStack() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative w-screen space-y-8"
+        className="relative w-screen"
       >
-          <LogoLoop
-            items={webStack as any}
-            speed={30}
-            direction="left"
-            logoHeight={200}
-            gap={32}
-            pauseOnHover={true}
-            fadeOut={false}
-            scaleOnHover={true}
-            renderItem={(item: any) => (
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center"
-                tabIndex={0}
-                aria-label={item.name}
-              >
-                <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
-              </a>
-            )}
-          />
+        <div className="relative h-96 flex items-end justify-center">
+          <div className="absolute inset-0 space-y-8 flex flex-col justify-center pointer-events-none">
+            <LogoLoop
+              items={webStack as any}
+              speed={30}
+              direction="left"
+              logoHeight={200}
+              gap={32}
+              pauseOnHover={true}
+              fadeOut={false}
+              scaleOnHover={true}
+              renderItem={(item: any) => (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center pointer-events-auto"
+                  tabIndex={0}
+                  aria-label={item.name}
+                >
+                  <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </div>
+                </a>
+              )}
+            />
 
-          <LogoLoop
-            items={infraStack as any}
-            speed={30}
-            direction="right"
-            logoHeight={200}
-            gap={32}
-            pauseOnHover={true}
-            fadeOut={false}
-            scaleOnHover={true}
-            renderItem={(item: any) => (
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center"
-                tabIndex={0}
-                aria-label={item.name}
-              >
-                <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
-              </a>
-            )}
-          />
+            <LogoLoop
+              items={infraStack as any}
+              speed={30}
+              direction="right"
+              logoHeight={200}
+              gap={32}
+              pauseOnHover={true}
+              fadeOut={false}
+              scaleOnHover={true}
+              renderItem={(item: any) => (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center pointer-events-auto"
+                  tabIndex={0}
+                  aria-label={item.name}
+                >
+                  <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </div>
+                </a>
+              )}
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="relative z-10 flex justify-center items-end pt-12"
+          >
+            <Image
+              src="/memoji-laptop.png"
+              alt="Memoji with laptop"
+              width={300}
+              height={500}
+              className="object-contain"
+              unoptimized
+            />
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   )

@@ -62,11 +62,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
-        sizes: 'any',
-      },
-      {
         url: '/memoji-right.png',
         type: 'image/png',
         sizes: '512x512',
