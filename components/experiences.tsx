@@ -12,7 +12,7 @@ const experiences = [
     logo: "/mandiri-sekuritas.png",
     description: [
       "Updates BigQuery data warehouse for daily push notifications and transactions data.",
-      "Automated weekly reports for push notifications and transactions data regarding stock research.",
+      "Automated weekly reports for push notifications and transactions data regarding stock campaigns.",
       "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
       "Conducted backtesting on trading strategies."
     ],
