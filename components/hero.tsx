@@ -27,7 +27,7 @@ const Hero = memo(function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-7xl font-bold text-black mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
           >
-            Hi, I'm             <TextPressure
+            Hi! I'm      <TextPressure
               text="Rifat!"
               textColor="#f5d20a"
               flex={true}

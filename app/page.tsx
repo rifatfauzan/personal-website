@@ -9,7 +9,6 @@ import Footer from "@/components/footer"
 import Experiences from "@/components/experiences"
 import dynamic from "next/dynamic"
 
-// Lazy load heavy WebGL component
 const Threads = dynamic(() => import("@/components/ui/threads"), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-gradient-to-br from-[#edebeb] to-[#edebeb]/50" />
