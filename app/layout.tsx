@@ -15,7 +15,7 @@ const poppins = Poppins({
 const siteUrl = 'https://www.rifatmon.dev'
 const title = 'Rifat Fauzan | Portfolio'
 const description =
-  'Rifat Fauzan is an Information Systems student focused on building web products and delivering data analytics solutions.'
+  'Rifat Fauzan is an Information Systems student with experiences in building web applications and have strong interest in products and data analytics.'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -62,8 +62,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/memoji-right.svg',
+        url: '/favicon.svg',
         type: 'image/svg+xml',
+        sizes: 'any',
+      },
+      {
+        url: '/memoji-right.png',
+        type: 'image/png',
+        sizes: '512x512',
       },
     ],
   },
