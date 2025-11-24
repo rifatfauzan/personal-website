@@ -5,18 +5,18 @@ import { motion } from "motion/react"
 import { memo } from "react"
 
 const experiences = [
-  {
-    title: "Data Analytics & Scientist Intern",
-    company: "Mandiri Sekuritas",
-    period: "Aug 2025 - Present",
-    logo: "/mandiri-sekuritas.png",
-    description: [
-      "Updates BigQuery data warehouse for daily push notifications and transactions data.",
-      "Automated weekly reports for push notifications and transactions data regarding stock campaigns.",
-      "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
-      "Conducted backtesting on trading strategies."
-    ],
-  },
+  // {
+  //   title: "Data Analytics & Scientist Intern",
+  //   company: "Mandiri Sekuritas",
+  //   period: "Aug 2025 - Present",
+  //   logo: "/mandiri-sekuritas.png",
+  //   description: [
+  //     "Updates BigQuery data warehouse for daily push notifications and transactions data.",
+  //     "Automated weekly reports for push notifications and transactions data regarding stock campaigns.",
+  //     "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
+  //     "Conducted backtesting on trading strategies."
+  //   ],
+  // },
   {
     title: "AI Development Cohort",
     company: "Infinite Learning Indonesia",
