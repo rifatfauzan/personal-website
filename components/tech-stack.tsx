@@ -14,42 +14,42 @@ interface TechItem {
 const techStack: TechItem[] = [
   { 
     name: "React", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    image: "/logos/react.svg",
     url: "https://react.dev/"
   },
   { 
     name: "Next.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    image: "/logos/nextjs.svg",
     url: "https://nextjs.org/"
   },
   { 
     name: "TypeScript", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    image: "/logos/typescript.svg",
     url: "https://www.typescriptlang.org/"
   },
   { 
     name: "Node.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    image: "/logos/nodejs.svg",
     url: "https://nodejs.org/"
   },
   { 
     name: "TailwindCSS", 
-    image: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+    image: "/logos/tailwindcss.svg",
     url: "https://tailwindcss.com/"
   },
   { 
     name: "Python", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    image: "/logos/python.svg",
     url: "https://www.python.org/"
   },
   { 
     name: "Java", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    image: "/logos/java.svg",
     url: "https://www.java.com/"
   },
   {
     name: "Django",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+    image: "/logos/django.svg",
     url: "https://www.djangoproject.com/"
   },
 ]
@@ -57,12 +57,12 @@ const techStack: TechItem[] = [
 const techStackRow2: TechItem[] = [
   { 
     name: "Spring Boot", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+    image: "/logos/spring.svg",
     url: "https://spring.io/projects/spring-boot"
   },
   { 
     name: "Vue.js", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+    image: "/logos/vue.svg",
     url: "https://vuejs.org/"
   },
   { 
@@ -72,22 +72,22 @@ const techStackRow2: TechItem[] = [
   },
   {
     name: "GCP",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+    image: "/logos/googlecloud.svg",
     url: "https://cloud.google.com/"
   },
   {
     name: "Flask",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+    image: "/logos/flask.svg",
     url: "https://flask.palletsprojects.com/"
   },
   { 
     name: "PostgreSQL", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    image: "/logos/postgresql.svg",
     url: "https://www.postgresql.org/"
   },
   { 
     name: "Docker", 
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    image: "/logos/docker.svg",
     url: "https://www.docker.com/"
   },
 ]
