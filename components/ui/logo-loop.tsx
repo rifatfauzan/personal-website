@@ -223,7 +223,6 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
-    // Support both 'logos' and 'items' prop names
     const itemsList = items || logos || [];
 
     const effectiveHoverSpeed = useMemo(() => {
