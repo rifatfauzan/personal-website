@@ -99,7 +99,7 @@ const Experiences = memo(function Experiences() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0 }}
-          className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-md border border-white/10"
+          className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-sm border border-white/10"
         >
           <div className="relative">
 

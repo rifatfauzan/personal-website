@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
-            <Code2 className="h-6 w-6 text-blue-400" />
+            <Code2 className="h-6 w-6 text-yellow-400" />
             <span className="text-lg font-semibold text-opacity-100">Rifatmon</span>
           </div>
           <div className="flex gap-6">
