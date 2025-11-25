@@ -5,6 +5,7 @@ import { motion } from "motion/react"
 import { memo, useState } from "react"
 import Image from "next/image"
 import { Github, FileText, Figma, ExternalLink, Play } from "lucide-react"
+import { label } from "motion/react-client"
 
 const projectsData = [
   {
@@ -22,8 +23,8 @@ const projectsData = [
     image: "/projects/SerenityRetreats.jpg",
     status: null,
     links: [
-      { type: "huggingface", url: "https://huggingface.co/spaces/rifatmon/RFC-InfiniteLearning/blob/main/README.md" },
-      { type: "figma", url: "https://www.figma.com/design/dIAQwRxD1hepFxGqHqFlkT/Design-Project-massive?node-id=247-263&t=diSxIp4Hgvl61myG-0" }
+      { type: "figma", url: "https://www.figma.com/design/dIAQwRxD1hepFxGqHqFlkT/Design-Project-massive?node-id=247-263&t=diSxIp4Hgvl61myG-0", label: "Figma" },
+      { type: "huggingface", url: "https://huggingface.co/spaces/rifatmon/RFC-InfiniteLearning/blob/main/README.md", label: "HuggingFace Space" }
     ],
   },
   {
@@ -43,12 +44,28 @@ const projectsData = [
     links: [
       { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repository" },
       { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend Repository" },
-      { type: "docs", url: "https://drive.google.com/file/d/1wkIQFThYCNEp88AKwbg7R3VsaD9JW1lj/view?usp=sharing" },
-      { type: "youtube", url: "https://www.youtube.com/watch?v=AgjGJkgo0l8" }
+      { type: "docs", url: "https://drive.google.com/file/d/1wkIQFThYCNEp88AKwbg7R3VsaD9JW1lj/view?usp=sharing", label: "Project Documentation" },
+      { type: "youtube", url: "https://www.youtube.com/watch?v=AgjGJkgo0l8", label: "Project Demo" }
     ]
   },
   {
     id: 3,
+    year: 2025,
+    title: "Personal Website",
+    role: "Personal Project",
+    category: "Web Development",
+    description: [
+      "Developed my personal website to showcase projects, skills, and professional background."
+    ],
+    tags: ["React", "Next.js", "TypeScript", "TailwindCSS"],
+    image: "/projects/Website.jpg",
+    status: null,
+    links: [
+      { type: "github", url: "https://github.com/rifatfauzan/portfolio-rifat", label: "Repository" },
+    ],
+  },
+    {
+    id: 4,
     year: 2025,
     title: "Used Car Sales Analysis",
     role: "Data Science Project",
@@ -66,7 +83,7 @@ const projectsData = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     year: 2024,
     title: "APAP Medika",
     role: "Fullstack Developer",
@@ -82,7 +99,7 @@ const projectsData = [
     links: [],
   },
   {
-    id: 5,
+    id: 6,
     year: 2024,
     title: "SmartWaste",
     role: "UI/UX Designer",
@@ -96,12 +113,12 @@ const projectsData = [
     image: "/projects/SmartWaste.jpg",
     status: null,
     links: [
-      { type: "figma", url: "https://figma.com" },
-      { type: "docs", url: "https://drive.google.com/file/d/1ztGnNXds1I-qJo79w4lzLRdagYZxRUQK/view?usp=sharing"}
+      { type: "figma", url: "https://www.figma.com/design/Qh1gy3aAQ2xFksDsWv9617/SisterBros-TK4?node-id=9-130&p=f", label: "Figma" },
+      { type: "docs", url: "https://drive.google.com/file/d/1ztGnNXds1I-qJo79w4lzLRdagYZxRUQK/view?usp=sharing", label:"Project Documentation"}
     ],
   },
   {
-    id: 6,
+    id: 7,
     year: 2024,
     title: "Emission Zero",
     role: "UI/UX Designer",
@@ -115,8 +132,8 @@ const projectsData = [
     image: "/projects/EmissionZero.jpg",
     status: null,
     links: [
-      { type: "figma", url: "https://figma.com"},
-      { type: "docs", url: "https://drive.google.com/file/d/1G6-ZvpjIGeKzvtldM-E9TGo-l8qXK2hD/view?usp=sharing"}
+      { type: "figma", url: "https://www.figma.com/design/gwjRSzdNrw9L5fVTJVDbtf/Smart-Waste?node-id=81-1488&t=GTH4YulvkQaaQPgj-0", label: "Figma"},
+      { type: "docs", url: "https://drive.google.com/file/d/1G6-ZvpjIGeKzvtldM-E9TGo-l8qXK2hD/view?usp=sharing", label:"Project Documentation" }
     ],
   },
 ]
@@ -180,7 +197,7 @@ const Projects = memo(function Projects() {
               }}
               className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-[#1e0a01] text-white"
+                  ? "bg-[#efe6c2] text-black"
                   : "bg-white/50 text-black hover:bg-white/70"
               }`}
             >
@@ -215,7 +232,7 @@ const Projects = memo(function Projects() {
                         whileHover={{ x: 4 }}
                         className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
                           selectedProject.id === project.id
-                            ? "bg-[#1e0a01] text-white shadow-lg"
+                            ? "bg-[#efe6c2] text-black shadow-lg"
                             : "bg-white/30 text-black hover:bg-white/50"
                         }`}
                       >
