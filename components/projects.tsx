@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "motion/react"
 import { memo, useState } from "react"
 import Image from "next/image"
+import { Github, FileText, Figma, ExternalLink, Play } from "lucide-react"
 
 const projectsData = [
   {
@@ -16,9 +17,12 @@ const projectsData = [
       "Developed and deployed a recommendation system for health and wellness tourism destinations across Indonesian cities using Flask, enhancing the relevance of travel choices for users.",
       "Conducted in-depth research into user preferences and industry trends to effectively curate and categorize destination data."
     ],
-    tags: ["Flask", "Python", "AI"],
-    image: "/placeholder.svg",
+    tags: ["Flask", "Python", "AI/ML"],
+    image: "/projects/SerenityRetreats.jpg",
     status: null,
+    links: [
+      { type: "drive", url: "https://drive.google.com" }
+    ],
   },
   {
     id: 2,
@@ -31,9 +35,15 @@ const projectsData = [
       "Implemented the backend and frontend systems using Spring and Vue, ensuring scalability and a smooth user experience.",
       "Designed and managed CI/CD pipelines, automating build, and deployment processes."
     ],
-    tags: ["Spring", "Vue", "CI/CD"],
+    tags: ["Spring", "Vue", "PostgreSQL", "Docker", "CI/CD"],
     image: "/placeholder.svg",
     status: null,
+    links: [
+      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repository" },
+      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend Repository" },
+      { type: "docs", url: "https://drive.google.com/file/d/1wkIQFThYCNEp88AKwbg7R3VsaD9JW1lj/view?usp=sharing" },
+      { type: "youtube", url: "https://www.youtube.com/watch?v=AgjGJkgo0l8" }
+    ]
   },
   {
     id: 3,
@@ -48,6 +58,9 @@ const projectsData = [
     tags: ["Python", "ML", "Data Science"],
     image: "/placeholder.svg",
     status: null,
+    links: [
+      { type: "drive", url: "https://drive.google.com" }
+    ],
   },
   {
     id: 4,
@@ -63,6 +76,7 @@ const projectsData = [
     tags: ["Spring", "Vue", "PostgreSQL", "Docker"],
     image: "/placeholder.svg",
     status: null,
+    links: [],
   },
   {
     id: 5,
@@ -76,8 +90,12 @@ const projectsData = [
       "Managed CI/CD pipelines for the developed services and ensuring efficient deployments."
     ],
     tags: ["Figma"],
-    image: "/placeholder.svg",
+    image: "/projects/SmartWaste.jpg",
     status: null,
+    links: [
+      { type: "figma", url: "https://figma.com" },
+      { type: "docs", url: "https://drive.google.com/file/d/1ztGnNXds1I-qJo79w4lzLRdagYZxRUQK/view?usp=sharing"}
+    ],
   },
   {
     id: 6,
@@ -91,8 +109,12 @@ const projectsData = [
       "Managed CI/CD pipelines for the developed services and ensuring efficient deployments."
     ],
     tags: ["Figma"],
-    image: "/placeholder.svg",
+    image: "/projects/EmissionZero.jpg",
     status: null,
+    links: [
+      { type: "figma", url: "https://figma.com"},
+      { type: "docs", url: "https://drive.google.com/file/d/1G6-ZvpjIGeKzvtldM-E9TGo-l8qXK2hD/view?usp=sharing"}
+    ],
   },
 ]
 
@@ -217,16 +239,16 @@ const Projects = memo(function Projects() {
             className="lg:col-span-2"
           >
             {selectedProject ? (
-              <Card className="bg-white/40 backdrop-blur-sm border border-white/50">
+              <Card className="bg-white/40 backdrop-blur-sm border border-white/50 overflow-hidden">
+                <div className="relative w-full aspect-[2/1] bg-gradient-to-br from-gray-200 to-gray-300">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
                 <CardContent className="p-8">
-                  <div className="relative w-full h-64 mb-8 rounded-lg overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300">
-                    <Image
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
 
                   <div className="mb-8">
                     <div className="flex items-start justify-between mb-4">
@@ -258,7 +280,7 @@ const Projects = memo(function Projects() {
                     </ul>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {selectedProject.tags.map((tag) => (
                       <span
                         key={tag}
@@ -268,6 +290,62 @@ const Projects = memo(function Projects() {
                       </span>
                     ))}
                   </div>
+
+                  {selectedProject.links && selectedProject.links.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold text-black/70 uppercase tracking-wide mb-4">
+                        Resources
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {selectedProject.links.map((link, index) => {
+                          const getIcon = () => {
+                            switch (link.type) {
+                              case "github":
+                                return <Github size={20} className="text-[#333333]" />
+                              case "figma":
+                                return <Figma size={20} className="text-[#000000]" />
+                              case "docs":
+                                return <FileText size={20} className="text-[#4285F4]" />
+                              case "youtube":
+                                return <Play size={20} className="text-[#FF0000]" />
+                              default:
+                                return <ExternalLink size={20} className="text-black" />
+                            }
+                          }
+
+                          const getTitle = () => {
+                            const linkWithLabel = link as any
+                            if (linkWithLabel.label) {
+                              return linkWithLabel.label
+                            }
+                            return link.type === "github" ? "GitHub" :
+                              link.type === "figma" ? "Figma" :
+                              link.type === "drive" ? "Google Drive" :
+                              link.type === "docs" ? "Documentations" :
+                              link.type === "youtube" ? "YouTube" : "View"
+                          }
+
+                          const linkWithLabel = link as any
+
+                          return (
+                            <a
+                              key={`${link.type}-${index}`}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-3 py-2 bg-black/10 hover:bg-black/20 rounded-lg transition-colors duration-300"
+                              title={getTitle()}
+                            >
+                              {getIcon()}
+                              {linkWithLabel.label && (
+                                <span className="text-xs text-black/70 font-medium">{linkWithLabel.label}</span>
+                              )}
+                            </a>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ) : (
