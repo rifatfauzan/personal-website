@@ -14,14 +14,16 @@ const projectsData = [
     role: "Design Researcher",
     category: "AI & ML",
     description: [
-      "Developed and deployed a recommendation system for health and wellness tourism destinations across Indonesian cities using Flask, enhancing the relevance of travel choices for users.",
-      "Conducted in-depth research into user preferences and industry trends to effectively curate and categorize destination data."
+      "Designed and implemented a machine learning-based recommendation system for health and wellness tourism destinations across major Indonesian cities, delivering personalized destination suggestions based on user preferences and contextual features.",
+      "Integrated the trained ML model into a lightweight Flask application as an API layer for deployment, enabling recommendation requests based on user's input.",
+      "Collected, web-scraped, and preprocessed tourism data for Jakarta, Bali, and Yogyakarta, then engineered features and evaluated model performance to ensure relevant and reliable recommendations for diverse user profiles."
     ],
-    tags: ["Flask", "Python", "AI/ML"],
+    tags: ["Flask", "Python", "AI/ML", "HuggingFace"],
     image: "/projects/SerenityRetreats.jpg",
     status: null,
     links: [
-      { type: "drive", url: "https://drive.google.com" }
+      { type: "huggingface", url: "https://huggingface.co/spaces/rifatmon/RFC-InfiniteLearning/blob/main/README.md" },
+      { type: "figma", url: "https://www.figma.com/design/dIAQwRxD1hepFxGqHqFlkT/Design-Project-massive?node-id=247-263&t=diSxIp4Hgvl61myG-0" }
     ],
   },
   {
@@ -30,13 +32,13 @@ const projectsData = [
     title: "SiTrack",
     role: "Lead Programmer",
     category: "Web Development",
-    description: [
-      "Led the development of a trucking management system, optimizing the company's logistic operations.",
-      "Implemented the backend and frontend systems using Spring and Vue, ensuring scalability and a smooth user experience.",
-      "Designed and managed CI/CD pipelines, automating build, and deployment processes."
-    ],
+  description: [
+    "Led the end-to-end development of a comprehensive trucking management system, optimizing logistics operations by enabling efficient truck and cargo handling, price calculation, and real-time status tracking.",
+    "Implemented both backend APIs using Spring Boot and dynamic, user-friendly frontend interfaces with Vue.js, focusing on scalability, maintainability, and seamless user experience.",
+    "Designed, configured, and managed CI/CD pipelines to automate testing, build, and deployment processes, ensuring rapid and reliable delivery of updates.",
+  ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker", "CI/CD"],
-    image: "/placeholder.svg",
+    image: "/progress.jpg",
     status: null,
     links: [
       { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repository" },
@@ -56,10 +58,11 @@ const projectsData = [
       "Developed Machine Learning classification, regression, and clustering models to predict customer feedback sentiment, used car sales analysis based on various features, and segmentations based on dataset characteristics."
     ],
     tags: ["Python", "ML", "Data Science"],
-    image: "/placeholder.svg",
+    image: "/progress.jpg",
     status: null,
     links: [
-      { type: "drive", url: "https://drive.google.com" }
+      { type: "docs", url: "https://colab.research.google.com/drive/1NPCdboNdfYE7ak-Ka60AlVbSqh4T9tcS?usp=sharing", label: "Colab Notebook" },
+      { type: "docs", url: "https://drive.google.com/file/d/1FDbx8-FO4aEICcHI5YrPaWmyEBaJx0um/view?usp=sharing", label: "Project Presentation" }
     ],
   },
   {
@@ -67,14 +70,14 @@ const projectsData = [
     year: 2024,
     title: "APAP Medika",
     role: "Fullstack Developer",
-    category: "Web Development",
+    category: ["Web Development", "Mobile Apps"],
     description: [
-      "Developed microservices for a hospital platform, specifically designing and implementing the Insurance and Profile services with Spring and Thymeleaf.",
-      "Implemented authentication and authorization mechanism to secure endpoints and ensure data integrity across the platform.",
-      "Managed CI/CD pipelines for the developed services and ensuring efficient deployments."
+      "Developed microservices for a hospital platform, specifically designing and implementing the Insurance and Profile services with Spring Boot and Vue.js to ensure modularity and scalability.",
+      "Implemented robust authentication and authorization mechanisms to secure API endpoints, safeguarding sensitive data from unauthorized access.",
+      "Managed CI/CD pipelines to automate build, testing, and deployment processes of services to production environments."
     ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker"],
-    image: "/placeholder.svg",
+    image: "/progress.jpg",
     status: null,
     links: [],
   },
@@ -85,9 +88,9 @@ const projectsData = [
     role: "UI/UX Designer",
     category: ["UI/UX", "Mobile Apps"],
     description: [
-      "Developed microservices for a hospital platform, specifically designing and implementing the Insurance and Profile services with Spring and Thymeleaf.",
-      "Implemented authentication and authorization mechanism to secure endpoints and ensure data integrity across the platform.",
-      "Managed CI/CD pipelines for the developed services and ensuring efficient deployments."
+    "Co-developed MVP of SmartWaste, a reverse vending machine and mobile/web platform that incentivizes recycling of plastic bottles and cans through token and e-voucher rewards, targeting young professionals and urban communities.",
+    "Designed key product features such as GPS-enabled RVM locator, real-time tracking of collected waste, points and leaderboard systems, and social media integration to drive engagement and sustainable behavior.",
+    "Contributed to the opportunity analysis and business model design, including partner ecosystem (e-wallets, recyclers, local artisans, government), revenue streams from recycled products and sponsorships, and risk assessment across financial, technical, and market dimensions."
     ],
     tags: ["Figma"],
     image: "/projects/SmartWaste.jpg",
@@ -104,9 +107,9 @@ const projectsData = [
     role: "UI/UX Designer",
     category: ["UI/UX", "Mobile Apps"],
     description: [
-      "Developed microservices for a hospital platform, specifically designing and implementing the Insurance and Profile services with Spring and Thymeleaf.",
-      "Implemented authentication and authorization mechanism to secure endpoints and ensure data integrity across the platform.",
-      "Managed CI/CD pipelines for the developed services and ensuring efficient deployments."
+      "Designed and developed MVP of Emission Zero, a mobile application enabling users to track, monitor, and actively reduce their personal carbon footprint through comprehensive emission tracking and calculation features.",
+      "Implemented core features including real-time Emission Tracker (GPS-integrated), Emission Calculator for diverse activities, environmental news feed with categorization, and Community features for peer engagement and environmental activism.",
+      "Conducted extensive user research through personas and journey mapping (covering students and working professionals), performed iterative usability testing with SUS scoring, and refined the UI/UX based on user feedback to ensure accessibility and intuitive navigation."
     ],
     tags: ["Figma"],
     image: "/projects/EmissionZero.jpg",
@@ -308,6 +311,17 @@ const Projects = memo(function Projects() {
                                 return <FileText size={20} className="text-[#4285F4]" />
                               case "youtube":
                                 return <Play size={20} className="text-[#FF0000]" />
+                              case "huggingface":
+                                return (
+                                  <div className="w-5 h-5 relative">
+                                    <Image
+                                      src="/logos/hf-logo.svg"
+                                      alt="HuggingFace"
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )
                               default:
                                 return <ExternalLink size={20} className="text-black" />
                             }
@@ -321,8 +335,9 @@ const Projects = memo(function Projects() {
                             return link.type === "github" ? "GitHub" :
                               link.type === "figma" ? "Figma" :
                               link.type === "drive" ? "Google Drive" :
-                              link.type === "docs" ? "Documentations" :
-                              link.type === "youtube" ? "YouTube" : "View"
+                              link.type === "docs" ? "Google Docs" :
+                              link.type === "youtube" ? "YouTube" :
+                              link.type === "huggingface" ? "HuggingFace" : "View"
                           }
 
                           const linkWithLabel = link as any
