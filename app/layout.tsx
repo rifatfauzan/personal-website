@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/memoji.png',
+        url: '/memoji/memoji.png',
         width: 1200,
         height: 630,
         alt: 'Rifat Fauzan Portrait',
@@ -57,12 +57,12 @@ export const metadata: Metadata = {
     title,
     description,
     creator: '@rifatfauzannn',
-    images: ['/memoji.png'],
+    images: ['/memoji/memoji.png'],
   },
   icons: {
     icon: [
       {
-        url: '/memoji-right.png',
+        url: '/memoji/memoji-right.png',
         type: 'image/png',
         sizes: '512x512',
       },
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${poppins.variable} scroll-smooth`}>
       <head>
-        <link rel="preload" href="/memoji.png" as="image" />
+        <link rel="preload" href="/memoji/memoji.png" as="image" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <script

@@ -118,7 +118,7 @@ const Hero = memo(function Hero() {
         >
           <div className="relative w-full max-w-2xl">
             <Image
-              src="/memoji.png"
+              src="/memoji/memoji.png"
               alt="Rifat"
               width={600}
               height={600}

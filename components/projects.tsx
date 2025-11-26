@@ -39,7 +39,7 @@ const projectsData = [
     "Designed, configured, and managed CI/CD pipelines to automate testing, build, and deployment processes, ensuring rapid and reliable delivery of updates.",
   ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker", "CI/CD"],
-    image: "/progress.jpg",
+    image: "/misc/progress.jpg",
     status: null,
     links: [
       { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repository" },
@@ -75,7 +75,7 @@ const projectsData = [
       "Developed Machine Learning classification, regression, and clustering models to predict customer feedback sentiment, used car sales analysis based on various features, and segmentations based on dataset characteristics."
     ],
     tags: ["Python", "ML", "Data Science"],
-    image: "/progress.jpg",
+    image: "/misc/progress.jpg",
     status: null,
     links: [
       { type: "docs", url: "https://colab.research.google.com/drive/1NPCdboNdfYE7ak-Ka60AlVbSqh4T9tcS?usp=sharing", label: "Colab Notebook" },
@@ -94,7 +94,7 @@ const projectsData = [
       "Managed CI/CD pipelines to automate build, testing, and deployment processes of services to production environments."
     ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker"],
-    image: "/progress.jpg",
+    image: "/misc/progress.jpg",
     status: null,
     links: [],
   },

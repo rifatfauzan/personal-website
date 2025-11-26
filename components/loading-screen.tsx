@@ -32,7 +32,7 @@ export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
       <div className="relative z-20 flex flex-col items-center justify-center">
         <div className="relative w-48 h-48 md:w-64 md:h-64">
           <Image
-            src="/memoji.png"
+            src="/memoji/memoji.png"
             alt="Website Loading"
             fill
             className="object-contain"

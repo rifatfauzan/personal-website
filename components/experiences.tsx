@@ -10,7 +10,7 @@ const experiences = [
   //   title: "Data Analytics & Scientist Intern",
   //   company: "Mandiri Sekuritas",
   //   period: "Aug 2025 - Present",
-  //   logo: "/mandiri-sekuritas.png",
+  //   logo: "/experiences/mandiri-sekuritas.png",
   //   description: [
   //     "Updates BigQuery data warehouse for daily push notifications and transactions data.",
   //     "Automated weekly reports for push notifications and transactions data regarding stock campaigns.",
@@ -22,7 +22,7 @@ const experiences = [
     title: "AI Development Cohort",
     company: "Infinite Learning Indonesia",
     period: "Mar 2025 - Jul 2025",
-    logo: "/infinite-learning.png",
+    logo: "/experiences/infinite-learning.png",
     description: [
       "Completed an intensive AI development program, learning core concepts in Data Science, Machine Learning, Deep Learning, Natural Language Processing (NLP), and Model Deployment.",
       "Contributed as a Design Researcher on Serenity Retreats, a website with a personalized tourism recommendation system to match the user preferences.",
@@ -33,7 +33,7 @@ const experiences = [
     title: "Mentor",
     company: "Dasar-Dasar Pemrograman 0",
     period: "Aug 2023 - Nov 2023",
-    logo: "/pacil.png",
+    logo: "/experiences/pacil.png",
     description: [
       "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
       "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
@@ -43,7 +43,7 @@ const experiences = [
     title: "Staff of Operational",
     company: "Wisuda Genap Fasilkom UI 2023",
     period: "Jul 2023 - Aug 2023",
-    logo: "/pacil.png",
+    logo: "/experiences/pacil.png",
     description: [
       "Successfully managing and supporting all operational activities to ensure the event's success.",
       "Collaborated with other divisions to quickly resolve any operational issues."
@@ -53,7 +53,7 @@ const experiences = [
     title: "Staff of Field Controller",
     company: "Pesta Rakyat Komputer",
     period: "Mar 2023 - Oct 2023",
-    logo: "/perak.png",
+    logo: "/experiences/perak.png",
     description: [
       "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
       "Ensuring smooth event flow and promptly resolving issues in collaboration with other divisions."
@@ -63,7 +63,7 @@ const experiences = [
     title: "Member",
     company: "Google Developer Student Club Universitas Indonesia",
     period: "Nov 2022 - Jun 2023",
-    logo: "/gdsc.png",
+    logo: "/experiences/gdsc.png",
     description: [
       "Participated in Google Developer Student Club activities and events.",
       "Engaged with a community of developers learning about Google technologies and best practices."
@@ -73,7 +73,7 @@ const experiences = [
     title: "Intern at Department of Arts and Culture",
     company: "BEM Fakultas Ilmu Komputer Universitas Indonesia",
     period: "Sep 2022 - Dec 2022",
-    logo: "/pacil.png",
+    logo: "/experiences/pacil.png",
     description: [
       "Participated as an intern at the Department of Arts and Culture.",
       "Organized and promoted 'Musik Kantin', a weekly musical event, coordinating all aspects of the show."

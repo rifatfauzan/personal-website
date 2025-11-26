@@ -73,7 +73,7 @@ const infraStack: TechItem[] = [
   },
   { 
     name: "Tableau", 
-    image: "/tableau-icon-svgrepo-com.svg",
+    image: "/misc/tableau-icon-svgrepo-com.svg",
     url: "https://www.tableau.com/"
   },
   { 
@@ -197,7 +197,7 @@ const TechStack = memo(function TechStack() {
             style={{ minWidth: '300px' }}
           >
             <Image
-              src="/memoji-laptop.png"
+              src="/memoji/memoji-laptop.png"
               alt="Memoji with laptop"
               width={300}
               height={500}
