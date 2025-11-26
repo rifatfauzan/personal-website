@@ -2,10 +2,10 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "motion/react"
-import { memo, useState } from "react"
+import { memo, useMemo, useState } from "react"
 import Image from "next/image"
 import { Github, FileText, Figma, ExternalLink, Play } from "lucide-react"
-import { label } from "motion/react-client"
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 const projectsData = [
   {
@@ -61,7 +61,7 @@ const projectsData = [
     image: "/projects/Website.jpg",
     status: null,
     links: [
-      { type: "github", url: "https://github.com/rifatfauzan/portfolio-rifat", label: "Repository" },
+      { type: "github", url: "https://github.com/rifatfauzan/personal-website", label: "Repository" },
     ],
   },
     {
@@ -140,18 +140,29 @@ const projectsData = [
 
 const categories = ["All Projects", "Web Development", "AI & ML", "Mobile Apps", "UI/UX"]
 
+const toCategoryId = (category: string) => `category-${category.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`
+
+const matchesCategory = (project: (typeof projectsData)[number], category: string) => {
+  if (category === "All Projects") {
+    return true
+  }
+
+  if (Array.isArray(project.category)) {
+    return project.category.includes(category)
+  }
+
+  return project.category === category
+}
+
 const Projects = memo(function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All Projects")
   const [selectedProject, setSelectedProject] = useState(projectsData[0])
+  const prefersReducedMotion = usePrefersReducedMotion()
 
-  const filteredProjects = selectedCategory === "All Projects"
-    ? projectsData
-    : projectsData.filter(p => {
-      if (Array.isArray(p.category)) {
-        return p.category.includes(selectedCategory)
-      }
-      return p.category === selectedCategory
-    })
+  const filteredProjects = useMemo(
+    () => projectsData.filter((project) => matchesCategory(project, selectedCategory)),
+    [selectedCategory]
+  )
 
   const groupedProjects = filteredProjects.reduce((acc, project) => {
     const yearIndex = acc.findIndex(group => group.year === project.year)
@@ -168,38 +179,49 @@ const Projects = memo(function Projects() {
     <section id="projects" className="py-20">
       <div className="container">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          {...(!prefersReducedMotion && {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true, amount: 0.3 },
+            transition: { duration: 0.6 }
+          })}
           className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-black"
         >
           Projects
         </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          {...(!prefersReducedMotion && {
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true, amount: 0.3 },
+            transition: { duration: 0.6, delay: 0.1 }
+          })}
           className="flex flex-wrap gap-3 mb-12"
+          role="tablist"
         >
           {categories.map((category) => (
             <button
               key={category}
+              type="button"
               onClick={() => {
                 setSelectedCategory(category)
-                setSelectedProject(
+                const nextProject =
                   category === "All Projects"
                     ? projectsData[0]
-                    : projectsData.find(p => p.category === category) || projectsData[0]
-                )
+                    : projectsData.find((project) => matchesCategory(project, category)) || projectsData[0]
+
+                setSelectedProject(nextProject)
               }}
-              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full font-medium transition-all duration-300 focus-visible:outline focus-visible:outline-black/40 focus-visible:outline-offset-2 ${
                 selectedCategory === category
                   ? "bg-[#efe6c2] text-black"
                   : "bg-white/50 text-black hover:bg-white/70"
               }`}
+              role="tab"
+              aria-selected={selectedCategory === category}
+              aria-controls="project-details-panel"
+              id={toCategoryId(category)}
             >
               {category}
             </button>
@@ -208,10 +230,12 @@ const Projects = memo(function Projects() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            {...(!prefersReducedMotion && {
+              initial: { opacity: 0, x: -20 },
+              whileInView: { opacity: 1, x: 0 },
+              viewport: { once: true, amount: 0.3 },
+              transition: { duration: 0.6, delay: 0.2 }
+            })}
             className="lg:col-span-1"
           >
             <div 
@@ -229,7 +253,7 @@ const Projects = memo(function Projects() {
                       <motion.button
                         key={project.id}
                         onClick={() => setSelectedProject(project)}
-                        whileHover={{ x: 4 }}
+                        whileHover={prefersReducedMotion ? undefined : { x: 4 }}
                         className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
                           selectedProject.id === project.id
                             ? "bg-[#efe6c2] text-black shadow-lg"
@@ -252,20 +276,23 @@ const Projects = memo(function Projects() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            {...(!prefersReducedMotion && {
+              initial: { opacity: 0, x: 20 },
+              whileInView: { opacity: 1, x: 0 },
+              viewport: { once: true, amount: 0.3 },
+              transition: { duration: 0.6, delay: 0.2 }
+            })}
             className="lg:col-span-2"
           >
             {selectedProject ? (
-              <Card className="bg-white/40 backdrop-blur-sm border border-white/50 overflow-hidden">
+              <Card className="bg-white/40 backdrop-blur-sm border border-white/50 overflow-hidden" id="project-details-panel" role="tabpanel" aria-labelledby={toCategoryId(selectedCategory)}>
                 <div className="relative w-full aspect-[2/1] bg-gradient-to-br from-gray-200 to-gray-300">
                   <Image
                     src={selectedProject.image}
                     alt={selectedProject.title}
                     fill
                     className="object-contain"
+                    sizes="(min-width: 1024px) 66vw, 100vw"
                   />
                 </div>
                 <CardContent className="p-8">

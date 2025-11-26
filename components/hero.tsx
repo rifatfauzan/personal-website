@@ -8,6 +8,7 @@ import { motion } from "motion/react"
 import TextPressure from "@/components/ui/text-pressure"
 import RotatingText from "@/components/ui/rotating-text"
 import { memo } from "react"
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 const roles = [
   " Learner",
@@ -15,6 +16,39 @@ const roles = [
 ]
 
 const Hero = memo(function Hero() {
+  const prefersReducedMotion = usePrefersReducedMotion()
+
+  const headingMotionProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.8, delay: 0.2 }
+      }
+
+  const paragraphMotionProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.8, delay: 0.4 }
+      }
+
+  const iconRowMotionProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.8, delay: 0.6 }
+      }
+
+  const imageMotionProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        transition: { duration: 0.8, delay: 0.4 }
+      }
 
   return (
     <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
@@ -22,9 +56,7 @@ const Hero = memo(function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="max-w-3xl">
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            {...headingMotionProps}
             className="text-4xl md:text-7xl font-bold text-black mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
           >
             Hi! I'm...      <TextPressure
@@ -54,40 +86,34 @@ const Hero = memo(function Hero() {
             </span>
           </motion.h1>
           <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            {...paragraphMotionProps}
             className="text-lg md:text-xl text-black/80 mb-8"
           >
             I am an Information Systems student with strong interest in <span className="font-bold" style={{ color: '#f5d20a' }}>Data Analytics</span> and <span className="font-bold" style={{ color: '#f5d20a' }}>Products</span>.
           </motion.p>
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            {...iconRowMotionProps}
             className="flex gap-4 mt-8"
           >
             <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
-              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
                 <Github className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
-              <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
-              <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile in a new tab">
                 <Instagram className="h-5 w-5" />
               </Link>
             </Button>
           </motion.div>
         </div>
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          {...imageMotionProps}
           className="hidden md:flex justify-end items-center -mr-40"
         >
           <div className="relative w-full max-w-2xl">
@@ -97,7 +123,7 @@ const Hero = memo(function Hero() {
               width={600}
               height={600}
               className="w-full h-auto drop-shadow-lg"
-              priority
+              sizes="(min-width: 1024px) 600px, 70vw"
             />
           </div>
         </motion.div>
