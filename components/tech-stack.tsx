@@ -118,7 +118,7 @@ const TechStack = memo(function TechStack() {
             initial: { opacity: 0, y: 30 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6 }
+            transition: { duration: 0.2 }
           })}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
         >
@@ -147,7 +147,7 @@ const TechStack = memo(function TechStack() {
                   tabIndex={0}
                   aria-label={item.name}
                 >
-                  <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                  <div className="relative w-32 h-32 transform transition-transform duration-300 hover:scale-110">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -178,7 +178,7 @@ const TechStack = memo(function TechStack() {
                   tabIndex={0}
                   aria-label={item.name}
                 >
-                  <div className="relative w-24 h-24 transform transition-transform duration-300 hover:scale-110">
+                  <div className="relative w-32 h-32 transform transition-transform duration-300 hover:scale-110">
                     <Image
                       src={item.image}
                       alt={item.name}

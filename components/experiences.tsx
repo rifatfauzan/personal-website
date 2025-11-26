@@ -91,7 +91,7 @@ const Experiences = memo(function Experiences() {
             initial: { opacity: 1, y: 0 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0 }
+            transition: { duration: 0.1 }
           })}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
@@ -103,7 +103,7 @@ const Experiences = memo(function Experiences() {
             initial: { opacity: 1, y: 0 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0 }
+            transition: { duration: 0.1 }
           })}
           className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-sm border border-white/10"
         >
@@ -118,7 +118,7 @@ const Experiences = memo(function Experiences() {
                     whileInView: { opacity: 1, x: 0 },
                     viewport: { once: true, amount: 0.3 },
                     transition: {
-                      duration: 0,
+                      duration: 0.1,
                       ease: "easeOut"
                     }
                   })}
@@ -168,7 +168,7 @@ const Experiences = memo(function Experiences() {
                             initial: { opacity: 1, x: 0 },
                             whileInView: { opacity: 1, x: 0 },
                             viewport: { once: true },
-                            transition: { duration: 0 }
+                            transition: { duration: 0.1 }
                           })}
                           className="text-sm text-white/80 leading-relaxed flex gap-2"
                         >

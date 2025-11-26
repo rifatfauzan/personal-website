@@ -48,7 +48,7 @@ const Contact = memo(function Contact() {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6 }
+            transition: { duration: 0.2 }
           })}
           className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-8 text-black"
         >
@@ -59,7 +59,7 @@ const Contact = memo(function Contact() {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6, delay: 0.1 }
+            transition: { duration: 0.2, delay: 0.1 }
           })}
           className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
@@ -71,7 +71,7 @@ const Contact = memo(function Contact() {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6, delay: 0.2 }
+            transition: { duration: 0.2, delay: 0.2 }
           })}
           className="flex justify-center items-center gap-8 flex-wrap"
         >

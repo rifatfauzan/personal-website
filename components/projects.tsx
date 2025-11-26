@@ -183,7 +183,7 @@ const Projects = memo(function Projects() {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6 }
+            transition: { duration: 0.2 }
           })}
           className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-black"
         >
@@ -195,7 +195,7 @@ const Projects = memo(function Projects() {
             initial: { opacity: 0, y: 20 },
             whileInView: { opacity: 1, y: 0 },
             viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.6, delay: 0.1 }
+            transition: { duration: 0.2, delay: 0.1 }
           })}
           className="flex flex-wrap gap-3 mb-12"
           role="tablist"
@@ -234,7 +234,7 @@ const Projects = memo(function Projects() {
               initial: { opacity: 0, x: -20 },
               whileInView: { opacity: 1, x: 0 },
               viewport: { once: true, amount: 0.3 },
-              transition: { duration: 0.6, delay: 0.2 }
+              transition: { duration: 0.2, delay: 0.2 }
             })}
             className="lg:col-span-1"
           >
@@ -280,7 +280,7 @@ const Projects = memo(function Projects() {
               initial: { opacity: 0, x: 20 },
               whileInView: { opacity: 1, x: 0 },
               viewport: { once: true, amount: 0.3 },
-              transition: { duration: 0.6, delay: 0.2 }
+              transition: { duration: 0.2, delay: 0.2 }
             })}
             className="lg:col-span-2"
           >
