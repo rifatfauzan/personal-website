@@ -1,4 +1,4 @@
-import AmbientBackground from "@/components/ambient-background"
+import { BackgroundPathsOnly } from "@/components/ui/shadcn-io/background-paths"
 import Hero from "@/components/hero"
 import Navbar from "@/components/navbar"
 import Projects from "@/components/projects"
@@ -10,7 +10,7 @@ import Experiences from "@/components/experiences"
 export default function Home() {
   return (
     <div className="min-h-screen relative scroll-smooth" style={{ backgroundColor: "#edebeb" }}>
-      <AmbientBackground />
+      <BackgroundPathsOnly />
 
       <div className="relative z-10">
         <Navbar />
