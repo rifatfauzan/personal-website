@@ -2,8 +2,6 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { memo } from "react"
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 const experiences = [
   // {
@@ -81,30 +79,39 @@ const experiences = [
   },
 ]
 
-const Experiences = memo(function Experiences() {
-  const prefersReducedMotion = usePrefersReducedMotion()
+function Experiences() {
+  const headingMotionProps = {
+    initial: { opacity: 1, y: 0 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.1 }
+  }
+
+  const cardMotionProps = {
+    initial: { opacity: 1, y: 0 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.1 }
+  }
+
+  const itemMotionProps = {
+    initial: { opacity: 1, x: 0 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.1 }
+  }
   return (
     <section id="experiences" className="py-20">
       <div className="container">
         <motion.h2 
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 1, y: 0 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.1 }
-          })}
+          {...headingMotionProps}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
         >
           Past Experiences and Volunteering
         </motion.h2>
 
         <motion.div
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 1, y: 0 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.1 }
-          })}
+          {...cardMotionProps}
           className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-sm border border-white/10"
         >
           <div className="relative">
@@ -113,15 +120,7 @@ const Experiences = memo(function Experiences() {
               {experiences.map((experience, index) => (
                 <motion.div
                   key={experience.title}
-                  {...(!prefersReducedMotion && {
-                    initial: { opacity: 1, x: 0 },
-                    whileInView: { opacity: 1, x: 0 },
-                    viewport: { once: true, amount: 0.3 },
-                    transition: {
-                      duration: 0.1,
-                      ease: "easeOut"
-                    }
-                  })}
+                  {...itemMotionProps}
                   className="relative pl-8 md:pl-10"
                 >
                     {index < experiences.length - 1 && (
@@ -164,12 +163,7 @@ const Experiences = memo(function Experiences() {
                       {experience.description.map((desc, descIndex) => (
                         <motion.li 
                           key={descIndex}
-                          {...(!prefersReducedMotion && {
-                            initial: { opacity: 1, x: 0 },
-                            whileInView: { opacity: 1, x: 0 },
-                            viewport: { once: true },
-                            transition: { duration: 0.1 }
-                          })}
+                          {...itemMotionProps}
                           className="text-sm text-white/80 leading-relaxed flex gap-2"
                         >
                           <span className="text-[#f5d20a] font-bold flex-shrink-0">•</span>
@@ -186,6 +180,6 @@ const Experiences = memo(function Experiences() {
       </div>
     </section>
   )
-})
+}
 
 export default Experiences

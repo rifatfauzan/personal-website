@@ -2,13 +2,30 @@
 
 import type React from "react"
 
-import { memo } from "react"
 import { Mail, Linkedin, Instagram, Github } from "lucide-react"
 import { motion } from "motion/react"
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
-const Contact = memo(function Contact() {
-  const prefersReducedMotion = usePrefersReducedMotion()
+function Contact() {
+  const headingMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2 }
+  }
+
+  const paragraphMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.1 }
+  }
+
+  const iconsMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.2 }
+  }
   const socialLinks = [
     {
       name: "Email",
@@ -44,35 +61,20 @@ const Contact = memo(function Contact() {
     <section id="contact" className="py-20">
       <div className="container">
         <motion.h2 
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2 }
-          })}
+          {...headingMotionProps}
           className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-8 text-black"
         >
           Get in Touch
         </motion.h2>
         <motion.p 
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2, delay: 0.1 }
-          })}
+          {...paragraphMotionProps}
           className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
         >
           Feel free to connect with me on social media or send me an email.
         </motion.p>
 
         <motion.div
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2, delay: 0.2 }
-          })}
+          {...iconsMotionProps}
           className="flex justify-center items-center gap-8 flex-wrap"
         >
           {socialLinks.map((link) => {
@@ -95,6 +97,6 @@ const Contact = memo(function Contact() {
       </div>
     </section>
   )
-})
+}
 
 export default Contact

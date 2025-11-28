@@ -3,8 +3,6 @@
 import Image from "next/image"
 import { motion } from "motion/react"
 import LogoLoop from "@/components/ui/logo-loop"
-import { memo } from "react"
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 interface TechItem {
   name: string
@@ -108,18 +106,18 @@ const infraStack: TechItem[] = [
   }
 ]
 
-const TechStack = memo(function TechStack() {
-  const prefersReducedMotion = usePrefersReducedMotion()
+function TechStack() {
+  const headingMotionProps = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2 }
+  }
   return (
     <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] contain-layout gpu-accelerated">
       <div className="container">
         <motion.h2 
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 30 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2 }
-          })}
+          {...headingMotionProps}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
         >
           Frameworks and Tools
@@ -210,6 +208,6 @@ const TechStack = memo(function TechStack() {
       </div>
     </section>
   )
-})
+}
 
 export default TechStack

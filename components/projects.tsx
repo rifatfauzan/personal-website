@@ -2,10 +2,9 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "motion/react"
-import { memo, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import Image from "next/image"
 import { Github, FileText, Figma, ExternalLink, Play } from "lucide-react"
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 const projectsData = [
   {
@@ -78,7 +77,7 @@ const projectsData = [
     image: "/misc/progress.jpg",
     status: null,
     links: [
-      { type: "docs", url: "https://colab.research.google.com/drive/1NPCdboNdfYE7ak-Ka60AlVbSqh4T9tcS?usp=sharing", label: "Colab Notebook" },
+      { type: "github", url: "https://github.com/rifatfauzan/UCS-KASDD", label: "Repository"},
       { type: "docs", url: "https://drive.google.com/file/d/1FDbx8-FO4aEICcHI5YrPaWmyEBaJx0um/view?usp=sharing", label: "Project Presentation" }
     ],
   },
@@ -154,10 +153,33 @@ const matchesCategory = (project: (typeof projectsData)[number], category: strin
   return project.category === category
 }
 
-const Projects = memo(function Projects() {
+function Projects() {
   const [selectedCategory, setSelectedCategory] = useState("All Projects")
   const [selectedProject, setSelectedProject] = useState(projectsData[0])
-  const prefersReducedMotion = usePrefersReducedMotion()
+  const headingMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2 }
+  }
+  const categoriesMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.1 }
+  }
+  const listMotionProps = {
+    initial: { opacity: 0, x: -20 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.2 }
+  }
+  const detailMotionProps = {
+    initial: { opacity: 0, x: 20 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.2 }
+  }
 
   const filteredProjects = useMemo(
     () => projectsData.filter((project) => matchesCategory(project, selectedCategory)),
@@ -179,24 +201,14 @@ const Projects = memo(function Projects() {
     <section id="projects" className="py-20">
       <div className="container">
         <motion.h2 
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2 }
-          })}
+          {...headingMotionProps}
           className="text-4xl md:text-5xl font-bold tracking-tighter mb-8 text-black"
         >
           Projects
         </motion.h2>
 
         <motion.div
-          {...(!prefersReducedMotion && {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true, amount: 0.3 },
-            transition: { duration: 0.2, delay: 0.1 }
-          })}
+          {...categoriesMotionProps}
           className="flex flex-wrap gap-3 mb-12"
           role="tablist"
         >
@@ -230,12 +242,7 @@ const Projects = memo(function Projects() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <motion.div
-            {...(!prefersReducedMotion && {
-              initial: { opacity: 0, x: -20 },
-              whileInView: { opacity: 1, x: 0 },
-              viewport: { once: true, amount: 0.3 },
-              transition: { duration: 0.2, delay: 0.2 }
-            })}
+            {...listMotionProps}
             className="lg:col-span-1"
           >
             <div 
@@ -253,7 +260,7 @@ const Projects = memo(function Projects() {
                       <motion.button
                         key={project.id}
                         onClick={() => setSelectedProject(project)}
-                        whileHover={prefersReducedMotion ? undefined : { x: 4 }}
+                        whileHover={{ x: 4 }}
                         className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
                           selectedProject.id === project.id
                             ? "bg-[#efe6c2] text-black shadow-lg"
@@ -276,12 +283,7 @@ const Projects = memo(function Projects() {
           </motion.div>
 
           <motion.div
-            {...(!prefersReducedMotion && {
-              initial: { opacity: 0, x: 20 },
-              whileInView: { opacity: 1, x: 0 },
-              viewport: { once: true, amount: 0.3 },
-              transition: { duration: 0.2, delay: 0.2 }
-            })}
+            {...detailMotionProps}
             className="lg:col-span-2"
           >
             {selectedProject ? (
@@ -417,6 +419,6 @@ const Projects = memo(function Projects() {
       </div>
     </section>
   )
-})
+}
 
 export default Projects

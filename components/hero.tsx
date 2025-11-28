@@ -7,48 +7,36 @@ import Link from "next/link"
 import { motion } from "motion/react"
 import TextPressure from "@/components/ui/text-pressure"
 import RotatingText from "@/components/ui/rotating-text"
-import { memo } from "react"
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 
 const roles = [
   " Learner",
   " Problem Solver",
 ]
 
-const Hero = memo(function Hero() {
-  const prefersReducedMotion = usePrefersReducedMotion()
+function Hero() {
+  const headingMotionProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.2 }
+  }
 
-  const headingMotionProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.8, delay: 0.2 }
-      }
+  const paragraphMotionProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.4 }
+  }
 
-  const paragraphMotionProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.8, delay: 0.4 }
-      }
+  const iconRowMotionProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.6 }
+  }
 
-  const iconRowMotionProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.8, delay: 0.6 }
-      }
-
-  const imageMotionProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, scale: 0.8 },
-        animate: { opacity: 1, scale: 1 },
-        transition: { duration: 0.8, delay: 0.4 }
-      }
+  const imageMotionProps = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.8, delay: 0.4 }
+  }
 
   return (
     <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
@@ -131,6 +119,6 @@ const Hero = memo(function Hero() {
       </div>
     </section>
   )
-})
+}
 
 export default Hero

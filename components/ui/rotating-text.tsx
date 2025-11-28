@@ -7,7 +7,6 @@ import {
   type Target,
   type TargetAndTransition
 } from 'motion/react';
-import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
 
 function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(' ');
@@ -69,7 +68,6 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
     ref
   ) => {
     const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
-    const prefersReducedMotion = usePrefersReducedMotion();
 
     const splitIntoCharacters = (text: string): string[] => {
       if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
@@ -175,31 +173,10 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
     );
 
     useEffect(() => {
-      if (!auto || prefersReducedMotion) return;
+      if (!auto) return;
       const intervalId = setInterval(next, rotationInterval);
       return () => clearInterval(intervalId);
-    }, [next, rotationInterval, auto, prefersReducedMotion]);
-
-    useEffect(() => {
-      if (prefersReducedMotion) {
-        reset();
-      }
-    }, [prefersReducedMotion, reset]);
-
-    if (prefersReducedMotion) {
-      return (
-        <motion.span
-          className={cn('flex flex-wrap whitespace-pre-wrap relative', mainClassName)}
-          layout={false}
-          transition={{ duration: 0 }}
-          initial={false}
-          animate={false}
-          {...rest}
-        >
-          {texts[0]}
-        </motion.span>
-      );
-    }
+    }, [next, rotationInterval, auto]);
 
     return (
       <motion.span
