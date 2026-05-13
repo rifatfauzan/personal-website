@@ -118,7 +118,7 @@ function TechStack() {
       <div className="container">
         <motion.h2 
           {...headingMotionProps}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black optimized-text"
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-white optimized-text"
         >
           Frameworks and Tools
         </motion.h2>

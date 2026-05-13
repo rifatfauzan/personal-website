@@ -9,8 +9,11 @@ import TextPressure from "@/components/ui/text-pressure"
 import RotatingText from "@/components/ui/rotating-text"
 
 const roles = [
-  " Learner",
-  " Problem Solver",
+  "Developer",
+  "Data Analyst",
+  "Problem Solver",
+  "Designer",
+  "Learner",
 ]
 
 function Hero() {
@@ -45,11 +48,11 @@ function Hero() {
         <div className="max-w-3xl">
           <motion.h1 
             {...headingMotionProps}
-            className="text-4xl md:text-7xl font-bold text-black mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
+            className="text-4xl md:text-7xl font-bold text-white mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
           >
             Hi! I'm...      <TextPressure
               text="Rifat!"
-              textColor="#f5d20a"
+              textColor="#4285f4"
               flex={true}
               weight={true}
               width={true}
@@ -59,11 +62,11 @@ function Hero() {
               className="inline-block"
             />
             <br />
-            <span className="inline-flex items-center gap-1">
-              A {" "}
+            <span className="inline-flex items-center gap-0">
+              <span className="mr-3">A</span>
               <RotatingText
                 texts={roles}
-                mainClassName="text-[#f5d20a]"
+                mainClassName="text-[#4285f4]"
                 rotationInterval={2500}
                 staggerDuration={0.01}
                 staggerFrom="first"
@@ -75,25 +78,25 @@ function Hero() {
           </motion.h1>
           <motion.p 
             {...paragraphMotionProps}
-            className="text-lg md:text-xl text-black/80 mb-8"
+            className="text-lg md:text-xl text-white/80 mb-8"
           >
-            I am an Information Systems student with strong interest in <span className="font-bold" style={{ color: '#f5d20a' }}>Data Analytics</span> and <span className="font-bold" style={{ color: '#f5d20a' }}>Products</span>.
+            I am an Information Systems student with strong interest in <span className="font-bold" style={{ color: '#4285f4' }}>Data Analytics</span> and <span className="font-bold" style={{ color: '#4285f4' }}>Products</span>.
           </motion.p>
-          <motion.div 
+          <motion.div
             {...iconRowMotionProps}
             className="flex gap-4 mt-8"
           >
-            <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
-              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
-                <Github className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
+            <Button variant="outline" size="icon" className="bg-transparent border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:text-[#0A66C2] transition-colors" asChild>
               <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" className="text-black hover:bg-black/10 transition-colors hover:text-[#f5d20a]" asChild>
+            <Button variant="outline" size="icon" className="bg-transparent border-white/60 text-white/80 hover:bg-white/10 hover:text-white transition-colors" asChild>
+              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
+                <Github className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" className="bg-transparent border-[#E4405F] text-[#E4405F] hover:bg-[#E4405F]/10 hover:text-[#E4405F] transition-colors" asChild>
               <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile in a new tab">
                 <Instagram className="h-5 w-5" />
               </Link>

@@ -25,101 +25,108 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-card border-b border-white/10">
+    <header className="sticky top-0 z-50 w-full bg-[#18181b]/80 backdrop-blur-sm border-b border-white/10">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="font-bold text-xl text-white">
           Rifatmon
         </Link>
         <nav className="hidden md:flex gap-6">
-          <Link 
-            href="#home" 
-            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+          <Link
+            href="#home"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'home')}
           >
             Home
           </Link>
-          <Link 
-            href="#tech" 
-            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+          <Link
+            href="#tech"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'tech')}
           >
             Tools
           </Link>
-          <Link 
-            href="#experiences" 
-            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+          <Link
+            href="#experiences"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'experiences')}
           >
             Experiences
           </Link>
-          <Link 
-            href="#projects" 
-            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+          <Link
+            href="#projects"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'projects')}
           >
             Projects
           </Link>
-          <Link 
-            href="#contact" 
-            className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+          <Link
+            href="#contact"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
             onClick={(e) => handleScroll(e, 'contact')}
           >
             Contact
           </Link>
-        </nav>
-        <Button variant="outline" className="hidden md:flex border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
-          <Link href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+          <Link
+            href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+          >
             Resume
           </Link>
-        </Button>
-        <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        </nav>
+        <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X /> : <Menu />}
         </Button>
       </div>
       {isMenuOpen && (
         <div className="container md:hidden py-4 animate-in slide-in-from-top duration-300">
-          <div className="p-6 rounded-xl border border-white/10 hover:border-white/30 hover:shadow-[0_2px_8px_rgba(255,255,255,0.1)] transition-all">
+          <div className="p-6 rounded-xl border border-white/10 hover:border-white/20 hover:shadow-[0_2px_8px_rgba(255,255,255,0.05)] transition-all bg-[#18181b]">
             <nav className="flex flex-col gap-4">
               <Link
                 href="#home"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'home')}
               >
                 Home
               </Link>
               <Link
                 href="#tech"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'tech')}
               >
                 Tools
               </Link>
               <Link
                 href="#experiences"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'experiences')}
               >
                 Experiences
               </Link>
               <Link
                 href="#projects"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'projects')}
               >
                 Projects
               </Link>
               <Link
                 href="#contact"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 onClick={(e) => handleScroll(e, 'contact')}
               >
                 Contact
               </Link>
-              <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white" asChild>
-                <Link href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                  Resume
-                </Link>
-              </Button>
+              <Link
+                href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#4285f4] hover:text-[#4285f4]/80 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Resume
+              </Link>
             </nav>
           </div>
         </div>
