@@ -8,6 +8,16 @@
   }
 }
 
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -255,10 +265,10 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.4);
 }

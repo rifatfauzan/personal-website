@@ -25,7 +25,7 @@ export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#edebeb] transition-opacity duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#18181b] transition-opacity duration-500 ${
         isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
@@ -42,9 +42,9 @@ export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
         
         <div className="mt-8 text-center">
           <div className="flex justify-center items-center gap-1 mt-4">
-            <div className="w-2 h-2 bg-[#372c2a] rounded-full animate-bounce" />
-            <div className="w-2 h-2 bg-[#372c2a] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-            <div className="w-2 h-2 bg-[#372c2a] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+            <div className="w-2 h-2 bg-[#4285f4] rounded-full animate-bounce" />
+            <div className="w-2 h-2 bg-[#4285f4] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+            <div className="w-2 h-2 bg-[#4285f4] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
           </div>
         </div>
       </div>

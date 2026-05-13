@@ -38,8 +38,8 @@ function Contact() {
       name: "GitHub",
       icon: Github,
       url: "https://www.github.com/rifatfauzan",
-      color: "text-[#333333]",
-      bgColor: "hover:bg-[#333333]/10",
+      color: "text-white",
+      bgColor: "hover:bg-white/10",
     },
     {
       name: "LinkedIn",
@@ -62,13 +62,13 @@ function Contact() {
       <div className="container">
         <motion.h2 
           {...headingMotionProps}
-          className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-8 text-black"
+          className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-8 text-white"
         >
           Get in Touch
         </motion.h2>
         <motion.p 
           {...paragraphMotionProps}
-          className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
+          className="text-center text-white/80 mb-12 max-w-2xl mx-auto"
         >
           Feel free to connect with me on social media or send me an email.
         </motion.p>
@@ -89,7 +89,7 @@ function Contact() {
                 title={link.name}
               >
                 <IconComponent size={40} className={`${link.color} transition-colors`} />
-                <span className="text-black font-medium text-sm text-center">{link.name}</span>
+                <span className="text-white font-medium text-sm text-center">{link.name}</span>
               </a>
             )
           })}

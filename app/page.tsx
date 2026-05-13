@@ -9,25 +9,25 @@ import Experiences from "@/components/experiences"
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative scroll-smooth" style={{ backgroundColor: "#edebeb" }}>
+    <div className="min-h-screen relative scroll-smooth" style={{ backgroundColor: "#18181b" }}>
       <BackgroundPathsOnly />
 
       <div className="relative z-10">
         <Navbar />
-        <main className="contain-layout">
-          <section className="contain-layout will-change-transform">
+        <main>
+          <section className="contain-layout snap-section min-h-screen">
             <Hero />
           </section>
-          <section className="contain-layout will-change-transform">
+          <section className="contain-layout">
             <TechStack />
           </section>
-          <section className="contain-layout will-change-transform">
+          <section className="contain-layout">
             <Experiences />
           </section>
-          <section className="contain-layout will-change-transform">
+          <section className="snap-section">
             <Projects />
           </section>
-          <section className="contain-layout will-change-transform">
+          <section className="contain-layout">
             <Contact />
           </section>
         </main>
