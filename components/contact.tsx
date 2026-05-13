@@ -30,7 +30,7 @@ function Contact() {
     {
       name: "Email",
       icon: Mail,
-      url: "https://mail.google.com/mail/?view=cm&fs=1&to=rifat.fauzan8@gmail.com",
+      url: "mailto:rifat.fauzan8@gmail.com",
       color: "text-[#EA4335]",
       bgColor: "hover:bg-[#EA4335]/10",
     },
