@@ -2,118 +2,101 @@
 
 import type React from "react"
 
-import { useState, memo } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Mail, Linkedin, Instagram, Github } from "lucide-react"
 import { motion } from "motion/react"
 
-const Contact = memo(function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+function Contact() {
+  const headingMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2 }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
-
-    setTimeout(() => {
-      setSubmitSuccess(false)
-    }, 3000)
+  const paragraphMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.1 }
   }
+
+  const iconsMotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.2, delay: 0.2 }
+  }
+  const socialLinks = [
+    {
+      name: "Email",
+      icon: Mail,
+      url: "mailto:rifat.fauzan8@gmail.com",
+      color: "text-[#EA4335]",
+      bgColor: "hover:bg-[#EA4335]/10",
+    },
+    {
+      name: "GitHub",
+      icon: Github,
+      url: "https://www.github.com/rifatfauzan",
+      color: "text-white",
+      bgColor: "hover:bg-white/10",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      url: "https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/",
+      color: "text-[#0A66C2]",
+      bgColor: "hover:bg-[#0A66C2]/10",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://www.instagram.com/rifatfauzannn",
+      color: "text-[#E4405F]",
+      bgColor: "hover:bg-[#E4405F]/10",
+    },
+  ]
 
   return (
     <section id="contact" className="py-20">
       <div className="container">
         <motion.h2 
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
+          {...headingMotionProps}
+          className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-8 text-white"
         >
           Get in Touch
         </motion.h2>
         <motion.p 
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0 }}
-          className="text-center text-black/80 mb-12 max-w-2xl mx-auto"
+          {...paragraphMotionProps}
+          className="text-center text-white/80 mb-12 max-w-2xl mx-auto"
         >
-          Feel free to reach out to me for any questions or opportunities.
+          Feel free to connect with me on social media or send me an email.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0 }}
-          >
-            <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Mail className="h-6 w-6 text-white" />
-                  <h3 className="text-xl font-semibold text-white">Email</h3>
-                </div>
-                <p className="text-white/80">rifat.fauzan8@gmail.com</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0 }}
-          >
-            <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <Phone className="h-6 w-6 text-white" />
-                  <h3 className="text-xl font-semibold text-white">Phone</h3>
-                </div>
-                <p className="text-white/80">+62 878-7508-7770</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0 }}
-          >
-            <Card className="glass-card hover-glow transition-all duration-300 hover:-translate-y-2">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <MapPin className="h-6 w-6 text-white" />
-                  <h3 className="text-xl font-semibold text-white">Location</h3>
-                </div>
-                <p className="text-white/80">Jakarta, Indonesia</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
+
+        <motion.div
+          {...iconsMotionProps}
+          className="flex justify-center items-center gap-8 flex-wrap"
+        >
+          {socialLinks.map((link) => {
+            const IconComponent = link.icon
+            return (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex flex-col items-center justify-center gap-3 w-28 h-28 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 ${link.bgColor} hover:shadow-lg hover:scale-105`}
+                title={link.name}
+              >
+                <IconComponent size={40} className={`${link.color} transition-colors`} />
+                <span className="text-white font-medium text-sm text-center">{link.name}</span>
+              </a>
+            )
+          })}
+        </motion.div>
       </div>
     </section>
   )
-})
+}
 
 export default Contact

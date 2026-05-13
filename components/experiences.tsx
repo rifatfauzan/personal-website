@@ -1,181 +1,130 @@
 "use client"
 
+import { useRef } from "react"
 import Image from "next/image"
-import { motion } from "motion/react"
-import { memo } from "react"
+import { motion, useInView } from "motion/react"
 
 const experiences = [
-  // {
-  //   title: "Data Analytics & Scientist Intern",
-  //   company: "Mandiri Sekuritas",
-  //   period: "Aug 2025 - Present",
-  //   logo: "/mandiri-sekuritas.png",
-  //   description: [
-  //     "Updates BigQuery data warehouse for daily push notifications and transactions data.",
-  //     "Automated weekly reports for push notifications and transactions data regarding stock campaigns.",
-  //     "Developed Relative Rotation Graph (RRG) to analyze stock price movements and identify potential trading opportunities.",
-  //     "Conducted backtesting on trading strategies."
-  //   ],
-  // },
   {
-    title: "AI Development Cohort",
-    company: "Infinite Learning Indonesia",
-    period: "Mar 2025 - Jul 2025",
-    logo: "/infinite-learning.png",
+    title: "Data Science Intern",
+    company: "Mandiri Sekuritas",
+    period: "Nov 2025 - Jan 2026",
+    logo: "/experiences/mandiri-sekuritas.png",
     description: [
-      "Completed an intensive AI development program, learning core concepts in Data Science, Machine Learning, Deep Learning, Natural Language Processing (NLP), and Model Deployment.",
-      "Contributed as a Design Researcher on Serenity Retreats, a website with a personalized tourism recommendation system to match the user preferences.",
-      "Managed the end-to-end AI lifecycle, from data gathering and preprocessing to model training, evaluation, and deployment."
+      "Built a Proof of Concept for Relative Rotation Graph (RRG) feature with full stack implementation to analyze relative strength of stocks in the Indonesian Stock Market.",
+      "Built an interactive stock ownership visualization system using Neo4j graph database, processing 1,480 shareholder entities, 811 stocks, and 1,764 ownership relationships.",
+      "Integrated GPT-OSS-20B LLM for natural language to Cypher query translation and AI chatbot using schema context and few-shot examples.",
+      "Researched algorithmic trading strategies with backtesting; optimized parameters using stock correlation matrices.",
+    ],
+  },
+  {
+    title: "Data Analyst Intern",
+    company: "Mandiri Sekuritas",
+    period: "Aug 2025 - Oct 2025",
+    logo: "/experiences/mandiri-sekuritas.png",
+    description: [
+      "Automated weekly push notification report using GCP (Vertex AI, BigQuery, Looker Studio), reducing manual processing time and errors.",
+      "Developed end-to-end pipeline for campaign performance reporting, including extraction, transformation, and automated presentation slides generation.",
+      "Developed and maintained web scraping scripts for the eIPO website and ran daily web scraping scripts from financial news portals.",
+    ],
+  },
+  {
+    title: "AI Development Participant",
+    company: "Infinite Learning",
+    period: "Mar 2025 - Jul 2025",
+    logo: "/experiences/infinite-learning.png",
+    description: [
+      "Mastered AI fundamentals and practical applications, including core concepts of ML and DL.",
+      "Actively collaborated with the Web Development team in developing a digital platform.",
+      "Developed an AI-powered recommendation system, aimed at enhancing the user experience on the platform.",
     ],
   },
   {
     title: "Mentor",
     company: "Dasar-Dasar Pemrograman 0",
     period: "Aug 2023 - Nov 2023",
-    logo: "/pacil.png",
+    logo: "/experiences/pacil.png",
     description: [
       "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
       "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
     ],
   },
   {
-    title: "Staff of Operational",
-    company: "Wisuda Genap Fasilkom UI 2023",
-    period: "Jul 2023 - Aug 2023",
-    logo: "/pacil.png",
-    description: [
-      "Successfully managing and supporting all operational activities to ensure the event's success.",
-      "Collaborated with other divisions to quickly resolve any operational issues."
-    ],
-  },
-  {
-    title: "Staff of Field Controller",
-    company: "Pesta Rakyat Komputer",
-    period: "Mar 2023 - Oct 2023",
-    logo: "/perak.png",
-    description: [
-      "Assisted in logistics preparation and managed resource allocation to support the event's needs.",
-      "Ensuring smooth event flow and promptly resolving issues in collaboration with other divisions."
-    ],
-  },
-  {
     title: "Member",
     company: "Google Developer Student Club Universitas Indonesia",
     period: "Nov 2022 - Jun 2023",
-    logo: "/gdsc.png",
+    logo: "/experiences/gdsc.png",
     description: [
       "Participated in Google Developer Student Club activities and events.",
       "Engaged with a community of developers learning about Google technologies and best practices."
     ],
   },
-  {
-    title: "Intern at Department of Arts and Culture",
-    company: "BEM Fakultas Ilmu Komputer Universitas Indonesia",
-    period: "Sep 2022 - Dec 2022",
-    logo: "/pacil.png",
-    description: [
-      "Participated as an intern at the Department of Arts and Culture.",
-      "Organized and promoted 'Musik Kantin', a weekly musical event, coordinating all aspects of the show."
-    ],
-  },
 ]
 
-const Experiences = memo(function Experiences() {
+function ExperienceItem({ experience }: { experience: typeof experiences[0] }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" })
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={{
+        opacity: isInView ? 1 : 0.2,
+        scale: isInView ? 1 : 0.9,
+      }}
+      style={{ transformOrigin: "left center" }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="min-h-[35vh] flex items-center border-b border-white/10 last:border-0 py-6"
+    >
+      <div className="flex items-start gap-5 w-full">
+        {experience.logo && (
+          <div className="relative w-10 h-10 flex-shrink-0 mt-1 hidden sm:block">
+            <Image
+              src={experience.logo}
+              alt={experience.company}
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+        )}
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-4">
+            <div>
+              <h3 className="text-3xl font-bold text-white leading-tight">{experience.title}</h3>
+              <p className="text-white font-semibold text-sm mt-1">{experience.company}</p>
+            </div>
+            <span className="text-white/40 text-sm font-medium shrink-0 sm:text-right">{experience.period}</span>
+          </div>
+          <ul className="space-y-3">
+            {experience.description.map((desc, i) => (
+              <li key={i} className="text-white/70 text-sm leading-relaxed flex gap-3">
+                <span className="text-[#61dafb] flex-shrink-0 mt-0.5">◐</span>
+                <span>{desc}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function Experiences() {
   return (
     <section id="experiences" className="py-20">
-      <div className="container">
-        <motion.h2 
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-black"
-        >
-          Past Experiences and Volunteering
-        </motion.h2>
-
-        <motion.div
-          initial={{ opacity: 1, y: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0 }}
-          className="max-w-4xl mx-auto glass-card rounded-lg p-4 md:p-8 bg-white/5 backdrop-blur-md border border-white/10"
-        >
-          <div className="relative">
-
-            <div className="space-y-8">
-              {experiences.map((experience, index) => (
-                <motion.div
-                  key={experience.title}
-                  initial={{ opacity: 1, x: 0 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ 
-                    duration: 0, 
-                    ease: "easeOut"
-                  }}
-                  className="relative pl-8 md:pl-10"
-                >
-                    {index < experiences.length - 1 && (
-                      <div className="absolute left-2.5 md:left-3.5 top-6 w-0.5 bg-white/20" style={{ height: 'calc(100% + 2rem)' }} />
-                    )}
-                  
-                  <div className="absolute left-0.5 md:left-2 top-3 w-3 h-3">
-                    <div className="w-full h-full bg-[#f5d20a] rounded-full" />
-                  </div>
-
-                  <div className="space-y-3 relative">
-                    {experience.logo && (
-                       <div className="absolute -top-6 -right-0 w-32 h-32 opacity-80 pointer-events-none hidden md:block">
-                        <Image
-                          src={experience.logo}
-                          alt={experience.company}
-                          fill
-                          className="object-contain"
-                          unoptimized
-                        />
-                      </div>
-                    )}
-                    
-                    <div>
-                      <h3 className="text-xl font-bold text-white">
-                        {experience.title}
-                      </h3>
-                      <p className="text-sm text-white/70 font-semibold">
-                        {experience.company}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <span className="text-[#FFFFFF] font-medium text-xs px-2 py-1 bg-white/5 rounded">
-                        {experience.period}
-                      </span>
-                    </div>
-
-                    <ul className="space-y-2">
-                      {experience.description.map((desc, descIndex) => (
-                        <motion.li 
-                          key={descIndex}
-                          initial={{ opacity: 1, x: 0 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0 }}
-                          className="text-sm text-white/80 leading-relaxed flex gap-2"
-                        >
-                          <span className="text-[#f5d20a] font-bold flex-shrink-0">•</span>
-                          <span>{desc}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+      <div className="container max-w-3xl">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white text-center">
+          Past Experiences
+        </h2>
+        <div>
+          {experiences.map((experience) => (
+            <ExperienceItem key={experience.title} experience={experience} />
+          ))}
+        </div>
       </div>
     </section>
   )
-})
+}
 
 export default Experiences
