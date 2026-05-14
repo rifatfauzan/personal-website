@@ -3,9 +3,9 @@ import Hero from "@/components/hero"
 import Navbar from "@/components/navbar"
 import Projects from "@/components/projects"
 import TechStack from "@/components/tech-stack"
+import Experiences from "@/components/experiences"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
-import Experiences from "@/components/experiences"
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <main>
-          <section className="contain-layout snap-section min-h-screen">
+          <section className="contain-layout snap-section">
             <Hero />
           </section>
           <section className="contain-layout">
