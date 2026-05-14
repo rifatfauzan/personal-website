@@ -13,8 +13,8 @@ const projectsData = [
     role: "Design Researcher",
     category: "AI & ML",
     description: [
-      "Designed and implemented a machine learning-based recommendation system for health and wellness tourism destinations across major Indonesian cities, delivering personalized destination suggestions based on user preferences.",
-      "Integrated the trained ML model into a lightweight Flask application as an API layer, enabling recommendation requests based on user input.",
+      "An ML-powered platform that recommends health and wellness tourism destinations across Indonesia.",
+      "Users receive personalized suggestions based on their preferences via an intelligent recommendation engine.",
     ],
     tags: ["Flask", "Python", "AI/ML", "HuggingFace"],
     image: "/projects/SerenityRetreats.jpg",
@@ -30,8 +30,8 @@ const projectsData = [
     role: "Lead Programmer",
     category: "Web Development",
     description: [
-      "Led the end-to-end development of a comprehensive trucking management system, optimizing logistics operations by enabling efficient truck and cargo handling, price calculation, and real-time status tracking.",
-      "Implemented both backend APIs using Spring Boot and dynamic, user-friendly frontend interfaces with Vue.js, focusing on scalability, maintainability, and seamless user experience.",
+      "A full-stack trucking management system for optimizing logistics, cargo handling, and real-time tracking.",
+      "Built on Spring Boot and Vue.js with Docker containerization and automated CI/CD pipelines.",
     ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker", "CI/CD"],
     image: "/misc/progress.jpg",
@@ -49,8 +49,8 @@ const projectsData = [
     role: "Data Science Project",
     category: "AI & ML",
     description: [
-      "Conducted comprehensive EDA, preprocessing, feature engineering, and model evaluation to ensure optimal performance and insights from the dataset.",
-      "Developed Machine Learning classification, regression, and clustering models to predict customer feedback sentiment and used car sales based on various features.",
+      "A data science project analyzing used car sales trends and customer feedback sentiment using Python.",
+      "Combines classification, regression, and clustering models to surface actionable insights from the dataset.",
     ],
     tags: ["Python", "ML", "Data Science"],
     image: "/misc/progress.jpg",
@@ -66,12 +66,15 @@ const projectsData = [
     role: "Fullstack Developer",
     category: "Web Development",
     description: [
-      "Developed microservices for a hospital platform, specifically designing and implementing the Insurance and Profile services with Spring Boot and Vue.js to ensure modularity and scalability.",
-      "Implemented robust authentication and authorization mechanisms to secure API endpoints, safeguarding sensitive data from unauthorized access.",
+      "A microservices-based hospital management platform with modular Insurance and Profile services.",
+      "Features secure JWT-based authentication and role-based access control for sensitive patient data.",
     ],
     tags: ["Spring", "Vue", "PostgreSQL", "Docker"],
     image: "/misc/progress.jpg",
-    links: [],
+    links: [
+      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repo" },
+      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend Repo" },
+    ],
   },
   {
     id: 5,
@@ -80,8 +83,8 @@ const projectsData = [
     role: "UI/UX Designer",
     category: "UI/UX",
     description: [
-      "Co-developed MVP of SmartWaste, a reverse vending machine and mobile/web platform that incentivizes recycling through token and e-voucher rewards, targeting young professionals and urban communities.",
-      "Designed key features: GPS-enabled RVM locator, real-time waste tracking, points/leaderboard systems, and social media integration to drive engagement.",
+      "A reverse vending machine platform that rewards users with tokens and e-vouchers for recycling.",
+      "Includes a GPS-enabled RVM locator, real-time waste tracking, and a gamified points leaderboard.",
     ],
     tags: ["UI/UX Design", "UX Research", "Mobile", "Prototyping"],
     image: "/projects/SmartWaste.jpg",
@@ -97,8 +100,8 @@ const projectsData = [
     role: "UI/UX Designer",
     category: "UI/UX",
     description: [
-      "Designed and developed MVP of Emission Zero, a mobile application enabling users to track, monitor, and actively reduce their personal carbon footprint.",
-      "Conducted extensive user research through personas and journey mapping, performed iterative usability testing with SUS scoring, and refined UI/UX based on feedback.",
+      "A mobile application for tracking and reducing personal carbon footprints in everyday life.",
+      "Designed with user research, journey mapping, and iterative usability testing using SUS scoring.",
     ],
     tags: ["UI/UX Design", "UX Research", "Usability Testing", "Mobile"],
     image: "/projects/EmissionZero.jpg",
@@ -196,9 +199,9 @@ function ProjectSlide({
   return (
     <motion.div
       style={{ width: `${SLIDE_VW}vw`, flexShrink: 0, opacity, scale }}
-      className="h-full flex items-start md:items-center pt-16 md:pt-0"
+      className="h-full overflow-y-auto md:overflow-visible flex flex-col md:justify-center"
     >
-      <div className="w-full px-8 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="w-full px-8 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center pt-16 md:pt-0">
         <div className="flex flex-col">
           <p className="text-white text-xs font-mono mb-4 tracking-[0.2em]">
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
@@ -210,24 +213,9 @@ function ProjectSlide({
           <p className="text-white text-sm mb-6">
             {project.year} · {Array.isArray(project.category) ? project.category.join(", ") : project.category}
           </p>
-          <ul className="space-y-3 mb-6">
-            {project.description.map((desc, i) => (
-              <li key={i} className="text-white/65 text-sm leading-relaxed flex gap-3">
-                <span className="text-[#4285f4] flex-shrink-0 mt-0.5">◐</span>
-                <span>{desc}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 text-xs rounded-full border font-medium bg-white/8 text-white/70 border-white/15"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p className="text-white/65 text-sm leading-relaxed mb-6">
+            {project.description.join(" ")}
+          </p>
           {project.links.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {(project.links as ProjectLink[]).map((link, i) => (
@@ -245,7 +233,7 @@ function ProjectSlide({
             </div>
           )}
         </div>
-        <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/10">
+        <div className="relative h-44 md:aspect-video md:h-auto rounded-2xl overflow-hidden bg-white/5 border border-white/10">
           <Image
             src={project.image}
             alt={project.title}

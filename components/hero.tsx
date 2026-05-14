@@ -42,7 +42,7 @@ function Hero() {
   }
 
   return (
-    <section id="home" className="relative py-20 md:py-32 transform -rotate-[0.5deg]">
+    <section id="home" className="relative min-h-[100svh] flex items-center py-16 md:py-0 transform -rotate-[0.5deg]">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="max-w-3xl">
