@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('next:', p.dependencies.next\\)\")",
+      "Bash(npm show *)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git fetch *)"
+    ]
+  }
+}
