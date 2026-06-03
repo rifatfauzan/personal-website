@@ -11,116 +11,41 @@ interface TechItem {
 }
 
 const webStack: TechItem[] = [
-  { 
-    name: "React", 
-    image: "/logos/react.svg",
-    url: "https://react.dev/"
-  },
-  { 
-    name: "Next.js", 
-    image: "/logos/nextjs.svg",
-    url: "https://nextjs.org/"
-  },
-  { 
-    name: "TypeScript", 
-    image: "/logos/typescript.svg",
-    url: "https://www.typescriptlang.org/"
-  },
-  { 
-    name: "Node.js", 
-    image: "/logos/nodejs.svg",
-    url: "https://nodejs.org/"
-  },
-  { 
-    name: "TailwindCSS", 
-    image: "/logos/tailwindcss.svg",
-    url: "https://tailwindcss.com/"
-  },
-  {
-    name: "Django",
-    image: "/logos/django.svg",
-    url: "https://www.djangoproject.com/"
-  },
-  { 
-    name: "Spring Boot", 
-    image: "/logos/spring.svg",
-    url: "https://spring.io/projects/spring-boot"
-  },
-  { 
-    name: "Vue.js", 
-    image: "/logos/vue.svg",
-    url: "https://vuejs.org/"
-  },
+  { name: "React", image: "/logos/react.svg", url: "https://react.dev/" },
+  { name: "Next.js", image: "/logos/nextjs.svg", url: "https://nextjs.org/" },
+  { name: "TypeScript", image: "/logos/typescript.svg", url: "https://www.typescriptlang.org/" },
+  { name: "Node.js", image: "/logos/nodejs.svg", url: "https://nodejs.org/" },
+  { name: "TailwindCSS", image: "/logos/tailwindcss.svg", url: "https://tailwindcss.com/" },
+  { name: "Django", image: "/logos/django.svg", url: "https://www.djangoproject.com/" },
+  { name: "Spring Boot", image: "/logos/spring.svg", url: "https://spring.io/projects/spring-boot" },
+  { name: "Vue.js", image: "/logos/vue.svg", url: "https://vuejs.org/" },
 ]
 
 const infraStack: TechItem[] = [
-  { 
-    name: "Python", 
-    image: "/logos/python.svg",
-    url: "https://www.python.org/"
-  },
-  { 
-    name: "Java", 
-    image: "/logos/java.svg",
-    url: "https://www.java.com/"
-  },
-  {
-    name: "GCP",
-    image: "/logos/googlecloud.svg",
-    url: "https://cloud.google.com/"
-  },
-  { 
-    name: "Tableau", 
-    image: "/misc/tableau-icon-svgrepo-com.svg",
-    url: "https://www.tableau.com/"
-  },
-  { 
-    name: "Looker Studio", 
-    image: "/logos/looker-studio.svg",
-    url: "https://lookerstudio.google.com/"
-  },
-  {
-    name: "Google BigQuery",
-    image: "/logos/google-bigquery.svg",
-    url: "https://cloud.google.com/bigquery"
-  },
-  {
-    name: "Flask",
-    image: "/logos/flask.svg",
-    url: "https://flask.palletsprojects.com/"
-  },
-  { 
-    name: "PostgreSQL", 
-    image: "/logos/postgresql.svg",
-    url: "https://www.postgresql.org/"
-  },
-  { 
-    name: "Docker", 
-    image: "/logos/docker.svg",
-    url: "https://www.docker.com/"
-  },
-  {
-    name: "HuggingFace",
-    image: "/logos/hf-logo.svg",
-    url: "https://huggingface.co/"
-  }
+  { name: "Python", image: "/logos/python.svg", url: "https://www.python.org/" },
+  { name: "Java", image: "/logos/java.svg", url: "https://www.java.com/" },
+  { name: "GCP", image: "/logos/googlecloud.svg", url: "https://cloud.google.com/" },
+  { name: "Tableau", image: "/misc/tableau-icon-svgrepo-com.svg", url: "https://www.tableau.com/" },
+  { name: "Looker Studio", image: "/logos/looker-studio.svg", url: "https://lookerstudio.google.com/" },
+  { name: "Google BigQuery", image: "/logos/google-bigquery.svg", url: "https://cloud.google.com/bigquery" },
+  { name: "Flask", image: "/logos/flask.svg", url: "https://flask.palletsprojects.com/" },
+  { name: "PostgreSQL", image: "/logos/postgresql.svg", url: "https://www.postgresql.org/" },
+  { name: "Docker", image: "/logos/docker.svg", url: "https://www.docker.com/" },
+  { name: "HuggingFace", image: "/logos/hf-logo.svg", url: "https://huggingface.co/" },
 ]
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
 
 function TechStack() {
-  const headingMotionProps = {
-    initial: { opacity: 0, y: 24 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.45, ease: EASE_OUT }
-  }
   return (
-    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] contain-layout gpu-accelerated">
+    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="container">
-        <motion.h2 
-          {...headingMotionProps}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-white optimized-text"
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, ease: EASE_OUT }}
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-zinc-900"
         >
           Frameworks and Tools
         </motion.h2>

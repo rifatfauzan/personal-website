@@ -89,8 +89,8 @@ export default function RootLayout({
       <body className="min-h-screen font-poppins antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <LayoutWrapper>

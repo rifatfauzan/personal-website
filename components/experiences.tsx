@@ -49,7 +49,7 @@ const experiences = [
     logo: "/experiences/pacil.png",
     description: [
       "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
-      "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code."
+      "Provided hands-on and constructive feedback on assignments to ensure their logical understanding and enable them to write efficient and effective code.",
     ],
   },
   {
@@ -59,7 +59,7 @@ const experiences = [
     logo: "/experiences/gdsc.png",
     description: [
       "Participated in Google Developer Student Club activities and events.",
-      "Engaged with a community of developers learning about Google technologies and best practices."
+      "Engaged with a community of developers learning about Google technologies and best practices.",
     ],
   },
 ]
@@ -72,12 +72,12 @@ function ExperienceItem({ experience }: { experience: typeof experiences[0] }) {
     <motion.div
       ref={ref}
       animate={{
-        opacity: isInView ? 1 : 0.2,
-        scale: isInView ? 1 : 0.92,
+        opacity: isInView ? 1 : 0.25,
+        scale: isInView ? 1 : 0.97,
       }}
       style={{ transformOrigin: "left center" }}
       transition={{ duration: 0.4, ease: EASE_IN_OUT }}
-      className="min-h-[35vh] flex items-center border-b border-white/10 last:border-0 py-6"
+      className="min-h-[35vh] flex items-center border-b border-zinc-100 last:border-0 py-6"
     >
       <div className="flex items-start gap-5 w-full">
         {experience.logo && (
@@ -94,15 +94,15 @@ function ExperienceItem({ experience }: { experience: typeof experiences[0] }) {
         <div className="flex-1 min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-4">
             <div>
-              <h3 className="text-3xl font-bold text-white leading-tight">{experience.title}</h3>
-              <p className="text-white font-semibold text-sm mt-1">{experience.company}</p>
+              <h3 className="text-3xl font-bold text-zinc-900 leading-tight">{experience.title}</h3>
+              <p className="text-zinc-600 font-semibold text-sm mt-1">{experience.company}</p>
             </div>
-            <span className="text-white/40 text-sm font-medium shrink-0 sm:text-right">{experience.period}</span>
+            <span className="text-zinc-400 text-sm font-medium shrink-0 sm:text-right">{experience.period}</span>
           </div>
           <ul className="space-y-3">
             {experience.description.map((desc, i) => (
-              <li key={i} className="text-white/70 text-sm leading-relaxed flex gap-3">
-                <span className="text-[#61dafb] flex-shrink-0 mt-0.5">◐</span>
+              <li key={i} className="text-zinc-600 text-sm leading-relaxed flex gap-3">
+                <span className="text-[#4285f4] flex-shrink-0 mt-0.5">◐</span>
                 <span>{desc}</span>
               </li>
             ))}
@@ -122,7 +122,7 @@ function Experiences() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.45, ease: EASE_OUT }}
-          className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white text-center"
+          className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-zinc-900 text-center"
         >
           Past Experiences
         </motion.h2>

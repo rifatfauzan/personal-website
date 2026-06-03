@@ -16,111 +16,74 @@ export default function Navbar() {
       const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      })
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" })
     }
     setIsMenuOpen(false)
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#18181b]/80 backdrop-blur-sm border-b border-white/10">
+    <header className="sticky top-0 z-50 w-full bg-[#fafaf9]/90 backdrop-blur-sm border-b border-zinc-200">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="font-bold text-xl text-white">
+        <Link href="/" className="font-bold text-xl text-zinc-900">
           Rifatmon
         </Link>
         <nav className="hidden md:flex gap-6">
-          <Link
-            href="#home"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-            onClick={(e) => handleScroll(e, 'home')}
-          >
-            Home
-          </Link>
-          <Link
-            href="#tech"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-            onClick={(e) => handleScroll(e, 'tech')}
-          >
-            Tools
-          </Link>
-          <Link
-            href="#experiences"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-            onClick={(e) => handleScroll(e, 'experiences')}
-          >
-            Experiences
-          </Link>
-          <Link
-            href="#projects"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-            onClick={(e) => handleScroll(e, 'projects')}
-          >
-            Projects
-          </Link>
-          <Link
-            href="#contact"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
-            onClick={(e) => handleScroll(e, 'contact')}
-          >
-            Contact
-          </Link>
+          {[
+            { label: "Home", id: "home" },
+            { label: "Tools", id: "tech" },
+            { label: "Experiences", id: "experiences" },
+            { label: "Projects", id: "projects" },
+            { label: "Contact", id: "contact" },
+          ].map(({ label, id }) => (
+            <Link
+              key={id}
+              href={`#${id}`}
+              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors duration-150"
+              onClick={(e) => handleScroll(e, id)}
+            >
+              {label}
+            </Link>
+          ))}
           <Link
             href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+            className="text-sm font-medium text-[#4285f4] hover:text-[#4285f4]/80 transition-colors duration-150"
           >
             Resume
           </Link>
         </nav>
         <motion.div whileTap={{ scale: 0.88 }} style={{ display: 'inline-flex' }}>
-          <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-zinc-700 hover:bg-zinc-100"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             {isMenuOpen ? <X /> : <Menu />}
           </Button>
         </motion.div>
       </div>
       {isMenuOpen && (
         <div className="container md:hidden py-4 animate-in slide-in-from-top duration-300">
-          <div className="p-6 rounded-xl border border-white/10 hover:border-white/20 hover:shadow-[0_2px_8px_rgba(255,255,255,0.05)] transition-all bg-[#18181b]">
+          <div className="p-6 rounded-xl border border-zinc-200 bg-white shadow-sm">
             <nav className="flex flex-col gap-4">
-              <Link
-                href="#home"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={(e) => handleScroll(e, 'home')}
-              >
-                Home
-              </Link>
-              <Link
-                href="#tech"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={(e) => handleScroll(e, 'tech')}
-              >
-                Tools
-              </Link>
-              <Link
-                href="#experiences"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={(e) => handleScroll(e, 'experiences')}
-              >
-                Experiences
-              </Link>
-              <Link
-                href="#projects"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={(e) => handleScroll(e, 'projects')}
-              >
-                Projects
-              </Link>
-              <Link
-                href="#contact"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={(e) => handleScroll(e, 'contact')}
-              >
-                Contact
-              </Link>
+              {[
+                { label: "Home", id: "home" },
+                { label: "Tools", id: "tech" },
+                { label: "Experiences", id: "experiences" },
+                { label: "Projects", id: "projects" },
+                { label: "Contact", id: "contact" },
+              ].map(({ label, id }) => (
+                <Link
+                  key={id}
+                  href={`#${id}`}
+                  className="text-zinc-600 hover:text-zinc-900 transition-colors"
+                  onClick={(e) => handleScroll(e, id)}
+                >
+                  {label}
+                </Link>
+              ))}
               <Link
                 href="https://drive.google.com/file/d/1U9gGqdFryXGmCFve_AcN4nP8msPGk3CW/view?usp=drive_link"
                 target="_blank"
