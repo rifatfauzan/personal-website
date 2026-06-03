@@ -16,29 +16,31 @@ const roles = [
   "Learner",
 ]
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const
+
 function Hero() {
   const headingMotionProps = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.2 }
+    transition: { duration: 0.45, delay: 0.15, ease: EASE_OUT }
   }
 
   const paragraphMotionProps = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.4 }
+    transition: { duration: 0.4, delay: 0.3, ease: EASE_OUT }
   }
 
   const iconRowMotionProps = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.6 }
+    transition: { duration: 0.4, delay: 0.45, ease: EASE_OUT }
   }
 
   const imageMotionProps = {
-    initial: { opacity: 0, scale: 0.8 },
+    initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.8, delay: 0.4 }
+    transition: { duration: 0.5, delay: 0.2, ease: EASE_OUT }
   }
 
   return (
@@ -46,9 +48,9 @@ function Hero() {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="max-w-3xl">
-          <motion.h1 
+          <motion.h1
             {...headingMotionProps}
-            className="text-4xl md:text-7xl font-bold text-white mb-6 transform hover:-translate-y-2 transition-transform duration-300 will-change-transform"
+            className="text-4xl md:text-7xl font-bold text-white mb-6"
           >
             Hi! I'm...      <TextPressure
               text="Rifat!"
@@ -86,21 +88,27 @@ function Hero() {
             {...iconRowMotionProps}
             className="flex gap-4 mt-8"
           >
-            <Button variant="outline" size="icon" className="bg-transparent border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:text-[#0A66C2] transition-colors" asChild>
-              <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="icon" className="bg-transparent border-white/60 text-white/80 hover:bg-white/10 hover:text-white transition-colors" asChild>
-              <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
-                <Github className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="icon" className="bg-transparent border-[#E4405F] text-[#E4405F] hover:bg-[#E4405F]/10 hover:text-[#E4405F] transition-colors" asChild>
-              <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile in a new tab">
-                <Instagram className="h-5 w-5" />
-              </Link>
-            </Button>
+            <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
+              <Button variant="outline" size="icon" className="bg-transparent border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:text-[#0A66C2] transition-colors" asChild>
+                <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
+              <Button variant="outline" size="icon" className="bg-transparent border-white/60 text-white/80 hover:bg-white/10 hover:text-white transition-colors" asChild>
+                <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
+                  <Github className="h-5 w-5" />
+                </Link>
+              </Button>
+            </motion.div>
+            <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
+              <Button variant="outline" size="icon" className="bg-transparent border-[#E4405F] text-[#E4405F] hover:bg-[#E4405F]/10 hover:text-[#E4405F] transition-colors" asChild>
+                <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile in a new tab">
+                  <Instagram className="h-5 w-5" />
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
         <motion.div

@@ -5,27 +5,23 @@ import type React from "react"
 import { Mail, Linkedin, Instagram, Github } from "lucide-react"
 import { motion } from "motion/react"
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const
+
 function Contact() {
   const headingMotionProps = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.2 }
+    transition: { duration: 0.35, ease: EASE_OUT }
   }
 
   const paragraphMotionProps = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: 16 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.2, delay: 0.1 }
+    transition: { duration: 0.35, delay: 0.08, ease: EASE_OUT }
   }
 
-  const iconsMotionProps = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.2, delay: 0.2 }
-  }
   const socialLinks = [
     {
       name: "Email",
@@ -73,27 +69,29 @@ function Contact() {
           Feel free to connect with me on social media or send me an email.
         </motion.p>
 
-        <motion.div
-          {...iconsMotionProps}
-          className="flex justify-center items-center gap-8 flex-wrap"
-        >
-          {socialLinks.map((link) => {
+        <div className="flex justify-center items-center gap-8 flex-wrap">
+          {socialLinks.map((link, i) => {
             const IconComponent = link.icon
             return (
-              <a
+              <motion.a
                 key={link.name}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex flex-col items-center justify-center gap-3 w-28 h-28 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 ${link.bgColor} hover:shadow-lg hover:scale-105`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.35, delay: 0.1 + i * 0.07, ease: EASE_OUT }}
+                whileTap={{ scale: 0.96 }}
+                className={`flex flex-col items-center justify-center gap-3 w-28 h-28 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 transition-colors duration-200 ${link.bgColor} hover:shadow-lg hover-scale`}
                 title={link.name}
               >
                 <IconComponent size={40} className={`${link.color} transition-colors`} />
                 <span className="text-white font-medium text-sm text-center">{link.name}</span>
-              </a>
+              </motion.a>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

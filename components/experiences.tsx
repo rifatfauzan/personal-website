@@ -4,6 +4,9 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion, useInView } from "motion/react"
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const
+const EASE_IN_OUT = [0.77, 0, 0.175, 1] as const
+
 const experiences = [
   {
     title: "Data Science Intern",
@@ -70,10 +73,10 @@ function ExperienceItem({ experience }: { experience: typeof experiences[0] }) {
       ref={ref}
       animate={{
         opacity: isInView ? 1 : 0.2,
-        scale: isInView ? 1 : 0.9,
+        scale: isInView ? 1 : 0.92,
       }}
       style={{ transformOrigin: "left center" }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
+      transition={{ duration: 0.4, ease: EASE_IN_OUT }}
       className="min-h-[35vh] flex items-center border-b border-white/10 last:border-0 py-6"
     >
       <div className="flex items-start gap-5 w-full">
@@ -114,9 +117,15 @@ function Experiences() {
   return (
     <section id="experiences" className="py-20">
       <div className="container max-w-3xl">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.45, ease: EASE_OUT }}
+          className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white text-center"
+        >
           Past Experiences
-        </h2>
+        </motion.h2>
         <div>
           {experiences.map((experience) => (
             <ExperienceItem key={experience.title} experience={experience} />

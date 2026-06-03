@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { motion } from "motion/react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -75,9 +76,11 @@ export default function Navbar() {
             Resume
           </Link>
         </nav>
-        <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X /> : <Menu />}
-        </Button>
+        <motion.div whileTap={{ scale: 0.88 }} style={{ display: 'inline-flex' }}>
+          <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </Button>
+        </motion.div>
       </div>
       {isMenuOpen && (
         <div className="container md:hidden py-4 animate-in slide-in-from-top duration-300">

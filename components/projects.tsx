@@ -219,16 +219,17 @@ function ProjectSlide({
           {project.links.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {(project.links as ProjectLink[]).map((link, i) => (
-                <a
+                <motion.a
                   key={i}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-2 px-3 py-2 bg-white/8 hover:bg-white/15 border border-white/10 rounded-lg transition-colors duration-200"
                 >
                   {getLinkIcon(link.type)}
                   <span className="text-xs text-white/65 font-medium">{link.label || link.type}</span>
-                </a>
+                </motion.a>
               ))}
             </div>
           )}

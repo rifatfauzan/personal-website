@@ -106,12 +106,14 @@ const infraStack: TechItem[] = [
   }
 ]
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const
+
 function TechStack() {
   const headingMotionProps = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.2 }
+    transition: { duration: 0.45, ease: EASE_OUT }
   }
   return (
     <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] contain-layout gpu-accelerated">
@@ -145,7 +147,7 @@ function TechStack() {
                   tabIndex={0}
                   aria-label={item.name}
                 >
-                  <div className="relative w-32 h-32 transform transition-transform duration-300 hover:scale-110">
+                  <div className="relative w-32 h-32">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -176,7 +178,7 @@ function TechStack() {
                   tabIndex={0}
                   aria-label={item.name}
                 >
-                  <div className="relative w-32 h-32 transform transition-transform duration-300 hover:scale-110">
+                  <div className="relative w-32 h-32">
                     <Image
                       src={item.image}
                       alt={item.name}
