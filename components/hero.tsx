@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Instagram } from "lucide-react"
+import { Github, Linkedin, Instagram, Download } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "motion/react"
@@ -9,50 +9,49 @@ import TextPressure from "@/components/ui/text-pressure"
 import RotatingText from "@/components/ui/rotating-text"
 
 const roles = [
-  "Developer",
-  "Data Analyst",
-  "Problem Solver",
-  "Designer",
   "Learner",
+  "Developer",
+  "Data Enthusiast",
 ]
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
 
 function Hero() {
-  const headingMotionProps = {
-    initial: { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.45, delay: 0.15, ease: EASE_OUT }
-  }
-
-  const paragraphMotionProps = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, delay: 0.3, ease: EASE_OUT }
-  }
-
-  const iconRowMotionProps = {
-    initial: { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, delay: 0.45, ease: EASE_OUT }
-  }
-
-  const imageMotionProps = {
-    initial: { opacity: 0, scale: 0.95 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.5, delay: 0.2, ease: EASE_OUT }
-  }
-
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center py-16 md:py-0 transform -rotate-[0.5deg]">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="max-w-3xl">
+    <section id="home" className="relative min-h-[100svh] flex items-center py-20 md:py-0 overflow-hidden">
+      {/* Decorative gradient blob — top right */}
+      <div
+        aria-hidden
+        className="absolute -top-32 -right-32 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(66,133,244,0.08) 0%, rgba(66,133,244,0.03) 40%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+      {/* Decorative gradient blob — bottom left */}
+      <div
+        aria-hidden
+        className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(66,133,244,0.05) 0%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
+
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-xl">
+            {/* Heading */}
             <motion.h1
-              {...headingMotionProps}
-              className="text-4xl md:text-7xl font-bold text-zinc-900 mb-6"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.1, ease: EASE_OUT }}
+              className="text-5xl md:text-7xl font-bold text-zinc-900 mb-4 leading-none tracking-tighter"
             >
-              Hi! I'm...&nbsp;&nbsp;<TextPressure
+              Hi! I'm{" "}
+              <TextPressure
                 text="Rifat!"
                 textColor="#4285f4"
                 flex={true}
@@ -64,8 +63,8 @@ function Hero() {
                 className="inline-block"
               />
               <br />
-              <span className="inline-flex items-center gap-0">
-                <span className="mr-3">A</span>
+              <span className="inline-flex items-center gap-2">
+                <span className="text-black font-normal">A</span>
                 <RotatingText
                   texts={roles}
                   mainClassName="text-[#4285f4]"
@@ -78,72 +77,120 @@ function Hero() {
                 />
               </span>
             </motion.h1>
+
+            {/* Description */}
             <motion.p
-              {...paragraphMotionProps}
-              className="text-lg md:text-xl text-zinc-600 mb-8"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.25, ease: EASE_OUT }}
+              className="text-base md:text-lg text-zinc-500 mb-10 leading-relaxed"
             >
               Information Systems student with strong interest in{" "}
-              <span className="font-bold text-[#4285f4]">Data Analytics</span> and{" "}
-              <span className="font-bold text-[#4285f4]">Products</span>.
+              <span className="font-semibold text-zinc-900">Data Analytics</span> and{" "}
+              <span className="font-semibold text-zinc-900">Product Development</span>.
+              Building things that matter.
             </motion.p>
+
+            {/* CTA row */}
             <motion.div
-              {...iconRowMotionProps}
-              className="flex gap-4 mt-8"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.38, ease: EASE_OUT }}
+              className="flex flex-wrap items-center gap-3"
             >
-              <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
+              {/* Primary CTA */}
+              <motion.div whileTap={{ scale: 0.97 }}>
                 <Button
-                  variant="outline"
-                  size="icon"
-                  className="bg-transparent border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2]/10 hover:text-[#0A66C2] transition-colors"
+                  className="bg-zinc-900 text-white hover:bg-zinc-800 px-5 h-10 rounded-lg font-medium text-sm transition-colors duration-150"
                   asChild
                 >
-                  <Link href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
-                    <Linkedin className="h-5 w-5" />
+                  <Link
+                    href="https://docs.google.com/document/d/1W78U8AUBN7HR0Z-cUMlneXQpgVvTH16Rrs6ZjCEjG0M/edit?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    My Resume
                   </Link>
                 </Button>
               </motion.div>
-              <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="bg-transparent border-zinc-400 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 transition-colors"
-                  asChild
-                >
-                  <Link href="https://github.com/rifatfauzan" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile in a new tab">
-                    <Github className="h-5 w-5" />
+
+              {/* Divider */}
+              <div className="w-px h-6 bg-zinc-200" />
+
+              {/* Social icons */}
+              <div className="flex items-center gap-1">
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.93 }} transition={{ duration: 0.15 }}>
+                  <Link
+                    href="https://www.linkedin.com/in/rifat-fauzan-0b648b2b0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="flex items-center justify-center w-10 h-10 rounded-lg text-[#0A66C2] hover:bg-[#0A66C2]/10 transition-colors duration-150"
+                  >
+                    <Linkedin className="h-4 w-4" />
                   </Link>
-                </Button>
-              </motion.div>
-              <motion.div whileTap={{ scale: 0.95 }} style={{ display: 'inline-flex' }}>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="bg-transparent border-[#E4405F] text-[#E4405F] hover:bg-[#E4405F]/10 hover:text-[#E4405F] transition-colors"
-                  asChild
-                >
-                  <Link href="https://www.instagram.com/rifatfauzannn/" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile in a new tab">
-                    <Instagram className="h-5 w-5" />
+                </motion.div>
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.93 }} transition={{ duration: 0.15 }}>
+                  <Link
+                    href="https://github.com/rifatfauzan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="flex items-center justify-center w-10 h-10 rounded-lg text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors duration-150"
+                  >
+                    <Github className="h-4 w-4" />
                   </Link>
-                </Button>
-              </motion.div>
+                </motion.div>
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.93 }} transition={{ duration: 0.15 }}>
+                  <Link
+                    href="https://www.instagram.com/rifatfauzannn/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex items-center justify-center w-10 h-10 rounded-lg text-[#E4405F] hover:bg-[#E4405F]/10 transition-colors duration-150"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </Link>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
+
+          {/* Image */}
           <motion.div
-            {...imageMotionProps}
-            className="hidden md:flex justify-end items-center -mr-40"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: EASE_OUT }}
+            className="hidden md:flex justify-center items-center relative"
           >
-            <div className="relative w-full max-w-2xl">
+            {/* Subtle ring behind memoji */}
+            <div
+              aria-hidden
+              className="absolute inset-0 m-auto w-[420px] h-[420px] rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(66,133,244,0.08) 0%, transparent 70%)",
+              }}
+            />
+            {/* Gentle float — decorative, slow enough to not distract */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-full max-w-[520px]"
+            >
               <Image
                 src="/memoji/memoji.png"
                 alt="Rifat"
                 width={600}
                 height={600}
-                className="w-full h-auto drop-shadow-lg"
-                sizes="(min-width: 1024px) 600px, 70vw"
+                className="w-full h-auto"
+                sizes="(min-width: 1024px) 520px, 70vw"
+                priority
               />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
+
       </div>
     </section>
   )

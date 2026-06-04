@@ -40,14 +40,23 @@ function TechStack() {
   return (
     <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="container">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.35, ease: EASE_OUT }}
+          className="text-[11px] font-bold text-zinc-400 tracking-[0.3em] uppercase text-center mb-3"
+        >
+          Stack
+        </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, ease: EASE_OUT }}
+          transition={{ duration: 0.45, delay: 0.06, ease: EASE_OUT }}
           className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-zinc-900"
         >
-          Frameworks and Tools
+          Frameworks & Tools
         </motion.h2>
       </div>
 
@@ -117,7 +126,11 @@ function TechStack() {
             />
           </div>
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: EASE_OUT }}
             className="relative z-10 flex justify-center items-end pt-12"
             style={{ minWidth: '300px' }}
           >
@@ -130,7 +143,7 @@ function TechStack() {
               priority
               unoptimized
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

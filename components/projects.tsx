@@ -1,7 +1,15 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { motion, useScroll, useTransform, MotionValue, useMotionValueEvent } from "motion/react"
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+} from "motion/react"
 import Image from "next/image"
 import { Github, FileText, Figma, ExternalLink, Play } from "lucide-react"
 
@@ -36,9 +44,9 @@ const projectsData = [
     tags: ["Spring", "Vue", "PostgreSQL", "Docker", "CI/CD"],
     image: "/misc/progress.jpg",
     links: [
-      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repo" },
-      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend Repo" },
-      { type: "docs", url: "https://drive.google.com/file/d/1wkIQFThYCNEp88AKwbg7R3VsaD9JW1lj/view?usp=sharing", label: "Documentation" },
+      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend" },
+      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend" },
+      { type: "docs", url: "https://drive.google.com/file/d/1wkIQFThYCNEp88AKwbg7R3VsaD9JW1lj/view?usp=sharing", label: "Docs" },
       { type: "youtube", url: "https://www.youtube.com/watch?v=AgjGJkgo0l8", label: "Demo" },
     ],
   },
@@ -50,7 +58,7 @@ const projectsData = [
     category: "AI & ML",
     description: [
       "A data science project analyzing used car sales trends and customer feedback sentiment using Python.",
-      "Combines classification, regression, and clustering models to surface actionable insights from the dataset.",
+      "Combines classification, regression, and clustering models to gain insights from the dataset.",
     ],
     tags: ["Python", "ML", "Data Science"],
     image: "/misc/progress.jpg",
@@ -72,8 +80,8 @@ const projectsData = [
     tags: ["Spring", "Vue", "PostgreSQL", "Docker"],
     image: "/misc/progress.jpg",
     links: [
-      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend Repo" },
-      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend Repo" },
+      { type: "github", url: "https://github.com/rifatfauzan/frontend-sitrack", label: "Frontend" },
+      { type: "github", url: "https://github.com/rifatfauzan/backend-sitrack", label: "Backend" },
     ],
   },
   {
@@ -90,7 +98,7 @@ const projectsData = [
     image: "/projects/SmartWaste.jpg",
     links: [
       { type: "figma", url: "https://www.figma.com/design/Qh1gy3aAQ2xFksDsWv9617/SisterBros-TK4?node-id=9-130&p=f", label: "Figma" },
-      { type: "docs", url: "https://drive.google.com/file/d/1ztGnNXds1I-qJo79w4lzLRdagYZxRUQK/view?usp=sharing", label: "Documentation" },
+      { type: "docs", url: "https://drive.google.com/file/d/1ztGnNXds1I-qJo79w4lzLRdagYZxRUQK/view?usp=sharing", label: "Docs" },
     ],
   },
   {
@@ -107,103 +115,25 @@ const projectsData = [
     image: "/projects/EmissionZero.jpg",
     links: [
       { type: "figma", url: "https://www.figma.com/design/gwjRSzdNrw9L5fVTJVDbtf/Smart-Waste?node-id=81-1488&t=GTH4YulvkQaaQPgj-0", label: "Figma" },
-      { type: "docs", url: "https://drive.google.com/file/d/1G6-ZvpjIGeKzvtldM-E9TGo-l8qXK2hD/view?usp=sharing", label: "Documentation" },
+      { type: "docs", url: "https://drive.google.com/file/d/1G6-ZvpjIGeKzvtldM-E9TGo-l8qXK2hD/view?usp=sharing", label: "Docs" },
     ],
   },
 ]
 
-type Project = typeof projectsData[number]
+type Project = (typeof projectsData)[number]
 type ProjectLink = { type: string; url: string; label?: string }
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
 
-const SLIDE_VW = 85
-const GAP_VW = 2
+const SLIDE_VW = 82
+const GAP_VW = 3
 const SLOT_VW = SLIDE_VW + GAP_VW
 const INITIAL_OFFSET_VW = (100 - SLIDE_VW) / 2
-
-const CATEGORY_STYLES: Record<string, { color: string; bg: string; border: string; imageBg: string }> = {
-  "AI & ML": {
-    color: "text-violet-600",
-    bg: "bg-violet-50",
-    border: "border-violet-200",
-    imageBg: "bg-violet-50/50",
-  },
-  "Web Development": {
-    color: "text-[#4285f4]",
-    bg: "bg-blue-50",
-    border: "border-blue-200",
-    imageBg: "bg-blue-50/50",
-  },
-  "UI/UX": {
-    color: "text-rose-500",
-    bg: "bg-rose-50",
-    border: "border-rose-200",
-    imageBg: "bg-rose-50/50",
-  },
-}
-
-const DEFAULT_CAT = {
-  color: "text-[#4285f4]",
-  bg: "bg-blue-50",
-  border: "border-blue-200",
-  imageBg: "bg-blue-50/50",
-}
-
-function getLinkIcon(type: string) {
-  switch (type) {
-    case "github":
-      return <Github size={14} className="text-zinc-600" />
-    case "figma":
-      return <Figma size={14} className="text-zinc-600" />
-    case "docs":
-      return <FileText size={14} className="text-[#4285f4]" />
-    case "youtube":
-      return <Play size={14} className="text-[#FF0000]" />
-    case "huggingface":
-      return (
-        <div className="w-3.5 h-3.5 relative flex-shrink-0">
-          <Image src="/logos/hf-logo.svg" alt="HuggingFace" fill className="object-contain" />
-        </div>
-      )
-    default:
-      return <ExternalLink size={14} className="text-zinc-600" />
-  }
-}
-
-function ProgressBar({
-  total,
-  scrollYProgress,
-}: {
-  total: number
-  scrollYProgress: MotionValue<number>
-}) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    setActiveIndex(Math.round(v * (total - 1)))
-  })
-
-  return (
-    <div className="flex items-center gap-4">
-      <div className="relative w-28 h-[2px] bg-zinc-200 rounded-full overflow-hidden">
-        <motion.div
-          className="absolute inset-y-0 left-0 bg-[#4285f4] rounded-full"
-          style={{ width: progressWidth }}
-        />
-      </div>
-      <span className="text-zinc-400 text-xs font-mono tabular-nums">
-        {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-      </span>
-    </div>
-  )
-}
 
 const contentVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.055 },
+    transition: { staggerChildren: 0.06 },
   },
 }
 
@@ -212,8 +142,47 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.38, ease: EASE_OUT },
+    transition: { duration: 0.4, ease: EASE_OUT },
   },
+}
+
+function getLinkIcon(type: string) {
+  switch (type) {
+    case "github":
+      return <Github size={13} className="text-zinc-500" />
+    case "figma":
+      return <Figma size={13} className="text-zinc-500" />
+    case "docs":
+      return <FileText size={13} className="text-[#4285f4]" />
+    case "youtube":
+      return <Play size={13} className="text-[#FF0000]" />
+    case "huggingface":
+      return (
+        <div className="w-3 h-3 relative flex-shrink-0">
+          <Image src="/logos/hf-logo.svg" alt="HuggingFace" fill className="object-contain" />
+        </div>
+      )
+    default:
+      return <ExternalLink size={13} className="text-zinc-500" />
+  }
+}
+
+/* Horizontal loading bar — fills left-to-right with scroll progress */
+function ProjectProgressBar({
+  scrollYProgress,
+}: {
+  scrollYProgress: MotionValue<number>
+}) {
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1])
+
+  return (
+    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-zinc-200">
+      <motion.div
+        className="h-full bg-[#4285f4] origin-left"
+        style={{ scaleX }}
+      />
+    </div>
+  )
 }
 
 function ProjectSlide({
@@ -227,6 +196,7 @@ function ProjectSlide({
   total: number
   scrollYProgress: MotionValue<number>
 }) {
+  const reduce = useReducedMotion()
   const [isActive, setIsActive] = useState(index === 0)
   const n = Math.max(total - 1, 1)
   const center = index / n
@@ -242,102 +212,137 @@ function ProjectSlide({
     setIsActive(v > 0.5)
   })
 
-  const opacity = useTransform(activeProgress, [0, 1], [0.35, 1])
-  const scale = useTransform(activeProgress, [0, 1], [0.95, 1])
-  const imageScale = useTransform(activeProgress, [0, 1], [1.05, 1])
-
-  const catStyle = CATEGORY_STYLES[project.category] ?? DEFAULT_CAT
+  const opacity = useTransform(activeProgress, [0, 1], [0.28, 1])
+  const scale = useTransform(activeProgress, [0, 1], [0.96, 1])
+  /* Ken Burns: inactive slides zoom out slightly, active fully resolved */
+  const imageScale = useTransform(activeProgress, [0, 1], [1.08, 1])
 
   return (
     <motion.div
-      style={{ width: `${SLIDE_VW}vw`, flexShrink: 0, opacity, scale }}
-      className="h-full overflow-y-auto md:overflow-visible flex flex-col md:justify-center"
+      style={{ width: `${SLIDE_VW}vw`, flexShrink: 0, opacity: reduce ? 1 : opacity, scale: reduce ? 1 : scale }}
+      className="h-full flex flex-col md:justify-center"
     >
-      <div className="w-full px-8 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center pt-16 md:pt-0">
-        {/* Content */}
+      <div className="w-full px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 items-stretch pt-16 md:pt-0">
+
+        {/* LEFT: Content card */}
         <motion.div
           animate={isActive ? "visible" : "hidden"}
           initial={index === 0 ? "visible" : "hidden"}
           variants={contentVariants}
-          className="flex flex-col"
+          className="flex flex-col bg-white border border-zinc-200 rounded-2xl p-7 md:p-8"
         >
+          {/* Index */}
           <motion.p
             variants={itemVariants}
-            className="text-zinc-300 text-xs font-mono mb-5 tracking-[0.25em]"
+            className="text-zinc-300 text-[10px] font-mono tracking-[0.25em] mb-5"
           >
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </motion.p>
 
+          {/* Category */}
           <motion.div variants={itemVariants} className="mb-4">
-            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide ${catStyle.bg} ${catStyle.color} border ${catStyle.border}`}>
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-blue-50 text-[#4285f4] border border-blue-200">
               {project.category}
             </span>
           </motion.div>
 
+          {/* Title */}
           <motion.h3
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-zinc-900 mb-2 leading-tight tracking-tighter"
+            className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2 leading-tight tracking-tighter"
           >
             {project.title}
           </motion.h3>
 
+          {/* Role + year */}
           <motion.p
             variants={itemVariants}
-            className={`text-sm font-semibold mb-6 ${catStyle.color}`}
+            className="text-sm font-semibold text-[#4285f4] mb-5"
           >
             {project.role} · {project.year}
           </motion.p>
 
+          {/* Separator */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full h-px bg-zinc-100 mb-5"
+          />
+
+          {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-zinc-500 text-sm leading-relaxed mb-5"
+            className="text-zinc-500 text-sm leading-relaxed mb-5 flex-1"
           >
             {project.description.join(" ")}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-1.5 mb-6">
+          {/* Tags */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap gap-1.5 mb-5"
+          >
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-xs text-zinc-500 font-medium"
+                className="px-2 py-0.5 bg-zinc-50 border border-zinc-200 rounded text-[11px] text-zinc-500 font-medium"
               >
                 {tag}
               </span>
             ))}
           </motion.div>
 
+          {/* Links */}
           {project.links.length > 0 && (
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-2"
+            >
               {(project.links as ProjectLink[]).map((link, i) => (
                 <motion.a
                   key={i}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-zinc-50 border border-zinc-200 hover:border-zinc-300 rounded-lg transition-colors duration-150 shadow-sm"
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ duration: 0.15, ease: EASE_OUT }}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white hover:bg-zinc-50
+                             border border-zinc-200 hover:border-zinc-300 rounded-lg transition-colors
+                             duration-150 shadow-sm"
                 >
                   {getLinkIcon(link.type)}
-                  <span className="text-xs text-zinc-600 font-medium">{link.label || link.type}</span>
+                  <span className="text-[11px] text-zinc-600 font-medium">{link.label || link.type}</span>
                 </motion.a>
               ))}
             </motion.div>
           )}
         </motion.div>
 
-        {/* Image */}
-        <div className={`relative h-48 md:aspect-video md:h-auto rounded-2xl overflow-hidden border border-zinc-200 shadow-sm ${catStyle.imageBg}`}>
-          <motion.div style={{ scale: imageScale }} className="absolute inset-0 origin-center">
+        {/* RIGHT: Full-bleed image — object-cover makes ALL projects visually equal */}
+        <div className="relative rounded-2xl overflow-hidden min-h-[220px] md:min-h-0">
+          <motion.div
+            style={{ scale: reduce ? 1 : imageScale }}
+            className="absolute inset-0 origin-center"
+          >
             <Image
               src={project.image}
               alt={project.title}
               fill
-              className="object-contain"
-              sizes="(min-width: 768px) 42vw, 85vw"
+              className="object-cover"
+              sizes="(min-width: 768px) 40vw, 82vw"
             />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-50/20 via-transparent to-transparent pointer-events-none" />
+          {/* Overlay: depth gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/25 pointer-events-none" />
+          {/* Year badge — bottom right */}
+          <div className="absolute bottom-4 right-4">
+            <span className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-white/90
+                             bg-black/30 backdrop-blur-sm border border-white/10">
+              {project.year}
+            </span>
+          </div>
         </div>
+
       </div>
     </motion.div>
   )
@@ -351,10 +356,17 @@ function Projects() {
     offset: ["start start", "end end"],
   })
 
+  /* Spring smooths the 0-1 progress → horizontal pan feels organic, not mechanical */
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
+
   const endX = INITIAL_OFFSET_VW - (projectsData.length - 1) * SLOT_VW
 
   const x = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [0, 1],
     [`${INITIAL_OFFSET_VW}vw`, `${endX}vw`]
   )
@@ -370,9 +382,13 @@ function Projects() {
         style={{ height: "calc(100vh - 4rem)" }}
       >
         {/* Section label */}
-        <div
-          className="absolute top-8 z-10"
-          style={{ left: `${INITIAL_OFFSET_VW}vw`, paddingLeft: "2rem" }}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: EASE_OUT }}
+          className="absolute top-7 z-10"
+          style={{ left: `${INITIAL_OFFSET_VW}vw`, paddingLeft: "1.5rem" }}
         >
           <p className="text-[10px] font-bold text-zinc-300 tracking-[0.3em] uppercase mb-0.5">
             Selected Work
@@ -380,8 +396,9 @@ function Projects() {
           <h2 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">
             Projects
           </h2>
-        </div>
+        </motion.div>
 
+        {/* Slides */}
         <motion.div
           style={{ x, gap: `${GAP_VW}vw` }}
           className="flex h-full items-center"
@@ -392,15 +409,13 @@ function Projects() {
               project={project}
               index={index}
               total={projectsData.length}
-              scrollYProgress={scrollYProgress}
+              scrollYProgress={smoothProgress}
             />
           ))}
         </motion.div>
 
-        {/* Progress */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <ProgressBar total={projectsData.length} scrollYProgress={scrollYProgress} />
-        </div>
+        {/* Horizontal loading bar — bottom edge */}
+        <ProjectProgressBar scrollYProgress={smoothProgress} />
       </div>
     </div>
   )

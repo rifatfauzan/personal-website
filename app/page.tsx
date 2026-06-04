@@ -9,7 +9,7 @@ import Footer from "@/components/footer"
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative scroll-smooth" style={{ backgroundColor: "#18181b" }}>
+    <div className="min-h-screen relative scroll-smooth" style={{ backgroundColor: "#fafaf9" }}>
       <BackgroundPathsOnly />
 
       <div className="relative z-10">

@@ -2,16 +2,15 @@
 
 import { useRef } from "react"
 import Image from "next/image"
-import { motion, useInView } from "motion/react"
+import { motion, useInView, useReducedMotion } from "motion/react"
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const
-const EASE_IN_OUT = [0.77, 0, 0.175, 1] as const
 
 const experiences = [
   {
     title: "Data Science Intern",
     company: "Mandiri Sekuritas",
-    period: "Nov 2025 - Jan 2026",
+    period: "Nov 2025 – Jan 2026",
     logo: "/experiences/mandiri-sekuritas.png",
     description: [
       "Built a Proof of Concept for Relative Rotation Graph (RRG) feature with full stack implementation to analyze relative strength of stocks in the Indonesian Stock Market.",
@@ -23,7 +22,7 @@ const experiences = [
   {
     title: "Data Analyst Intern",
     company: "Mandiri Sekuritas",
-    period: "Aug 2025 - Oct 2025",
+    period: "Aug 2025 – Oct 2025",
     logo: "/experiences/mandiri-sekuritas.png",
     description: [
       "Automated weekly push notification report using GCP (Vertex AI, BigQuery, Looker Studio), reducing manual processing time and errors.",
@@ -34,7 +33,7 @@ const experiences = [
   {
     title: "AI Development Participant",
     company: "Infinite Learning",
-    period: "Mar 2025 - Jul 2025",
+    period: "Mar 2025 – Jul 2025",
     logo: "/experiences/infinite-learning.png",
     description: [
       "Mastered AI fundamentals and practical applications, including core concepts of ML and DL.",
@@ -45,7 +44,7 @@ const experiences = [
   {
     title: "Mentor",
     company: "Dasar-Dasar Pemrograman 0",
-    period: "Aug 2023 - Nov 2023",
+    period: "Aug 2023 – Nov 2023",
     logo: "/experiences/pacil.png",
     description: [
       "Mentored a group of first-year students in fundamental programming logic and Python to prepare them for their mandatory programming course.",
@@ -54,8 +53,8 @@ const experiences = [
   },
   {
     title: "Member",
-    company: "Google Developer Student Club Universitas Indonesia",
-    period: "Nov 2022 - Jun 2023",
+    company: "Google Developer Student Club UI",
+    period: "Nov 2022 – Jun 2023",
     logo: "/experiences/gdsc.png",
     description: [
       "Participated in Google Developer Student Club activities and events.",
@@ -64,71 +63,129 @@ const experiences = [
   },
 ]
 
-function ExperienceItem({ experience }: { experience: typeof experiences[0] }) {
+function ExperienceCard({
+  experience,
+  index,
+}: {
+  experience: (typeof experiences)[0]
+  index: number
+}) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" })
+  const isInView = useInView(ref, { once: true, margin: "-8% 0px -8% 0px" })
+  const reduce = useReducedMotion()
+
+  const colDelay = (index % 2) * 0.1
+  const rowDelay = Math.floor(index / 2) * 0.08
 
   return (
     <motion.div
       ref={ref}
-      animate={{
-        opacity: isInView ? 1 : 0.25,
-        scale: isInView ? 1 : 0.97,
-      }}
-      style={{ transformOrigin: "left center" }}
-      transition={{ duration: 0.4, ease: EASE_IN_OUT }}
-      className="min-h-[35vh] flex items-center border-b border-zinc-100 last:border-0 py-6"
+      initial={reduce ? false : { opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: colDelay + rowDelay, ease: EASE_OUT }}
+      className="relative flex flex-col p-6 bg-white border border-zinc-200 rounded-2xl overflow-hidden
+                 hover:border-zinc-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)]
+                 transition-all duration-300 group"
     >
-      <div className="flex items-start gap-5 w-full">
-        {experience.logo && (
-          <div className="relative w-10 h-10 flex-shrink-0 mt-1 hidden sm:block">
-            <Image
-              src={experience.logo}
-              alt={experience.company}
-              fill
-              className="object-contain"
-              unoptimized
-            />
-          </div>
-        )}
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-4">
-            <div>
-              <h3 className="text-3xl font-bold text-zinc-900 leading-tight">{experience.title}</h3>
-              <p className="text-zinc-600 font-semibold text-sm mt-1">{experience.company}</p>
-            </div>
-            <span className="text-zinc-400 text-sm font-medium shrink-0 sm:text-right">{experience.period}</span>
-          </div>
-          <ul className="space-y-3">
-            {experience.description.map((desc, i) => (
-              <li key={i} className="text-zinc-600 text-sm leading-relaxed flex gap-3">
-                <span className="text-[#4285f4] flex-shrink-0 mt-0.5">◐</span>
-                <span>{desc}</span>
-              </li>
-            ))}
-          </ul>
+      {/* Top accent bar - reveals left to right */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[2px] bg-[#4285f4]"
+        initial={reduce ? false : { scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{
+          duration: 0.6,
+          delay: colDelay + rowDelay + 0.15,
+          ease: EASE_OUT,
+        }}
+        style={{ transformOrigin: "left" }}
+      />
+
+      {/* Header row: logo + period */}
+      <div className="flex items-start justify-between mb-5">
+        <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-zinc-100 bg-white p-1 flex-shrink-0 shadow-sm">
+          <Image
+            src={experience.logo}
+            alt={experience.company}
+            fill
+            className="object-contain"
+            unoptimized
+          />
         </div>
+        <span className="text-zinc-400 text-[11px] font-medium tabular-nums tracking-wide mt-1">
+          {experience.period}
+        </span>
       </div>
+
+      {/* Title + Company */}
+      <h3 className="text-lg font-bold text-zinc-900 leading-snug mb-1">
+        {experience.title}
+      </h3>
+      <p className="text-[#4285f4] text-sm font-semibold mb-4">
+        {experience.company}
+      </p>
+
+      {/* Separator */}
+      <div className="w-full h-px bg-zinc-100 mb-4" />
+
+      {/* Description bullets */}
+      <ul className="space-y-2.5 flex-1">
+        {experience.description.map((desc, i) => (
+          <motion.li
+            key={i}
+            initial={reduce ? false : { opacity: 0, x: -8 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{
+              duration: 0.32,
+              delay: colDelay + rowDelay + 0.3 + i * 0.05,
+              ease: EASE_OUT,
+            }}
+            className="flex items-start gap-2.5 text-zinc-500 text-sm leading-relaxed"
+          >
+            <span className="w-1 h-1 rounded-full bg-[#4285f4] flex-shrink-0 mt-[7px]" />
+            <span>{desc}</span>
+          </motion.li>
+        ))}
+      </ul>
     </motion.div>
   )
 }
 
 function Experiences() {
+  const headerRef = useRef<HTMLDivElement>(null)
+  const headerInView = useInView(headerRef, { once: true, amount: 0.5 })
+  const reduce = useReducedMotion()
+
   return (
-    <section id="experiences" className="py-20">
-      <div className="container max-w-3xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.45, ease: EASE_OUT }}
-          className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-zinc-900 text-center"
-        >
-          Past Experiences
-        </motion.h2>
-        <div>
-          {experiences.map((experience) => (
-            <ExperienceItem key={experience.title} experience={experience} />
+    <section id="experiences" className="py-24">
+      <div className="container max-w-5xl">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-12 text-center">
+          <motion.p
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.35, ease: EASE_OUT }}
+            className="text-[11px] font-bold text-zinc-400 tracking-[0.3em] uppercase mb-3"
+          >
+            Career
+          </motion.p>
+          <motion.h2
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: 0.06, ease: EASE_OUT }}
+            className="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900"
+          >
+            Past Experiences
+          </motion.h2>
+        </div>
+
+        {/* 2-column card grid — CSS grid makes same-row cards equal height */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={experience.title}
+              experience={experience}
+              index={index}
+            />
           ))}
         </div>
       </div>
