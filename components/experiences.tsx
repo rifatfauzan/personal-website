@@ -87,7 +87,6 @@ function ExperienceCard({
                  hover:border-zinc-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.07)]
                  transition-all duration-300 group"
     >
-      {/* Top accent bar - reveals left to right */}
       <motion.div
         className="absolute top-0 left-0 right-0 h-[2px] bg-[#4285f4]"
         initial={reduce ? false : { scaleX: 0 }}
@@ -100,7 +99,6 @@ function ExperienceCard({
         style={{ transformOrigin: "left" }}
       />
 
-      {/* Header row: logo + period */}
       <div className="flex items-start justify-between mb-5">
         <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-zinc-100 bg-white p-1 flex-shrink-0 shadow-sm">
           <Image
@@ -116,7 +114,6 @@ function ExperienceCard({
         </span>
       </div>
 
-      {/* Title + Company */}
       <h3 className="text-lg font-bold text-zinc-900 leading-snug mb-1">
         {experience.title}
       </h3>
@@ -124,10 +121,8 @@ function ExperienceCard({
         {experience.company}
       </p>
 
-      {/* Separator */}
       <div className="w-full h-px bg-zinc-100 mb-4" />
 
-      {/* Description bullets */}
       <ul className="space-y-2.5 flex-1">
         {experience.description.map((desc, i) => (
           <motion.li
@@ -158,7 +153,6 @@ function Experiences() {
   return (
     <section id="experiences" className="py-24">
       <div className="container max-w-5xl">
-        {/* Section header */}
         <div ref={headerRef} className="mb-12 text-center">
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 12 }}
@@ -178,7 +172,6 @@ function Experiences() {
           </motion.h2>
         </div>
 
-        {/* 2-column card grid — CSS grid makes same-row cards equal height */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {experiences.map((experience, index) => (
             <ExperienceCard

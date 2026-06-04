@@ -214,7 +214,6 @@ function ProjectSlide({
 
   const opacity = useTransform(activeProgress, [0, 1], [0.28, 1])
   const scale = useTransform(activeProgress, [0, 1], [0.96, 1])
-  /* Ken Burns: inactive slides zoom out slightly, active fully resolved */
   const imageScale = useTransform(activeProgress, [0, 1], [1.08, 1])
 
   return (
@@ -224,14 +223,12 @@ function ProjectSlide({
     >
       <div className="w-full px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 items-stretch pt-16 md:pt-0">
 
-        {/* LEFT: Content card */}
         <motion.div
           animate={isActive ? "visible" : "hidden"}
           initial={index === 0 ? "visible" : "hidden"}
           variants={contentVariants}
           className="flex flex-col bg-white border border-zinc-200 rounded-2xl p-7 md:p-8"
         >
-          {/* Index */}
           <motion.p
             variants={itemVariants}
             className="text-zinc-300 text-[10px] font-mono tracking-[0.25em] mb-5"
@@ -239,14 +236,12 @@ function ProjectSlide({
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </motion.p>
 
-          {/* Category */}
           <motion.div variants={itemVariants} className="mb-4">
             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-blue-50 text-[#4285f4] border border-blue-200">
               {project.category}
             </span>
           </motion.div>
 
-          {/* Title */}
           <motion.h3
             variants={itemVariants}
             className="text-3xl md:text-4xl font-bold text-zinc-900 mb-2 leading-tight tracking-tighter"
@@ -254,7 +249,6 @@ function ProjectSlide({
             {project.title}
           </motion.h3>
 
-          {/* Role + year */}
           <motion.p
             variants={itemVariants}
             className="text-sm font-semibold text-[#4285f4] mb-5"
@@ -262,13 +256,11 @@ function ProjectSlide({
             {project.role} · {project.year}
           </motion.p>
 
-          {/* Separator */}
           <motion.div
             variants={itemVariants}
             className="w-full h-px bg-zinc-100 mb-5"
           />
 
-          {/* Description */}
           <motion.p
             variants={itemVariants}
             className="text-zinc-500 text-sm leading-relaxed mb-5 flex-1"
@@ -276,7 +268,6 @@ function ProjectSlide({
             {project.description.join(" ")}
           </motion.p>
 
-          {/* Tags */}
           <motion.div
             variants={itemVariants}
             className="flex flex-wrap gap-1.5 mb-5"
@@ -291,7 +282,6 @@ function ProjectSlide({
             ))}
           </motion.div>
 
-          {/* Links */}
           {project.links.length > 0 && (
             <motion.div
               variants={itemVariants}
@@ -318,8 +308,7 @@ function ProjectSlide({
           )}
         </motion.div>
 
-        {/* RIGHT: Full-bleed image — object-cover makes ALL projects visually equal */}
-        <div className="relative rounded-2xl overflow-hidden min-h-[220px] md:min-h-0">
+        <div className="relative rounded-2xl overflow-hidden min-h-[220px] md:min-h-0 hidden md:block">
           <motion.div
             style={{ scale: reduce ? 1 : imageScale }}
             className="absolute inset-0 origin-center"
@@ -332,9 +321,7 @@ function ProjectSlide({
               sizes="(min-width: 768px) 40vw, 82vw"
             />
           </motion.div>
-          {/* Overlay: depth gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/25 pointer-events-none" />
-          {/* Year badge — bottom right */}
           <div className="absolute bottom-4 right-4">
             <span className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-white/90
                              bg-black/30 backdrop-blur-sm border border-white/10">
@@ -356,7 +343,6 @@ function Projects() {
     offset: ["start start", "end end"],
   })
 
-  /* Spring smooths the 0-1 progress → horizontal pan feels organic, not mechanical */
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -381,7 +367,6 @@ function Projects() {
         className="sticky top-16 overflow-hidden bg-[#fafaf9]"
         style={{ height: "calc(100vh - 4rem)" }}
       >
-        {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -398,7 +383,6 @@ function Projects() {
           </h2>
         </motion.div>
 
-        {/* Slides */}
         <motion.div
           style={{ x, gap: `${GAP_VW}vw` }}
           className="flex h-full items-center"
@@ -414,7 +398,6 @@ function Projects() {
           ))}
         </motion.div>
 
-        {/* Horizontal loading bar — bottom edge */}
         <ProjectProgressBar scrollYProgress={smoothProgress} />
       </div>
     </div>

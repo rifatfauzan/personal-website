@@ -15,7 +15,6 @@ const socialLinks = [
 function Contact() {
   return (
     <section id="contact" className="py-32 bg-zinc-900 relative overflow-hidden">
-      {/* Decorative blob */}
       <div
         aria-hidden
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
@@ -64,7 +63,6 @@ function Contact() {
           </motion.a>
         </motion.div>
 
-        {/* Social icons - staggered entrance + individual hover */}
         <div className="flex items-center justify-center gap-6 mt-12">
           {socialLinks.map((link, i) => {
             const Icon = link.icon

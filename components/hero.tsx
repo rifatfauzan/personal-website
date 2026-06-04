@@ -21,7 +21,6 @@ function Hero() {
       className="relative min-h-[100svh] flex items-center py-16 md:py-0 overflow-hidden"
     >
       <div className="container relative z-10 py-8 md:py-0">
-        {/* Glassmorphism blue card — spring-enters from below */}
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 56, scale: 0.94 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -33,11 +32,8 @@ function Hero() {
             boxShadow: "0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)",
           }}
         >
-          {/* Content grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
-            {/* LEFT: text + CTAs */}
             <div className="max-w-xl">
-              {/* Heading */}
               <motion.h1
                 initial={reduce ? false : { opacity: 0, y: 36 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -72,7 +68,6 @@ function Hero() {
                 </span>
               </motion.h1>
 
-              {/* Description */}
               <motion.p
                 initial={reduce ? false : { opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -85,14 +80,12 @@ function Hero() {
                 Building things that matter.
               </motion.p>
 
-              {/* CTA row */}
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5, ease: EASE_OUT }}
                 className="flex flex-wrap items-center gap-3"
               >
-                {/* Primary CTA */}
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
                   <Button
                     className="bg-zinc-900 text-white hover:bg-zinc-800 px-5 h-10 rounded-lg font-medium text-sm transition-colors duration-150 shadow-sm"
@@ -109,10 +102,8 @@ function Hero() {
                   </Button>
                 </motion.div>
 
-                {/* Divider */}
                 <div className="w-px h-6 bg-zinc-300/60" />
 
-                {/* Social icons */}
                 <div className="flex items-center gap-1">
                   <motion.div whileHover={{ y: -3, scale: 1.1 }} whileTap={{ scale: 0.93 }} transition={{ duration: 0.15 }}>
                     <Link
@@ -151,14 +142,12 @@ function Hero() {
               </motion.div>
             </div>
 
-            {/* RIGHT: Memoji — springs in from right */}
             <motion.div
               initial={reduce ? false : { opacity: 0, x: 48, scale: 0.88 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ type: "spring", stiffness: 75, damping: 18, delay: 0.18 }}
               className="hidden md:flex justify-center items-center relative"
             >
-              {/* Float loop */}
               <motion.div
                 animate={reduce ? {} : { y: [0, -12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}

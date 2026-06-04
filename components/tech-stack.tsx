@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "motion/react"
+import { motion, useReducedMotion, Variants } from "motion/react"
 import LogoLoop from "@/components/ui/logo-loop"
 
 interface TechItem {
@@ -34,117 +34,141 @@ const infraStack: TechItem[] = [
   { name: "HuggingFace", image: "/logos/hf-logo.svg", url: "https://huggingface.co/" },
 ]
 
-const EASE_OUT = [0.23, 1, 0.32, 1] as const
+const FADE_COLOR = "#fafaf9"
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 24,
+    },
+  },
+}
+
+const memojiVariants: Variants = {
+  hidden: { opacity: 0, y: 32, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 220,
+      damping: 22,
+      delay: 0.18,
+    },
+  },
+}
+
+function LogoRow({
+  items,
+  direction,
+  ariaLabel,
+}: {
+  items: TechItem[]
+  direction: "left" | "right"
+  ariaLabel: string
+}) {
+  return (
+    <LogoLoop
+      items={items as any}
+      speed={30}
+      direction={direction}
+      logoHeight={96}
+      gap={40}
+      pauseOnHover
+      fadeOut
+      fadeOutColor={FADE_COLOR}
+      scaleOnHover
+      ariaLabel={ariaLabel}
+      renderItem={(item: any) => (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center pointer-events-auto rounded-xl p-2
+                     transition-opacity duration-200 hover:opacity-70"
+          aria-label={item.name}
+        >
+          <div className="relative w-16 h-16 md:w-20 md:h-20">
+            <Image
+              src={item.image}
+              alt={item.name}
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+        </a>
+      )}
+    />
+  )
+}
 
 function TechStack() {
+  const reduce = useReducedMotion()
+
   return (
-    <section id="tech" className="py-12 overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-      <div className="container">
+    <section id="tech" className="py-20 overflow-hidden">
+      <motion.div
+        variants={reduce ? undefined : containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.4 }}
+        className="max-w-6xl mx-auto px-6 text-center mb-14"
+      >
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.35, ease: EASE_OUT }}
-          className="text-[11px] font-bold text-zinc-400 tracking-[0.3em] uppercase text-center mb-3"
+          variants={reduce ? undefined : itemVariants}
+          className="text-[11px] font-bold text-zinc-400 tracking-[0.3em] uppercase mb-3"
         >
           Stack
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45, delay: 0.06, ease: EASE_OUT }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-12 text-zinc-900"
+          variants={reduce ? undefined : itemVariants}
+          className="text-4xl md:text-6xl font-bold tracking-tighter text-zinc-900"
         >
           Frameworks & Tools
         </motion.h2>
-      </div>
+      </motion.div>
 
-      <div className="relative w-screen">
-        <div className="relative flex items-end justify-center" style={{ minHeight: '384px' }}>
-          <div className="absolute inset-0 space-y-8 flex flex-col justify-center pointer-events-none overflow-hidden">
-            <LogoLoop
-              items={webStack as any}
-              speed={30}
-              direction="left"
-              logoHeight={200}
-              gap={32}
-              pauseOnHover={true}
-              fadeOut={false}
-              scaleOnHover={true}
-              renderItem={(item: any) => (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center pointer-events-auto"
-                  tabIndex={0}
-                  aria-label={item.name}
-                >
-                  <div className="relative w-32 h-32">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                    />
-                  </div>
-                </a>
-              )}
-            />
-
-            <LogoLoop
-              items={infraStack as any}
-              speed={30}
-              direction="right"
-              logoHeight={200}
-              gap={32}
-              pauseOnHover={true}
-              fadeOut={false}
-              scaleOnHover={true}
-              renderItem={(item: any) => (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center pointer-events-auto"
-                  tabIndex={0}
-                  aria-label={item.name}
-                >
-                  <div className="relative w-32 h-32">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                    />
-                  </div>
-                </a>
-              )}
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.55, delay: 0.15, ease: EASE_OUT }}
-            className="relative z-10 flex justify-center items-end pt-12"
-            style={{ minWidth: '300px' }}
-          >
-            <Image
-              src="/memoji/memoji-laptop.png"
-              alt="Memoji with laptop"
-              width={300}
-              height={500}
-              className="object-contain"
-              priority
-              unoptimized
-            />
-          </motion.div>
+      <div className="relative flex items-end justify-center" style={{ minHeight: 360 }}>
+        <div className="absolute inset-0 flex flex-col justify-center gap-8 pointer-events-none overflow-hidden">
+          <LogoRow items={webStack} direction="left" ariaLabel="Web stack logos" />
+          <LogoRow items={infraStack} direction="right" ariaLabel="Infra stack logos" />
         </div>
+
+        <motion.div
+          variants={reduce ? undefined : memojiVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative z-10 flex justify-center items-end"
+          style={{ minWidth: 240 }}
+        >
+          <Image
+            src="/memoji/memoji-laptop.png"
+            alt="Memoji with laptop"
+            width={260}
+            height={440}
+            className="object-contain"
+            priority
+            unoptimized
+          />
+        </motion.div>
       </div>
     </section>
   )
